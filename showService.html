@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/petshop.css">
+
+	</head>
+	
+	<body>
+		
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+		<main> <!-- main content -->
+			<br><br>
+			<div>
+				<h3 id="nameService">Vacinação</h3>
+				<div id="divImage">
+					<img class="fullImage" src="images/vacinacao.jpg" alt="Imagem do Serviço"/>
+				</div>
+			</div>
+			<div id="divServicePrice">
+				<hr>
+				<p id="lblServicePrice">Por R$229,90</p>
+				<hr>
+			</div>
+			<div id="divServiceDescription">
+			<br>
+				<h3>Descrição do Serviço</h3>
+				<p id="pDescription">
+Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-los imunes confiando em nossos funcionários altamente qualificados com equipamentos de ponta para realizar o melhor serviço para você.
+				</p>
+			</div>
+			<hr>
+			<h3>Agendar um horário</h3>
+			<p>Escolha um entre seus animais cadastrados:</p>
+			<div id="listAnimals">
+				<input type="radio" name="chooseAnimal" value="1">
+					<div class="divAnimalInfo">
+						<div class="divAnimalPhoto">
+							<img src="images/jackphoto.jpg" class="fullImage" alt="Imagem do Animal"/>
+						</div>
+						<table class="table2Items">
+							<tr><td>Nome</td><td><input type="text" id="animalName" value="Jack" readonly></td></tr>
+							<tr><td>ID</td><td><input type="text" id="animalID" value="8931" readonly></td></tr>
+							<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="3" readonly></td></tr>
+							<tr><td>Raça</td><td><input type="text" id="animalBreed" value="Jack russell terrier" readonly></td></tr>
+						</table>
+					</div>
+				</input>
+				<br>
+				<input type="radio" name="chooseAnimal" value="2">
+					<div class="divAnimalInfo">
+						<div class="divAnimalPhoto">
+							<img src="images/lessiephoto.jpg" class="fullImage" alt="Imagem do Animal"/>
+						</div>
+						<table class="table2Items">
+							<tr><td>Nome</td><td><input type="text" id="animalName" value="Lessie" readonly></td></tr>
+							<tr><td>ID</td><td><input type="text" id="animalID" value="8932" readonly></td></tr>
+							<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="2" readonly></td></tr>
+							<tr><td>Raça</td><td><input type="text" id="animalBreed" value="Rough collie" readonly></td></tr>
+						</table>
+					</div>
+				</input>
+			</div>
+			<div id="divAppointment">
+				<p>Escolha uma semana:</p>
+				<select id="selectWeek" name="selectWeek">
+					<option value="1">17/04/2017 - 22/04/2017</option>
+					<option value="2">24/04/2017 - 29/04/2017</option>
+					<option value="3">01/05/2017 - 06/05/2017</option>
+					<option value="4">08/05/2017 - 13/05/2017</option>
+					<option value="5">15/05/2017 - 20/05/2017</option>
+					<option value="6">22/05/2017 - 27/05/2017</option>
+					<option value="7">29/05/2017 - 03/06/2017</option>
+					<option value="8">05/06/2017 - 10/06/2017</option>
+					<option value="9">12/06/2017 - 17/06/2017</option>
+					<option value="10">19/06/2017 - 24/06/2017</option>
+				</select>
+				<p>Escolha o dia da semana:</p>
+				<select id="selectDayOfTheWeek" name="selectDayOfTheWeek">
+					<option value="1">Segunda-feira</option>
+					<option value="2">Terça-feira</option>
+					<option value="3">Quarta-feira</option>
+					<option value="4">Quinta-feira</option>
+					<option value="5">Sexta-feira</option>
+					<option value="6">Sábado</option>
+				</select>
+				<p>Escolha o horário:</p>
+				<a id="divSlot1" class="slotCalendar slotOccupied">
+					<label>08h</label>
+					<img id="slot1Image" class="serviceImage" src="images/vacinacao.jpg" alt="Imagem do Serviço"/>
+					<br>
+					<label id="slot1Status">Horário Ocupado - Serviço: Vacinação no animal Jack</label>
+				</a>
+				<a id="divSlot2" class="slotCalendar slotFree">
+					<label>09h</label>
+					<img id="slot2Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot2Status"></label>
+				</a>
+				<a id="divSlot3" class="slotCalendar slotOccupied">
+					<label>10h</label>
+					<img id="slot3Image" class="serviceImage" src="images/tosa.jpg" alt="Imagem do Serviço"/>
+					<br>
+					<label id="slot3Status">Horário Ocupado - Serviço: Tosa no animal Lessie</label>
+				</a>
+				<a id="divSlot4" class="slotCalendar slotFree">
+					<label>11h</label>
+					<img id="slot4Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot4Status"></label>
+				</a>
+				<a id="divSlot5" class="slotCalendar slotFree">
+					<label>12h</label>
+					<img id="slot5Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot5Status"></label>
+				</a>
+				<a id="divSlot6" class="slotCalendar slotFree">
+					<label>13h</label>
+					<img id="slot6Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot6Status"></label>
+				</a>
+				<a id="divSlot7" class="slotCalendar slotFree">
+					<label>14h</label>
+					<img id="slot7Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot7Status"></label>
+				</a>
+				<a id="divSlot8" class="slotCalendar slotFree">
+					<label>15h</label>
+					<img id="slot8Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot8Status"></label>
+				</a>
+				<a id="divSlot9" class="slotCalendar slotFree">
+					<label>16h</label>
+					<img id="slot9Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot9Status"></label>
+				</a>
+				<a id="divSlot10" class="slotCalendar slotFree">
+					<label>17h</label>
+					<img id="slot10Image" class="" src="" alt=""/>
+					<br>
+					<label id="slot10Status"></label>
+				</a>
+			</div>
+			
+			<script>
+				function slotFreeClick() {
+					var i, tabcontent;
+					tabcontent = document.getElementsByClassName("slotFree");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].href = "paymentService.html";
+					}
+				}
+				
+				slotFreeClick();
+			</script>
+		</main>
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

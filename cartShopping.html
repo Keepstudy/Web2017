@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" type="text/css" href="css/petshop.css">
+	</head>
+	
+	<body>
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+		<main> <!-- main content -->
+			<h2 class = "alignParagraph"> 
+				Carrinho de Compras 
+			</h2> 
+			
+			<div> <!-- Contêm a tabela com os produtos do carrinho-->
+				<table class = "shoppingCartTable">
+				  <tr> <!-- Colunas do carrinho -->
+					<th></th>
+					<th>Produto</th>
+					<th>Quantidade</th>
+					<th>Preço</th>
+					<th>Remover</th>
+				  </tr>
+				  
+				  <!-- Cada tr e um elemento do carrinho -->
+				  <tr>
+					<td> <!-- Foto do produto -->						
+						<img src="images/racao.jpg" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
+					</td>
+					<td> <!-- Nome do produto -->
+						<label> Ração Para Cachorro 10Kg </label>
+					</td>
+					<td> <!-- Quantidade do produto -->
+						<input id=quantidade_produtos" type="number"  min="1" max = "99" step="1" value="1"/>
+					</td>
+					<td> <!-- Valor do Produto*Quantidade -->
+						<label> R$ 50,00 </label>
+					</td>
+					<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
+						<button class="shoppingCartButtonRemove" type="button">x</button>
+					</td>
+				  </tr>
+				  
+				  <!-- Aqui vao as outras linhas da tabela -->
+				  
+				  <!-- Contêm a última linha da tabela, que contem o subtotal e o total do preço dos produtos-->
+				  <tr style="background-color: #fff;">
+					<td></td>
+					<td></td>
+					<td> 
+						<label><b> Subtotal<b></label>
+					</td>
+					<td> <!-- Soma de todos os valores do carrinho -->
+						<label><b>R$ 50,00 </b></label>
+					</td>
+				  </tr>
+				  
+				</table>
+				
+				<div> <!-- Botão de Confirmar Compra do carrinho -->
+					<button class = "shoppingCartButtonConfirm" type="button" onclick="location.href='payment.html';">Confirmar Compra</button>
+				</div>
+			</div>
+		</main>
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

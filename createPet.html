@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" href="css/petshop.css">
+
+	</head>
+	
+	<body>
+		
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+		<main style="float:left;background-color:white;width:50%;height:auto;"> <!-- main content -->
+			<br><br>
+
+				<fieldset>
+					<legend>Cadastrar pet</legend>
+					<div class="tudo">	
+				
+						<div class="avatar">
+							<img src="images/pet.png" alt="Avatar" style="width:128px;height:128px;">
+						</div>
+
+						<div class="conteudo">
+						
+							<form action="#" method="post">
+								<table>
+									<tr>
+										<td><label for="nome">Usuário</label></td>
+										<td><input type="text" name="User"></td>
+									</tr>
+
+									<tr>
+										<td><label for="animal">Animal</label></td>
+										<td><input type="text" name="animal"></td>
+									</tr>
+				
+									<tr>
+										<td><label for="id">ID</label></td>
+										<td><input type="text" name="id"></td>
+									</tr>
+
+									<tr>
+										<td><label for="foto">Foto</label></td>
+								 		<td><button id="uploadfoto" class="button" type="button" >Upload foto...</button></td>
+									</tr>
+
+									<tr>
+										<td><label for="raça">Raça</label></td>
+										<td><input type="text" name="raça"></td>
+									</tr>
+
+									<tr>
+										<td><label for="idade">Idade</label></td>			
+										<td><input type="text" name="idade"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</div>
+					<div class="centerElements">
+						<a class="button"  href="createdPet.html">Cadastrar</a><br>
+					</div>
+				</fieldset>
+		</main>
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

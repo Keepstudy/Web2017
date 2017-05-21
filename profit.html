@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" href="css/petshop.css">
+
+	</head>
+	
+	<body>		
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+
+		<main style="float:center;background-color:white;width:50%;height:auto;"><br><br> <!-- main content -->
+
+			<h1> Ganhos do site </h1>
+
+			<h2>  Tabela com os ganhos dos serviços e produtos</h2>
+
+			<fieldset>
+				<legend> Produtos </legend>
+				
+					<div>
+						<table class="tableGanhos">
+							<tr>
+								<th>Produto(s)</th>
+								<th>Quantidade vendida</th>
+								<th>Valor unitário</th>
+								<th>Valor total </th>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<img src="images/racao.jpg" alt="Ração" height="42" width="42">
+									</div>
+									<div>
+										Ração Pedegree
+									<div>
+								</td>
+								<td> 2 </td>
+								<td> R$ 32,00 </td>
+								<td> R$ 64,00 </td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<img src="images/guia.jpg" alt="Ração" height="42" width="42">
+									</div>
+									<div>
+										Guia
+									<div>
+								</td>
+								<td> 1 </td>
+								<td> R$ 16,90 </td>
+								<td> R$ 16,90 </td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<img src="images/osso.jpg" alt="Ração" height="42" width="42">
+									</div>
+									<div>
+										Osso
+									<div>
+								</td>
+								<td> 4 </td>
+								<td> R$ 20,00 </td>
+								<td> R$ 80,00</td>
+							</tr>
+						</table>
+						<table class="tableGanhos">
+							<tr>
+								<th align="right"> Total </th>
+							</tr>
+							<tr>
+								<td align="right"> 160,90 </td> 	
+							</tr>
+						</table>
+
+					</div>
+			</fieldset><br><br>
+
+			<fieldset>
+				<legend> Serviços </legend>
+				
+					<div>
+						<table class="tableGanhos">
+							<tr>
+								<th>Serviço(s)</th>
+								<th>Quantidade realizado</th>
+								<th>Valor unitário</th>
+								<th>Valor total </th>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<img src="images/tosa.png" alt="Ração" height="42" width="42">
+									</div>
+									<div>
+										Tosa
+									<div>
+								</td>
+								<td> 1 </td>
+								<td> R$ 30,00 </td>
+								<td> R$ 30,00 </td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<img src="images/vacina.png" alt="Ração" height="42" width="42">
+									</div>
+									<div>
+										Vacina
+									<div>
+								</td>
+								<td> 1 </td>
+								<td> R$ 100,00 </td>
+								<td> R$ 100,00 </td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+										<img src="images/leva.png" alt="Ração" height="42" width="42">
+									</div>
+									<div>
+										Leva e trás
+									<div>
+								</td>
+								<td> 1 </td>
+								<td> R$ 30,00 </td>
+								<td> R$ 30,00</td>
+							</tr>
+						</table>
+						<table class="tableGanhos">
+							<tr>
+								<th align="right"> Total </th>
+							</tr>
+							<tr>
+								<td align="right"> 160,00 </td> 	
+							</tr>
+						</table>
+					</div>
+			</fieldset>
+		</main>
+
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+
+	
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

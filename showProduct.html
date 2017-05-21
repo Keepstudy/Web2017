@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/petshop.css">
+
+	</head>
+	
+	<body>
+		
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+		<main> <!-- main content -->
+			<br><br>
+			<div>
+				<h3 id="nameProduct">PEDIGREE® Equilíbrio Natural Adulto 7+ 15Kg</h3>
+				<div id="divImage">
+					<img class="fullImage" src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Imagem do Produto"/>
+				</div>
+			</div>
+			<div id="divProductOptions">
+				<hr>
+				<p id="lblProductPrice">Por R$121,90</p>
+				<hr>
+				<p id="lblInStock">Quantidade em Estoque: 47</p>
+				<button class="button" type="button" onclick="alert('O produto foi adicionado ao carrinho!')">Adicionar ao Carrinho</button>
+			</div>
+			<div id="divProductDescription">
+			<br>
+				<h3>Descrição do Produto</h3>
+				<p id="pDescription">
+O novo PEDIGREE® Equilíbrio Natural é um alimento que ajuda a equilibrar o organismo do seu cão de forma irresistível. Isso porque ele oferece em sua fórmula grãos integrais e suculentos pedaços macios sabor carne, fontes naturais de proteínas, carboidratos e vitaminas. Além disso, não tem gordura trans nem aromatizantes artificiais. Seu cão tem muito mais para viver ainda, e qualidade de vida começa com uma alimentação mais saudável e equilibrada.
+
+Fibras de fontes 100% naturais
+Feito com grãos integrais e polpa de beterraba, que fornecem um balanço adequado de fibra, contribuindo para uma vida equilibrada.
+
+Irresistível
+Com suculentos pedaços macios sabor carne cuidadosamente cozidos. A combinação de pedaços crocantes e pedaços macios deixa seu cão muito mais feliz.
+
+Ingredientes selecionados
+Combinação ideal de fontes naturais de proteínas, vitaminas e carboidratos. Além disso, não possui gordura trans nem aromatizantes artificiais.
+ 
+2x Mais Fácil de Mastigar
+Cães com mais de 7 anos de idade podem apresentar maior dificuldade na mastigação. Por isso PEDIGREE® Equilíbrio Natural Adulto + 7 anos possui pedaços especiais que são 2x mais fáceis de quebrar.
+				</p>
+			</div>
+		</main>
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

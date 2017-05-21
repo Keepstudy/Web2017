@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/petshop.css">
+		
+	</head>
+	
+	<body>
+		
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+	
+		<aside> <!-- left-sidebar -->
+			<br><br>
+			<div class="tab" style="">
+			  <button id="btnMyInfo"        class="tablinks" onclick="openTab(event, 'myInfo')">Minhas Informações</button>
+			  <button id="btnUpdateMyInfo"  class="tablinks" onclick="openTab(event, 'updateMyInfo')">Alterar Meus Dados</button>
+			  <button id="btnManageAnimal"  class="tablinks" onclick="openTab(event, 'manageAnimal')">Gerenciar Animais</button>
+			  <button id="btnHistoric"      class="tablinks" onclick="openTab(event, 'historic')">Históricos</button>
+			  <button id="btnManageProduct" class="tablinks" onclick="openTab(event, 'manageProduct')">Gerenciar Produto</button>
+			  <button id="btnmanageService" class="tablinks" onclick="openTab(event, 'manageService')">Gerenciar Serviço</button>
+			  <button id="btnManageAdmin"   class="tablinks" onclick="openTab(event, 'manageAdmin')">Gerenciar Administrador</button>
+			  <button class="tablinks" onclick="location.href='profit.html'">Tela de Ganhos</button>
+			</div>
+		</aside>
+
+		<main> <!-- main content -->
+			<br><br>		
+			
+
+			<div id="myInfo" class="tabcontent">
+				<h3>Minhas Informações</h3>
+				<p class="pUserLevel">Administrador</p>
+				<fieldset>
+					<legend>Dados Pessoais</legend>
+
+					<div class="divUserPhoto"> 
+						<img src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
+					</div>
+					<br>
+					<table class="table2Items">
+						<tr>
+							<td><label for="nome">Nome Completo</label></td>
+							<td><input type="text" id="name" value="Danilo F. Ted" readonly></td>
+						</tr>
+						<tr>
+							<td><label for="user">Nome de Usuário</label></td>
+							<td><input type="text" name="user" value="danfted" readonly></td>
+						</tr>
+						<tr>
+							<td><label for="id">ID</label></td>
+							<td><input type="text" name="id" value="89373611" readonly></td>
+						</tr>
+					</table>
+									
+				</fieldset>
+
+				<fieldset>
+					<legend>Contatos</legend>
+					<br>
+					<table class="table2Items">
+						<tr>
+							<td><label for="email">Email</label></td>
+							<td><input type="text" name="email" value="danfted@gmail.com" readonly></td>
+						</td>
+						<tr>
+							<td><label for="phone number">Telefone</label></td>
+							<td><input type="text" name="phone number" value="(16) 3373-9700" readonly></td>
+						</tr>
+					</table>
+				</fieldset>
+
+				<fieldset class="fieldsetAdress" style="display:none;">
+					<legend>Endereço</legend>
+					<br>
+					<table class="table2Items">
+						<tr>
+							<td><label for="cep">CEP</label></td>
+							<td><input type="text" name="cep" value="13566-590" readonly></td>
+						</tr>
+				
+						<tr>
+							<td><label for="address">Endereço</label></td>  
+							<td><input type="text" name="address" value="Trabalhador Sancarlense" readonly></td>
+						</tr>
+
+						<tr>
+							<td><label for="número">Número</label></td>
+							<td><input type="text" name="number" value="400" readonly></td>
+						</tr>
+
+						<tr>
+							<td><label for="nairro">Bairro</label></td>
+							<td><input type="text" name="distict" value="Centro" readonly></td>
+						</tr>
+
+						<tr>
+							<td><label for="cidade">Cidade</label></td>
+							<td><input type="text" name="city" value="São Carlos" readonly></td>
+						</tr>
+
+						<tr>
+							<td><label for="estado">Estado</label></td>
+							<td><input type="text" name="state" value="São Paulo" readonly></td>
+						</tr>
+					</table>	                 
+				</fieldset>
+			</div>
+
+			<div id="updateMyInfo" class="tabcontent">
+			  <h3>Alterar Meus Dados</h3>
+			  <p class="pUserLevel">Administrador</p>
+				<fieldset>
+					<legend>Dados Pessoais</legend>
+
+					<br>
+					<table class="table2Items">
+						<tr>
+							<td><label for="nome">Nome Completo</label></td>
+							<td><input type="text" id="name" value="Danilo F. Ted"></td>
+						</tr>
+						<tr>
+							<td><label for="user">Nome de Usuário</label></td>
+							<td><input type="text" name="user" value="danfted"></td>
+						</tr>
+						<tr>
+							<td><label for="id">ID</label></td>
+							<td><input type="text" name="id" value="89373611"></td>
+						</tr>
+						<tr>
+							<td><label for="password">Senha</label></td>
+							<td><input type="password" name="password"></td>
+						</tr>
+						<tr>
+							<td><label for="conf">Confirmar senha</label></td>
+							<td><input type="password" name="confpassword"></td>
+						</tr>
+						<tr>
+							<td><label for="foto">Foto</label></td>
+							<td><button class="button" type="button">Upload photo...</button></td>
+						</tr>
+					</table>
+									
+				</fieldset>
+
+				<fieldset>
+					<legend>Contatos</legend>
+					<br>
+					<table class="table2Items">
+						<tr>
+							<td><label for="email">Email</label></td>
+							<td><input type="text" name="email" value="danfted@gmail.com"></td>
+						</td>
+						<tr>
+							<td><label for="phone number">Telefone</label></td>
+							<td><input type="text" name="phone number" value="(16) 3373-9700"></td>
+						</tr>
+					</table>
+				</fieldset>
+
+				<fieldset class="fieldsetAdress" style="display:none;">
+					<legend>Endereço</legend>
+					<br>
+					<table class="table2Items">
+						<tr>
+							<td><label for="cep">CEP</label></td>
+							<td><input type="text" name="cep" value="13566-590"></td>
+						</tr>
+				
+						<tr>
+							<td><label for="address">Endereço</label></td>  
+							<td><input type="text" name="address" value="Trabalhador Sancarlense"></td>
+						</tr>
+
+						<tr>
+							<td><label for="número">Número</label></td>
+							<td><input type="text" name="number" value="400"></td>
+						</tr>
+
+						<tr>
+							<td><label for="bairro">Bairro</label></td>
+							<td><input type="text" name="distict" value="Centro"></td>
+						</tr>
+
+						<tr>
+							<td><label for="cidade">Cidade</label></td>
+							<td><input type="text" name="city" value="São Carlos"></td>
+						</tr>
+
+						<tr>
+							<td><label for="estado">Estado</label></td>
+							<td><input type="text" name="state" value="São Paulo"></td>
+						</tr>
+					</table>	                 
+				</fieldset>
+				<button class="button" type="button" onclick="alert('Suas informações foram salvas com sucesso!')">Salvar alterações</button>
+			</div>
+
+			<div id="manageAnimal" class="tabcontent">
+				<h3>Gerenciar Animais</h3>
+				<h4>Cadastrar Animal</h4>
+				<a href="createPet.html" class="hyperlink">Clique aqui para cadastrar um novo animal!</a>
+				<h4>Seus animais cadastrados</h4>
+				<div id="listAnimals">
+				
+					<div class="divAnimalInfo">
+						<div class="divAnimalPhoto">
+							<img src="images/jackphoto.jpg" class="fullImage" alt="Imagem do Animal"/>
+						</div>
+						<table class="table2Items">
+							<tr><td>Nome</td><td><input type="text" id="animalName" value="Jack" readonly></td></tr>
+							<tr><td>ID</td><td><input type="text" id="animalID" value="8931" readonly></td></tr>
+							<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="3" readonly></td></tr>
+							<tr><td>Raça</td><td><input type="text" id="animalBreed" value="Jack russell terrier" readonly></td></tr>
+						</table>
+					</div>
+					
+					<div class="divAnimalInfo">
+						<div class="divAnimalPhoto">
+							<img src="images/lessiephoto.jpg" class="fullImage" alt="Imagem do Animal"/>
+						</div>
+						<table class="table2Items">
+							<tr><td>Nome</td><td><input type="text" id="animalName" value="Lessie" readonly></td></tr>
+							<tr><td>ID</td><td><input type="text" id="animalID" value="8932" readonly></td></tr>
+							<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="2" readonly></td></tr>
+							<tr><td>Raça</td><td><input type="text" id="animalBreed" value="Rough collie" readonly></td></tr>
+						</table>
+					</div>
+					
+				</div>
+				<br>
+			</div>
+			
+			<div id="historic" class="tabcontent">
+			  <h3>Históricos</h3>
+			  <fieldset>
+				<legend> Produtos </legend>
+				<div class="centerElements">
+					<table class="tableHistoric">
+						<tr>
+							<th>Produto</th>
+							<th>Quantidade comprada</th>
+							<th>Valor unitário</th>
+							<th>Valor total </th>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<img src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Ração PEDIGREE® Equilíbrio Natural" height="42" width="42">
+								</div>
+								<div>
+									PEDIGREE® Equilíbrio Natural
+								</div>
+							</td>
+							<td> 2 </td>
+							<td> R$ 121,90 </td>
+							<td> R$ 243,80 </td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<img src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Ração PEDIGREE® Equilíbrio Natural" height="42" width="42">
+								</div>
+								<div>
+									PEDIGREE® Equilíbrio Natural
+								</div>
+							</td>
+							<td> 1 </td>
+							<td> R$ 121,90 </td>
+							<td> R$ 121,90 </td>
+						</tr>
+					</table>
+				</div>
+			</fieldset>
+			<br><br>
+			<fieldset>
+				<legend> Serviços </legend>
+				<div class="centerElements">
+					<table class="tableHistoric">
+						<tr>
+							<th>Serviço</th>
+							<th>Quantidade realizado</th>
+							<th>Valor unitário</th>
+							<th>Valor total </th>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<img src="images/tosa.jpg" alt="Tosa" height="42" width="42">
+								</div>
+								<div>
+									Tosa
+								<div>
+							</td>
+							<td> 1 </td>
+							<td> R$ 30,00 </td>
+							<td> R$ 30,00 </td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<img src="images/vacinacao.jpg" alt="Vacinação" height="42" width="42">
+								</div>
+								<div>
+									Vacina
+								<div>
+							</td>
+							<td> 1 </td>
+							<td> R$ 100,00 </td>
+							<td> R$ 100,00 </td>
+						</tr>
+					</table>
+				</div>
+			</fieldset>
+			</div>
+			
+			<div id="manageProduct" class="tabcontent">
+				<h3>Gerenciar Produto</h3>
+				<h4>Cadastrar Produto</h4>
+				<a href="createProduct.html" class="hyperlink">Clique aqui para cadastrar um novo produto!</a>
+				<h4>Alterar Produto</h4>
+				<input id="txtSearchUpdateProduct" type="text" name="txtSearchUpdateProduct" placeholder="Qual produto você deseja alterar?">
+				<button id="btnSearchUpdateProduct" class="button" type="button">Buscar por nome</button>
+				<br><br>
+				<div>
+					<div class="listSearchUpdateProductHeader">
+						<label> 1 Produto(s) encontrado(s) </label>
+					</div>
+					<div class='maskSearchUpdateProduct'>
+						<div class='containerSearchUpdateProduct'>
+							<div class='item'> <!-- Put an element here! -->
+								<img src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
+								<br>
+								<input type="radio" name="product" value="PEDIGREE® Equilíbrio Natural">PEDIGREE® Equilíbrio Natural</input>
+								<label class="productPrize"><br>R$ 121,90</label>
+							</div>							
+						</div>
+					</div>
+					<div class="listSearchUpdateProductHeader">
+						<button class="buttonPageProduct" type="button">Anterior</button>
+						<button class="buttonPageProduct" type="button">Proxima</button>
+					</div>
+				</div>
+				<h5>Dados do produto selecionado</h5>
+				<table>
+					<tbody>
+						<tr>
+							<td><label for="produto">Nome</label></td>
+							<td><input type="text" name="produto" value="PEDIGREE® Equilíbrio Natural"></td>
+						</tr>
+						<tr>
+							<td><label for="id">ID</label></td>
+							<td><input type="text" name="idproduct" value="194"></td>
+						</tr>
+						<tr>
+							<td><label for="foto">Foto</label></td>
+							<td><button id="uploadfoto" class="button" type="button" style="width:190px;height:35px;">Upload photo...</button></td>
+						</tr>
+						<tr>
+							<td><label for="preço">Preço</label></td>
+							<td><input type="text" name="preço" value="121,90"></td>
+						</tr>
+						<tr>
+							<td><label for="quantidade">Quantidade em estoque</label></td>
+							<td><input type="text" name="quantidade" value="47"></td>
+						</tr>
+						<tr>
+							<td><label for="desc">Descrição</label></td>			
+							<td><textarea id="productDescription" rows="4" cols="50">O novo PEDIGREE® Equilíbrio Natural é um alimento que ajuda a equilibrar o organismo do seu cão de forma irresistível. Isso porque ele oferece em sua fórmula grãos integrais e suculentos pedaços macios sabor carne, fontes naturais de proteínas, carboidratos e vitaminas. Além disso, não tem gordura trans nem aromatizantes artificiais. Seu cão tem muito mais para viver ainda, e qualidade de vida começa com uma alimentação mais saudável e equilibrada.</textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="button" onclick="alert('Produto alterado com sucesso!')">Salvar alterações</a>
+			</div>
+			
+			<div id="manageService" class="tabcontent">
+				<h3>Gerenciar Serviço</h3>
+				<h4>Cadastrar Serviço</h4>
+				<a href="createService.html" class="hyperlink">Clique aqui para cadastrar um novo serviço!</a>
+				<h4>Alterar Serviço</h4>
+				<input id="txtSearchUpdateService" type="text" name="txtSearchUpdateService" placeholder="Qual serviço você deseja alterar?">
+				<button id="btnSearchUpdateService" class="button" type="button">Buscar por nome</button>
+				<br><br>
+				<div>
+					<div class="listSearchUpdateProductHeader">
+						<label> 1 Serviço(s) encontrado(s) </label>
+					</div>
+					<div class='maskSearchUpdateProduct'>
+						<div class='containerSearchUpdateProduct'>
+							<div class='item'> <!-- Put an element here! -->
+								<img src="images/vacinacao.jpg" alt="Imagem do Serviço" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
+								<br>
+								<input type="radio" name="service" value="Vacinação">Vacinação</input>
+								<label class="productPrize"><br>R$ 229,90</label>
+							</div>							
+						</div>
+					</div>
+					<div class="listSearchUpdateProductHeader">
+						<button class="buttonPageProduct" type="button">Anterior</button>
+						<button class="buttonPageProduct" type="button">Proxima</button>
+					</div>
+				</div>
+				<h5>Dados do serviço selecionado</h5>
+				<table>
+					<tbody>
+						<tr>
+							<td><label for="servico">Nome</label></td>
+							<td><input type="text" name="servico" value="Vacinação"></td>
+						</tr>
+						<tr>
+							<td><label for="id">ID</label></td>
+							<td><input type="text" name="idservico" value="195"></td>
+						</tr>
+						<tr>
+							<td><label for="foto">Foto</label></td>
+							<td><button id="uploadfotoservico" class="button" type="button" style="width:190px;height:35px;">Upload photo...</button></td>
+						</tr>
+						<tr>
+							<td><label for="preço">Preço</label></td>
+							<td><input type="text" name="preço" value="229,90"></td>
+						</tr>
+						<tr>
+							<td><label for="desc">Descrição</label></td>			
+							<td><textarea id="serviceDescription" rows="4" cols="50">Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-los imunes confiando em nossos funcionários altamente qualificados com equipamentos de ponta para realizar o melhor serviço para você.</textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="button" onclick="alert('Serviço alterado com sucesso!')">Salvar alterações</a>
+			</div>
+			
+			<div id="manageAdmin" class="tabcontent">
+			  <h3>Gerenciar Administrador</h3>
+			  <h4>Cadastrar Administrador</h4>
+			  <a href="createAdmin.html" class="hyperlink">Clique aqui para cadastrar um novo administrador!</a>
+			</div>
+			
+			<script>
+		
+				function openTab(evt, tagName) {
+					// Declare all variables
+					var i, tabcontent, tablinks;
+
+					// Get all elements with class="tabcontent" and hide them
+					tabcontent = document.getElementsByClassName("tabcontent");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+					}
+
+					// Get all elements with class="tablinks" and remove the class "active"
+					tablinks = document.getElementsByClassName("tablinks");
+					for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace(" active", "");
+					}
+
+					// Show the current tab, and add an "active" class to the link that opened the tab
+					document.getElementById(tagName).style.display = "block";
+					evt.currentTarget.className += " active";
+				}
+
+				document.getElementById("btnMyInfo").click();
+				
+			</script>
+		
+		</main>
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

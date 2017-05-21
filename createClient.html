@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" href="css/petshop.css">
+
+	</head>
+	
+	<body>
+		
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+		<main style="float:left;background-color:white;width:50%;height:auto;"> <!-- main content -->
+		<br><br>
+			<h1> Identificação do Cliente</h1>
+			<form action="#" method="post">
+
+				<fieldset>
+					<legend>Dados Pessoais</legend>
+
+					<div class="tudo">
+							
+						<div class="avatar"> 
+							<img src="images/avatar.jpg" alt="Avatar" style="width:128px;height:128px;">
+						</div>
+
+						
+						<div class="conteudo">
+							<table>
+								<tr>
+									<td><label for="nome">Nome</label></td>
+									<td><input type="text" id="name" ></td>
+								</tr>
+								<tr>
+									<td><label for="user">Usuário</label></td>
+									<td><input type="text" name="user"></td>
+								</tr>
+								<tr>
+									<td><label for="id">ID</label></td>
+									<td><input type="text" name="id"></td>
+								</tr>
+								<tr>
+									<td><label for="passwprd">Senha</label></td>
+									<td><input type="password" name="password"></td>
+								</tr>
+								<tr>
+									<td><label for="conf">Confirmar senha</label></td>
+									<td><input type="password" name="password"></td>
+								</tr>
+								<tr>
+									<td><label for="foto">Foto</label></td>
+									<td><button class="button" type="button">Upload foto...</button></td>
+								</tr>
+							</table>
+						</div>						
+					</div>				
+				</fieldset>
+
+				<fieldset>
+					<legend>Contatos</legend>
+
+					<div class="tudo">
+						
+						<div class="avatar">
+							<img src="images/carta.jpg" alt="Avatar" style="width:128px;height:128px;">
+						</div>
+
+						<div class="conteudo">
+							<br><br>
+							<table>
+								<tr>
+									<td><label for="email">Email</label></td>
+									<td><input type="text" name="email"></td>
+								</td>
+
+								<tr>
+									<td><label for="phone number">Telefone</label></td>
+									<td><input type="text" name="phone number" ></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>Endereço</legend>
+						<div class="tudo">
+
+							<div class="avatar">
+								<img src="images/casa.png" alt="Avatar" style="width:128px;height:128px;">
+							</div>
+					
+							<div class="conteudo">
+								<table>
+									<tr>
+										<td><label for="cep">CEP</label></td>
+										<td><input type="text" name="cep"></td>
+									</tr>
+							
+									<tr>
+										<td><label for="address">Endereço</label></td>	
+										<td><input type="text" name="address"></td>
+									</tr>
+
+									<tr>
+										<td><label for="número">Número</label></td>
+										<td><input type="text" name="number"></td>
+									</tr>
+
+									<tr>
+										<td><label for="nairro">Bairro</label></td>
+										<td><input type="text" name="distict"></td>
+									</tr>
+
+									<tr>
+										<td><label for="cidade">Cidade</label></td>
+										<td><input type="text" name="city"></td>
+									</tr>
+
+									<tr>
+										<td><label for="estado">Estado</label></td>
+										<td><input type="text" name="state"></td>
+									</tr>
+								</table>
+							</div>
+						</div>					
+				</fieldset>
+				<div>
+				 	<a id="C1" href="createdClient.html">Cadastrar</a>
+				</div>
+			</form>			
+		</main>
+
+		<aside> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

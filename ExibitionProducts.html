@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" type="text/css" href="css/petshop.css">
+	</head>
+	
+	<body>
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside > <!-- left-sidebar -->
+			<div style="padding: 0px 0px 0px 50px">
+				<h3 >Filtros</h3>
+				<div class = "itemFilter">
+					<h4>Tipo</h4>
+					<form action="">
+						<input type="checkbox" name="servicos" checked="checked">Serviços<br>
+						<input type="checkbox" name="produtos" checked="checked">Produtos 
+					</form>
+				</div>
+			</div>
+		</aside>
+
+		<main> <!-- main content -->
+		<br><br>
+			<div class="listProductHeader">
+				<label> 1 Produto(s) </label>
+				<select class="selectProduct">
+				  <option value="relevancia">Relevancia</option>
+				  <option value="menorPreco">Menor Preço</option>
+				  <option value="maiorPreco">Maior Preço</option>
+				  <option value="maisVendidos">Mais Vendidos</option>
+				</select>
+			</div>
+			<div class='mask'>
+				<div class='container'>
+					<div class='item'> <!-- Put an element here! -->
+						<div style="width:100%;height:120px;overflow:hidden;">
+								<img src="images/racao.jpg" alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
+						</div>
+						<a class="productLink" href="#">Racao de cachorro 10Kg Todas as Racas</a>
+						<label class="productPrize"><br>R$ 50,00</label>
+					</div>
+				</div>
+			</div>
+			<div class="listProductHeader">
+				<button class="buttonPageProduct" type="button">Anterior</button>
+				<button class="buttonPageProduct" type="button">Proxima</button>
+			</div>
+		</main>
+
+		<aside style="opacity: 0;"> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>

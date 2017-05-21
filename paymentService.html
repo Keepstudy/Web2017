@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<title>PetShop ooooo</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" type="text/css" href="css/petshop.css">
+	</head>
+	
+	<body>
+		<header>
+			<div id="divLogo">   <!-- div para o logo -->
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
+				<button class="button" type="button">Buscar</button>
+			</div>
+			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
+				<div id="divCart">  <!-- imagem do carrinho -->
+					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+				</div>
+				<div id="divLogin"> <!-- informacoes de login -->
+					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
+					<div>
+						<input type="text" name="txtUsername" placeholder="Usuário">
+						<input type="password" name="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button">Login</button>
+					</div>
+					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
+				</div>
+			</div>
+		</header>
+
+		<nav class="centerElements"> <!-- div para listagem de animais -->
+			<a href="#">Cães</a>
+			<a href="#">Gatos</a>
+			<a href="#">Pássaros</a>
+			<a href="#">Roedores</a>
+			<a href="#">Répteis</a>
+			<a href="#">Serviços</a>
+		</nav>
+
+		<aside> <!-- left-sidebar -->
+		</aside>
+
+		<main> <!-- main content -->
+			<h2 class = "alignParagraph"> 
+				Finalizar Agendamento 
+			</h2> 
+			
+			<p style="font-size:120%">
+				&emsp;&ensp;Seu agendamento está quase finalizado.<br><br>
+				&emsp;&ensp;Faltam somente os dados do seu cartão de crédito. Preencha os campos 
+				abaixo conforme o indicado. No campo nome coloque o nome que consta no 
+				seu cartão.<br><br>
+			</p>
+
+
+			<table class = "paymentTable">
+				<col width="0">
+				<col width="0">
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> Forma de Pagamento </label>
+					</td>
+						<td>
+							<select>
+							<option value="none"> Escolha uma forma de Parcelamento</option>
+							<option value="1Parcela"> 1 Parcela</option>
+							<option value="2Parcela"> 2 Parcelas</option>
+							<option value="3Parcela"> 3 Parcelas</option>
+							<option value="4Parcela"> 4 Parcelas</option>
+							<option value="5Parcela"> 5 Parcelas</option>
+							<option value="6Parcela"> 6 Parcelas</option>
+						</select> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> Nome </label>
+					</td>
+					<td>
+						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="Nome do titular">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> Número do Cartão </label>
+					</td>
+					<td>
+						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="Numero do cartão">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> Validade </label>
+					</td>
+					<td>
+						<input class = "paymentFields" type="text" size="15" name="txtUsername" placeholder="MM">
+						<input class = "paymentFields" type="text" size="15" name="txtUsername" placeholder="AA">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> Código de Segurança </label>
+					</td>
+					<td>
+						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="3 ou 4 digitos">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> CPF </label>
+					</td>
+					<td>
+						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="Somente Digitos">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<label class = "paymentLabel"> Data Nascimento </label>
+					</td>
+					
+					<td>
+						<input class = "paymentFields" type="text" size="8" name="txtUsername" placeholder="DD">
+						<input class = "paymentFields" type="text" size="8" name="txtUsername" placeholder="MM">
+						<input class = "paymentFields" type="text" size="8" name="txtUsername" placeholder="AAAA">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td> <!-- Botão de Confirmar Compra do carrinho -->
+						<br/>
+						<button class = "paymentConfirm" type="button" onclick="alert('Pagamento realizado com sucesso!')" >Pagar com cartão</button>
+					</td>
+				</tr>
+			</table>
+		</main>
+
+		<aside style="opacity: 0;"> <!-- right-sidebar -->
+		</aside>
+
+		<footer>
+			<div id="divLogoFooter">
+				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+			</div>
+			<div id="divInfo">
+				<br>
+				<a class="hyperlink" href="index.html" >Página Inicial</a> |
+				<a class="hyperlink" href="about.html" >Quem Somos</a>
+			</div>
+		</footer>
+		
+	</body>
+	
+</html>
