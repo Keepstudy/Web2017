@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+const dbname = "petshopDB";
+
+// produtos para serem inseridos ao iniciar
+const productList = [
+	{id: 1, name: "Racao para cães 11kg", price: 11.00, quantity: 111, description: "ração fera", photo: ""},
+	{id: 2, name: "Racao para cães 12kg", price: 12.00, quantity: 222, description: "ração fera", photo: ""},
+	{id: 3, name: "Racao para cães 13kg", price: 13.00, quantity: 333, description: "ração fera", photo: ""}
+];
+
+// checando se o browser suporta IndexedDB
+if("indexedDB" in window) {
+    console.log("IndexedDB is supported.");
+} else {
+    window.alert("This application requires IndexedDB but it isn't supported by your browser. It won't work correctly.");
+}
+
+// iniciando a conexão com o DB
+let openRequest = indexedDB.open(dbname);
+let db;
+
+openRequest.onupgradeneeded = e => {
+    console.log("Upgrading database...");
+	db = e.target.result;
+	
+	// se no DB não há a tabela tableProduct
+	if(!db.objectStoreNames.contains("tableProduct")) {
+		
+		// criando a tabela e setando a chave primaria
+		let tableProduct = db.createObjectStore("tableProduct", { keyPath: "id" } );
+		
+		// Cria um índice para buscas. Supondo que o campo também será chave.
+		tableProduct.createIndex("name", "name", { unique: true });
+		
+		// afirmar que a criação do objectStore é terminada antes de adicionar algum dado nele.
+		tableProduct.transaction.oncomplete = e => {
+		
+			tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");
+			
+			// inserindo os registros pré-definidos
+			for(let i in productList) {
+				tableProduct.add(productList[i]);
+			}
+		};
+	}
+	
+	console.log("Database upgraded.");
+}
+
+openRequest.onsuccess = e => {
+    console.log("Database opened successfully.");
+    db = e.target.result;
+}
+
+openRequest.onerror = e => {
+	console.log("An error occurred while trying to initialize the database.");
+}
+
+function insertProduct() {
+	let req = db.transaction("tableProduct", "readwrite")
+	.objectStore("tableProduct").add({
+		id: Number(document.getElementById("idProduct").value), 
+		name: document.getElementById("nameProduct").value, 
+		price: parseFloat(document.getElementById("priceProduct").value) 
+	});
+   
+   req.onsuccess = e => {
+      console.log("A new entry has been added to your database successfully.");
+   };
+   
+   req.onerror = e => {
+      console.log("An error occurred while trying to add a new entry to the database.");
+   }
+}
+
+function deleteProduct() {
+	let req = db.transaction("tableProduct", "readwrite")
+	.objectStore("tableProduct").delete(Number(document.getElementById("idProduct").value));
+
+	req.onsuccess = e => {
+		console.log("An entry has been deleted from your database.");
+	};
+	
+	req.onerror = e => {
+      console.log("An error occurred while trying to delete an entry from the database.");
+   }
+}
+
+function listProduct() {
+
+	document.getElementById("productList").innerHTML = "";
+	
+	let tableProduct = db.transaction("tableProduct").objectStore("tableProduct");
+   
+	tableProduct.openCursor().onsuccess = e => {
+		let cursor = e.target.result;
+
+		if (cursor) {
+			document.getElementById("productList").innerHTML += "ID: " + cursor.key + "<br>" + "Name: " + cursor.value.name + "<br>" + "Price: " + cursor.value.price + "<br><br>";
+			cursor.continue();
+		}
+	};
+}
+
+function searchProductByName() {
+
+	document.getElementById("productList").innerHTML = "";
+	
+	let pattern = document.getElementById("nameProduct").value;
+	let tableProduct = db.transaction("tableProduct").objectStore("tableProduct");
+	
+	tableProduct.openCursor().onsuccess = e => {
+		let cursor = e.target.result;
+
+		if (cursor) {
+			if (cursor.value.name.search(pattern) >= 0) {
+				document.getElementById("productList").innerHTML += "ID: " + cursor.key + "<br>" + "Name: " + cursor.value.name + "<br>" + "Price: " + cursor.value.price + "<br><br>";
+			}
+			cursor.continue();
+		}
+	};
+	
+}
+</script>
+</head>
+<body>
+	<form>
+		<label>ID:</label><input type="text" id="idProduct" /><br>
+		<label>Name:</label><input type="text" id="nameProduct" /><br>
+		<label>Price:</label><input type="text" id="priceProduct" /><br>
+	</form>
+	<button onclick="insertProduct();">Insert Product</button><br>
+	<button onclick="deleteProduct();">Delete Product</button><br>
+	<button onclick="searchProductByName();">Search Product by name</button><br>
+	<button onclick="listProduct();">List Products</button>
+	<div id="productList"></div>
+</body>
+</html>
