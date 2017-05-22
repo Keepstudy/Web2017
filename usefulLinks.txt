@@ -1,0 +1,5 @@
+Materialize CSS:
+	-> http://materializecss.com/
+
+Ajax (Upload de imagens para o site):
+	-> https://css-tricks.com/ajax-image-uploading/
