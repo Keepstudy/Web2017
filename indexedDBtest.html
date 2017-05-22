@@ -6,9 +6,9 @@ const dbname = "petshopDB";
 
 // produtos para serem inseridos ao iniciar
 const productList = [
-	{id: 1, name: "Racao para cães 11kg", price: 11.00, quantity: 111, description: "ração fera", photo: ""},
-	{id: 2, name: "Racao para cães 12kg", price: 12.00, quantity: 222, description: "ração fera", photo: ""},
-	{id: 3, name: "Racao para cães 13kg", price: 13.00, quantity: 333, description: "ração fera", photo: ""}
+	{id: 1, name: "Racao para cÃ£es 11kg", price: 11.00, quantity: 111, description: "raÃ§Ã£o fera", photo: ""},
+	{id: 2, name: "Racao para cÃ£es 12kg", price: 12.00, quantity: 222, description: "raÃ§Ã£o fera", photo: ""},
+	{id: 3, name: "Racao para cÃ£es 13kg", price: 13.00, quantity: 333, description: "raÃ§Ã£o fera", photo: ""}
 ];
 
 // checando se o browser suporta IndexedDB
@@ -18,7 +18,7 @@ if("indexedDB" in window) {
     window.alert("This application requires IndexedDB but it isn't supported by your browser. It won't work correctly.");
 }
 
-// iniciando a conexão com o DB
+// iniciando a conexÃ£o com o DB
 let openRequest = indexedDB.open(dbname);
 let db;
 
@@ -26,21 +26,21 @@ openRequest.onupgradeneeded = e => {
     console.log("Upgrading database...");
 	db = e.target.result;
 	
-	// se no DB não há a tabela tableProduct
+	// se no DB nÃ£o hÃ¡ a tabela tableProduct
 	if(!db.objectStoreNames.contains("tableProduct")) {
 		
 		// criando a tabela e setando a chave primaria
 		let tableProduct = db.createObjectStore("tableProduct", { keyPath: "id" } );
 		
-		// Cria um índice para buscas. Supondo que o campo também será chave.
+		// Cria um Ã­ndice para buscas. Supondo que o campo tambÃ©m serÃ¡ chave.
 		tableProduct.createIndex("name", "name", { unique: true });
 		
-		// afirmar que a criação do objectStore é terminada antes de adicionar algum dado nele.
+		// afirmar que a criaÃ§Ã£o do objectStore Ã© terminada antes de adicionar algum dado nele.
 		tableProduct.transaction.oncomplete = e => {
 		
 			tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");
 			
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in productList) {
 				tableProduct.add(productList[i]);
 			}
