@@ -15,7 +15,7 @@
 				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
 			</div>
 			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
-				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que est· procurando?">
+				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que est√° procurando?">
 				<button class="button" type="button">Buscar</button>
 			</div>
 			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
@@ -25,7 +25,7 @@
 				<div id="divLogin"> <!-- informacoes de login -->
 					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
 					<div>
-						<input type="text" name="txtUsername" placeholder="Usu·rio">
+						<input type="text" name="txtUsername" placeholder="Usu√°rio">
 						<input type="password" name="txtPassword" placeholder="Senha">
 						<button id="loginButton" type="button">Login</button>
 					</div>
@@ -36,12 +36,12 @@
 		</header>
 
 		<nav class="centerElements"> <!-- div para listagem de animais -->
-			<a href="#">C„es</a>
+			<a href="#">C√£es</a>
 			<a href="#">Gatos</a>
-			<a href="#">P·ssaros</a>
+			<a href="#">P√°ssaros</a>
 			<a href="#">Roedores</a>
-			<a href="#">RÈpteis</a>
-			<a href="#">ServiÁos</a>
+			<a href="#">R√©pteis</a>
+			<a href="#">Servi√ßos</a>
 		</nav>
 
 		<aside> <!-- left-sidebar -->
@@ -53,10 +53,10 @@
 			</h2> 
 			
 			<p style="font-size:120%">
-				&emsp;&ensp;Sua compra est· quase finalizada.<br><br>
-				&emsp;&ensp;Faltam somente os dados do seu cart„o de crÈdito. Preencha os campos 
+				&emsp;&ensp;Sua compra est√° quase finalizada.<br><br>
+				&emsp;&ensp;Faltam somente os dados do seu cart√£o de cr√©dito. Preencha os campos 
 				abaixo conforme o indicado. No campo nome coloque o nome que consta no 
-				seu cart„o.<br><br>
+				seu cart√£o.<br><br>
 			</p>
 
 
@@ -96,10 +96,10 @@
 				
 				<tr>
 					<td>
-						<label class = "paymentLabel"> N˙mero do Cart„o </label>
+						<label class = "paymentLabel"> N√∫mero do Cart√£o </label>
 					</td>
 					<td>
-						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="Numero do cart„o">
+						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="Numero do cart√£o">
 					</td>
 				</tr>
 				
@@ -115,7 +115,7 @@
 				
 				<tr>
 					<td>
-						<label class = "paymentLabel"> CÛdigo de SeguranÁa </label>
+						<label class = "paymentLabel"> C√≥digo de Seguran√ßa </label>
 					</td>
 					<td>
 						<input class = "paymentFields" type="text" size="36" name="txtUsername" placeholder="3 ou 4 digitos">
@@ -144,9 +144,9 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td> <!-- Bot„o de Confirmar Compra do carrinho -->
+					<td> <!-- Bot√£o de Confirmar Compra do carrinho -->
 						<br/>
-						<button class = "paymentConfirm" type="button" onclick="confirmPayment">Pagar com cart„o</button>
+						<button class = "paymentConfirm" type="button" onclick="payment()">Pagar com cart√£o</button>
 					</td>
 				</tr>
 			</table>
@@ -161,16 +161,16 @@
 			</div>
 			<div id="divInfo">
 				<br>
-				<a class="hyperlink" href="index.html" >P·gina Inicial</a> |
+				<a class="hyperlink" href="index.html" >P√°gina Inicial</a> |
 				<a class="hyperlink" href="about.html" >Quem Somos</a>
 			</div>
 		</footer>
 		
 	</body>
     <script>
-    	function confirmPayment(){
-        	insertPayment();
-            alert('Pagamento realizado com sucesso!');
+    	function payment(){
+			insertPayment();
+			alert('Pagamento realizado com sucesso!');
         }	
     </script>
 	
