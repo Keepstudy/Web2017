@@ -1,0 +1,26 @@
+// ================================================================================================================== //
+// ============================================= Implementação PRODUTO ============================================== //
+// ================================================================================================================== //
+function insertProduct() {
+	insertIntoDB("tableProduct", {
+		id: Number(document.forms[0]["idproduct"].value),
+		name: document.forms[0]["produto"].value,
+		price: parseFloat(document.forms[0]["preço"].value),
+		quantity: Number(document.forms[0]["quantidade"].value),
+		description: document.forms[0]["desc"].value,
+		photo: document.forms[0][""].value
+	});
+}
+function deleteProduct() {
+	deleteFromDB("tableProduct", Number(document.forms[0]["idproduct"].value));
+}
+function listProduct() { // exemplo de como poderia listar produtos
+  /*
+    Como usar: lá no evento do seu objeto, fazer:
+    $(selector).onaction() = function() {
+      readAll("tableProduct", list => { 
+        // aqui, defina a sua funcao callback para tratar/exibir a lista de produtos
+      });
+    };
+  */
+}
