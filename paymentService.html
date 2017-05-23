@@ -146,7 +146,7 @@
 					<td></td>
 					<td> <!-- Botão de Confirmar Compra do carrinho -->
 						<br/>
-						<button class = "paymentConfirm" type="button" onclick="alert('Pagamento realizado com sucesso!')" >Pagar com cartão</button>
+						<button class = "paymentConfirm" type="button" onclick="paymentService()" >Pagar com cartão</button>
 					</td>
 				</tr>
 			</table>
@@ -167,5 +167,10 @@
 		</footer>
 		
 	</body>
-	
+	<script>
+    	function paymentService(){
+			insertpaymentService();
+			alert('Pagamento realizado com sucesso!');
+        }
+    </script>
 </html>
