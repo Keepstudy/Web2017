@@ -53,7 +53,7 @@
 			</h2> 
 			
 			<div> <!-- Contêm a tabela com os produtos do carrinho-->
-				<table class = "shoppingCartTable">
+				<table id="cartShopping" class = "shoppingCartTable">
 				  <tr> <!-- Colunas do carrinho -->
 					<th></th>
 					<th>Produto</th>
@@ -62,43 +62,14 @@
 					<th>Remover</th>
 				  </tr>
 				  
-				  <!-- Cada tr e um elemento do carrinho -->
-				  <tr>
-					<td> <!-- Foto do produto -->						
-						<img src="images/racao.jpg" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
-					</td>
-					<td> <!-- Nome do produto -->
-						<label> Ração Para Cachorro 10Kg </label>
-					</td>
-					<td> <!-- Quantidade do produto -->
-						<input id=quantidade_produtos" type="number"  min="1" max = "99" step="1" value="1"/>
-					</td>
-					<td> <!-- Valor do Produto*Quantidade -->
-						<label> R$ 50,00 </label>
-					</td>
-					<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
-						<button class="shoppingCartButtonRemove" type="button">x</button>
-					</td>
-				  </tr>
-				  
+				  </table>
 				  <!-- Aqui vao as outras linhas da tabela -->
 				  
 				  <!-- Contêm a última linha da tabela, que contem o subtotal e o total do preço dos produtos-->
-				  <tr style="background-color: #fff;">
-					<td></td>
-					<td></td>
-					<td> 
-						<label><b> Subtotal<b></label>
-					</td>
-					<td> <!-- Soma de todos os valores do carrinho -->
-						<label><b>R$ 50,00 </b></label>
-					</td>
-				  </tr>
-				  
 				</table>
 				
 				<div> <!-- Botão de Confirmar Compra do carrinho -->
-					<button class = "shoppingCartButtonConfirm" type="button" onclick="location.href='payment.html';">Confirmar Compra</button>
+					<br><button id ="confirmPayment" class = "shoppingCartButtonConfirm" type="button" onclick="location.href='payment.html';">Confirmar Compra</button>
 				</div>
 			</div>
 		</main>
@@ -117,6 +88,64 @@
 			</div>
 		</footer>
 		
+		<script>
+			// variavel global que recebe os valores que estavam no carrinho.
+			
+			//colocar no index pra inicializar logo que inicializar a aplicação
+			var cartItens = new Map([]);
+			
+			//function initializeCart(){
+				let subtotal = 0.0;
+				
+				localStorage.setItem("racao pra periquito",JSON.stringify(["1", "racao pra periquito", "100.00"]));
+				cartItens = new Map(JSON.parse(localStorage.myMap));
+				
+				//cartItens.set("1",["1", "racao pra periquito", "100.00"]);
+				//cartItens.set("2",["1", "racao pra periquito", "10.00"]);
+				//cartItens.set("3",["1", "racao pra periquito", "300.00"]);
+				alert(cartItens.size);
+				if(cartItens.size == 0){
+					document.getElementById("confirmPayment").disabled = true; 
+					document.getElementById("confirmPayment").style.background="DarkGrey";
+				}
+				
+				/*Falta o bangue da imagem, ver isso quando tiver baum*/
+				for (let [key,value] of cartItens) {
+				  console.log('toaqui');
+					subtotal+=parseFloat(value[2]);
+					
+					document.getElementById("cartShopping").innerHTML+= `
+					<tr> 
+					<td> <!-- Foto do produto -->						
+						<img src="images/racao.jpg" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
+					</td>
+					<td> <!-- Nome do produto -->
+						<label>` + value[1] + `</label>
+					</td>
+					<td> <!-- Quantidade do produto -->
+						<input id=quantidade_produtos" type="number"  min="1" max = "99" step="1" value="1"/>
+					</td>
+					<td> <!-- Valor do Produto*Quantidade -->
+						<label> R$ ` + value[2] + `</label>
+					</td>
+					<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
+						<button class="shoppingCartButtonRemove" type="button">x</button>
+					</td>
+					</tr>`;
+				}
+				
+				document.getElementById("cartShopping").innerHTML+= `<tr style="background-color: #fff;">
+					<td></td>
+					<td></td>
+					<td> 
+						<label><b> Subtotal<b></label>
+					</td>
+					<td> <!-- Soma de todos os valores do carrinho -->
+						<label><b>R$ `+ (subtotal.toFixed(2)).toString() +`</b></label>
+					</td>
+				  </tr>`;
+			//}
+		</script>
 	</body>
 	
 </html>
