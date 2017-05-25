@@ -2,14 +2,14 @@ const dbname = "petshopDB";
 
 // produtos para serem inseridos ao iniciar
 const productList = [
-	{id: 1, name: "Ração para cães 11kg", price: 11.00, quantity: 111, description: "ração fera", photo: ""},
-	{id: 2, name: "Ração para cães 12kg", price: 12.00, quantity: 222, description: "ração fera", photo: ""},
-	{id: 3, name: "Ração para cães 13kg", price: 13.00, quantity: 333, description: "ração fera", photo: ""}
+	{id: 1, name: "RaÃ§Ã£o para cÃ£es 11kg", price: 11.00, quantity: 111, description: "raÃ§Ã£o fera", photo: ""},
+	{id: 2, name: "RaÃ§Ã£o para cÃ£es 12kg", price: 12.00, quantity: 222, description: "raÃ§Ã£o fera", photo: ""},
+	{id: 3, name: "RaÃ§Ã£o para cÃ£es 13kg", price: 13.00, quantity: 333, description: "raÃ§Ã£o fera", photo: ""}
 ];
 
-// serviços para serem inseridos ao iniciar
+// serviÃ§os para serem inseridos ao iniciar
 const serviceList = [
-	{id: 1, name: "Vacinação", price: 11.00, description: "vacinação fera", photo: ""},
+	{id: 1, name: "VacinaÃ§Ã£o", price: 11.00, description: "vacinaÃ§Ã£o fera", photo: ""},
 	{id: 2, name: "Banho e Tosa", price: 12.00, description: "banho e tosa fera", photo: ""}
 ];
 
@@ -19,9 +19,9 @@ const petList = [
 	{idPet: 8932, idUser: 7, name: "Lessie", age: 2, breed: "Rough collie", photo: ""}
 ];
 
-// usuários para serem inseridos ao iniciar
+// usuÃ¡rios para serem inseridos ao iniciar
 const userList = [
-	{id: 7, name: "PetShop ooooo client", username: "client", password: "client", photo: "", email: "client@petshop.com", phone_number: "(11)91313-1313", cep: "13566-590", address: "Av. Trab. São-Carlense", number: "400", district: "Parque Arnold Schimidt", city: "São Carlos", state: "SP", isAdmin: false},
+	{id: 7, name: "PetShop ooooo client", username: "client", password: "client", photo: "", email: "client@petshop.com", phone_number: "(11)91313-1313", cep: "13566-590", address: "Av. Trab. SÃ£o-Carlense", number: "400", district: "Parque Arnold Schimidt", city: "SÃ£o Carlos", state: "SP", isAdmin: false},
 	{id: 13, name: "PetShop ooooo admin", username: "admin", password: "admin", photo: "", email: "admin@petshop.com", phone_number: "(11)91313-1313", isAdmin: true}
 ];
 
@@ -43,7 +43,7 @@ function initializeDB() {
 	if("indexedDB" in window) {
 		console.log("IndexedDB is supported.");
 		
-		// iniciando a conexão com o DB
+		// iniciando a conexÃ£o com o DB
 		let openRequest = indexedDB.open(dbname);
 		
 		openRequest.onupgradeneeded = e => {
@@ -56,7 +56,7 @@ function initializeDB() {
 				// criando a tabela e setando a chave primaria
 				let tableProduct = db.createObjectStore("tableProduct", { keyPath: "id" } );
 				
-				// Cria um índice para buscas. Supondo que o campo também será chave.
+				// Cria um Ã­ndice para buscas. Supondo que o campo tambÃ©m serÃ¡ chave.
 				tableProduct.createIndex("name", "name", { unique: true });
 				
 				/* ----------------------------- tableService -------------------------------- */
@@ -64,7 +64,7 @@ function initializeDB() {
 				// criando a tabela e setando a chave primaria
 				let tableService = db.createObjectStore("tableService", { keyPath: "id" } );
 				
-				// Cria um índice para buscas. Supondo que o campo também será chave.
+				// Cria um Ã­ndice para buscas. Supondo que o campo tambÃ©m serÃ¡ chave.
 				tableService.createIndex("name", "name", { unique: true });
 				
 				/* ------------------------------- tablePet ---------------------------------- */
@@ -77,7 +77,7 @@ function initializeDB() {
 				// criando a tabela e setando a chave primaria
 				let tableUser = db.createObjectStore("tableUser", { keyPath: "id" } );
 				
-				// Cria um índice para buscas. Supondo que o campo também será chave.
+				// Cria um Ã­ndice para buscas. Supondo que o campo tambÃ©m serÃ¡ chave.
 				tableUser.createIndex("username", "username", { unique: true });
 				
 				/* ------------------------------- tableSale ---------------------------------- */
@@ -85,7 +85,7 @@ function initializeDB() {
 				// criando a tabela e setando a chave primaria
 				let tableSale = db.createObjectStore("tableSale", { autoIncrement: true } );
 				
-				// Cria um índice para buscas.
+				// Cria um Ã­ndice para buscas.
 				tableSale.createIndex("idUser", "idUser", { unique: false });
 				
 				/* ---------------------------- tableAppointment ------------------------------ */
@@ -93,10 +93,10 @@ function initializeDB() {
 				// criando a tabela e setando a chave primaria
 				let tableAppointment = db.createObjectStore("tableAppointment", { autoIncrement: true } );
 				
-				// Cria um índice para buscas.
+				// Cria um Ã­ndice para buscas.
 				tableAppointment.createIndex("idUser", "idUser", { unique: false });
 				
-				// Cria um índice para buscas.
+				// Cria um Ã­ndice para buscas.
 				tableAppointment.createIndex("dateAppointment", "dateAppointment", { unique: false });
 				
 				/* --------------------------------------------------------------------------- */
@@ -113,7 +113,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");	
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in productList) {
 				tableProduct.add(productList[i]);
 			}
@@ -122,7 +122,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tableService = db.transaction("tableService", "readwrite").objectStore("tableService");			
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in serviceList) {
 				tableService.add(serviceList[i]);
 			}
@@ -131,7 +131,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tablePet = db.transaction("tablePet", "readwrite").objectStore("tablePet");			
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in petList) {
 				tablePet.add(petList[i]);
 			}
@@ -140,7 +140,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tableUser = db.transaction("tableUser", "readwrite").objectStore("tableUser");			
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in userList) {
 				tableUser.add(userList[i]);
 			}
@@ -149,7 +149,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tableSale = db.transaction("tableSale", "readwrite").objectStore("tableSale");			
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in saleList) {
 				tableSale.add(saleList[i]);
 			}
@@ -158,7 +158,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tableAppointment = db.transaction("tableAppointment", "readwrite").objectStore("tableAppointment");			
-			// inserindo os registros pré-definidos
+			// inserindo os registros prÃ©-definidos
 			for(let i in appointmentList) {
 				tableAppointment.add(appointmentList[i]);
 			}
@@ -174,7 +174,7 @@ function initializeDB() {
 }
 
 // ================================================================================================================== //
-// ================================= Implementação genérica - manipular DATABASE ==================================== //
+// ================================= ImplementaÃ§Ã£o genÃ©rica - manipular DATABASE ==================================== //
 // ================================================================================================================== //
 function insertIntoDB(tableName, obj) {
 
@@ -207,13 +207,13 @@ function readAll(tableName, callback) {
 	req.transaction.oncomplete = e => callback(list);
 }
 // ================================================================================================================== //
-// ============================================= Implementação PRODUTO ============================================== //
+// ============================================= ImplementaÃ§Ã£o PRODUTO ============================================== //
 // ================================================================================================================== //
 function insertProduct() {
 	insertIntoDB("tableProduct", {
 		id: Number(document.forms[0]["idproduct"].value),
 		name: document.forms[0]["produto"].value,
-		price: parseFloat(document.forms[0]["preço"].value),
+		price: parseFloat(document.forms[0]["preÃ§o"].value),
 		quantity: Number(document.forms[0]["quantidade"].value),
 		description: document.forms[0]["desc"].value,
 		photo: document.forms[0][""].value
@@ -263,13 +263,13 @@ function searchProductByName(pattern) {
 }
 */
 // ================================================================================================================== //
-// ============================================= Implementação SERVIÇO ============================================== //
+// ============================================= ImplementaÃ§Ã£o SERVIÃ‡O ============================================== //
 // ================================================================================================================== //
 function insertService() {
 	insertIntoDB("tableService", {
 		id: Number(document.forms[0]["idservice"].value),
 		name: document.forms[0]["pname"].value,
-		price: parseFloat(document.forms[0]["preço"].value),
+		price: parseFloat(document.forms[0]["preÃ§o"].value),
 		description: document.forms[0]["desc"].value,
 		photo: document.forms[0][""].value
 	});
@@ -288,7 +288,7 @@ function updateService() {
 	});
 }
 // ================================================================================================================== //
-// =============================================  Implementação ANIMAL  ============================================= //
+// =============================================  ImplementaÃ§Ã£o ANIMAL  ============================================= //
 // ================================================================================================================== //
 function insertPet() {
 	insertIntoDB("tablePet", {
@@ -296,7 +296,7 @@ function insertPet() {
 		idUser: document.forms[0]["User"].value,
 		name: parseFloat(document.forms[0]["animal"].value),
 		age: document.forms[0]["idade"].value,
-		breed: document.forms[0]["raça"].value,
+		breed: document.forms[0]["raÃ§a"].value,
 		photo: document.forms[0][""].value
 	});
 }
@@ -306,7 +306,7 @@ function deletePet() {
 function updatePet() {
 }
 // ================================================================================================================== //
-// ============================================= Implementação USUÁRIO  ============================================= //
+// ============================================= ImplementaÃ§Ã£o USUÃRIO  ============================================= //
 // ================================================================================================================== //
 function insertUser(isAdmin) {
 	if (!isAdmin) {
@@ -382,8 +382,15 @@ function isValidUser(usr, pw) {
 	req.onsuccess = e => { return (req.result.password == pw); }
 	req.onerror = e => { return false; }
 }
+function usernameAlreadyExists(usr) {
+	let req = db.transaction("tableUser", "readonly")
+	.objectStore("tableUser").index("username").get(usr);
+	
+	req.onsuccess = e => return true;
+	req.onerror = e => return false;
+}
 // ================================================================================================================== //
-// ============================================== Implementação VENDA  ============================================== //
+// ============================================== ImplementaÃ§Ã£o VENDA  ============================================== //
 // ================================================================================================================== //
 function insertSale(saleIdUser, saleItems, saleTotal, saleTotalPortions) {
 	insertIntoDB("tableSale", {
@@ -399,7 +406,7 @@ function deleteSale() {
 function updateSale() {
 }
 // ================================================================================================================== //
-// =========================================== Implementação AGENDAMENTO  =========================================== //
+// =========================================== ImplementaÃ§Ã£o AGENDAMENTO  =========================================== //
 // ================================================================================================================== //
 function insertAppointment(appointmentIdUser, appointmentIdPet, appointmentIdService, appointmentTotal, appointmentTotalPortions, appointmentDateAppointment) {
 	insertIntoDB("tableAppointment", {
