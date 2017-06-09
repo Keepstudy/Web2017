@@ -103,12 +103,12 @@ $("a[href='createAdmin.html']").click(function(e)
 	e.preventDefault();
 	ajaxRequestDoc("createAdmin.html"); 
 });
-
+/*
 $(".tablinks[onclick='location.href='profit.html'']").click(function(e)
 {
 	e.preventDefault();
 	ajaxRequestDoc("profit.html"); 
-}
+});*/
 
 	
 

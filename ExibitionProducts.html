@@ -7,7 +7,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 		<link rel="stylesheet" type="text/css" href="css/petshop.css">
-
+		<script src="petshopIndexedDB.js"></script>
+		<script src="ExibitionItems.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	
@@ -18,7 +19,7 @@
 			</div>
 			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
 				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
-				<button class="button" type="button">Buscar</button>
+				<button class="button" type="button" onclick="ajaxRequestDoc('ExibitionProducts.html');startSearch();">Buscar</button>
 			</div>
 			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
 				<div id="divCart">  <!-- imagem do carrinho -->
@@ -62,8 +63,8 @@
 		<main> <!-- main content -->
 		<br><br>
 			<div class="listProductHeader">
-				<label> 1 Produto(s) </label>
-				<select class="selectProduct">
+				<label><span id="productCount">0</span> Produto(s) </label>
+				<select id="sortProducts" class="selectProduct">
 				  <option value="relevancia">Relevancia</option>
 				  <option value="menorPreco">Menor Preço</option>
 				  <option value="maiorPreco">Maior Preço</option>
@@ -90,73 +91,6 @@
 				<a class="hyperlink" href="about.html" >Quem Somos</a>
 			</div>
 		</footer>
-		<script>
-			/*Lista com os produtos para serem listados*/
-			var productList = new Array();
-			/*variavel que mantêm a ultima linha adicionada*/
-			var row = 0;
-			/*Funcao que inicia a busca*/
-			function startSearch(){
-
-			}
-
-			function appendProducts(){
-			
-				searchProductByName(document.getElementById("txtBuscar").value, productList => {
-				
-				
-				
-				});
-				productList[0] = ["","Ração 10kg","50,00"];
-				productList[1] = ["","Ração 20kg","97,00"];
-				productList[2] = ["","Ração 10kg1","50,00"];
-				productList[3] = ["","Ração 20kg2","97,00"];
-				productList[4] = ["","Ração 10kg3","50,00"];
-				productList[5] = ["","Ração 20kg4","97,00"];
-				productList[6] = ["","Ração 10kg5","50,00"];
-				productList[7] = ["","Ração 20kg6","97,00"];
-				productList[8] = ["","Ração 10kg7","50,00"];
-				productList[9] = ["","Ração 20kg8","97,00"];
-				productList[10] = ["","Ração 20kg9","97,00"];
-				productList[11] = ["","Ração 20kg10","97,00"];
-				productList[12] = ["","Ração 20kg11","97,00"];
-				productList[13] = ["","Ração 20kg12","97,00"];
-				
-				//productList;
-				
-				let total = Math.ceil(productList.length/3);
-
-				/*Percorre as linhas*/
-				for(let i = Math.ceil(row/3), j = Math.ceil(row/3); i < Math.min(total,j+3); i++){
-					/*Adiciona no HTML um novo container*/
-					document.getElementById("productList").innerHTML+= `
-						<div id="productListRow` + (i.toString()) + `" class='container'>
-						</div>`;
-
-					/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
-					for(let k = 0; k < Math.min(3,productList.length-(i*3));k++,row++){
-						/*Adiciona itens um a um em cada linha*/
-						console.log(i*3+k);
-						
-						document.getElementById("productListRow" + (i.toString())).innerHTML += `
-							<div class='item'> <!-- Put an element here! -->
-							<div style="width:100%;height:120px;overflow:hidden;">
-									<img src="images/racao.jpg" alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
-							</div>
-							<a class="productLink" href="#">`+productList[i*3+k][1]+`</a>
-							<label class="productPrize"><br>R$ `+productList[i*3+k][2].toString()+`</label>
-							</div>`;
-					}
-				}
-				
-				if(row >= productList.length){
-					document.getElementById("addMoreProducts").disabled = true; 
-					document.getElementById("addMoreProducts").style.background="DarkGrey";
-				}
-			}
-			appendProducts();
-		</script>
-		
 	</body>
 	
 </html>

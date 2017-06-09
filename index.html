@@ -8,6 +8,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" type="text/css" href="css/petshop.css">
+		<script src="petshopIndexedDB.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="ajaxRequests.js"></script>
+		<script src="ExibitionItems.js"></script>
+		
 	</head>
 	
 	<body>
@@ -17,7 +22,7 @@
 			</div>
 			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
 				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
-				<button class="button" type="button" onclick="startSearch();">Buscar</button>
+				<button class="button" type="button" onclick="ajaxRequestDoc('ExibitionProducts.html');startSearch();">Buscar</button>
 			</div>
 			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
 				<div id="divCart">  <!-- imagem do carrinho -->

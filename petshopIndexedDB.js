@@ -244,24 +244,22 @@ function listProduct() {
 	
 		document.getElementById("productList").innerHTML = text;
 	});
-}
-function searchProductByName(pattern) {
+}*/
+function searchProductByName(pattern, callback) {
 
 	readAll("tableProduct", list => {
-	
-		let text = "";
+		let productList = [];
 			
 		for(let i in list) {
 			if (list[i].name.search(pattern) >= 0) {
-				text += "ID: " + list[i].id + "<br>" + "Name: " + list[i].name + "<br>" + "Price: " + list[i].price + "<br><br>";
+				productList.push(list[i]);
 			}
 		};
-		
-		document.getElementById("productList").innerHTML = text;
+		callback(productList);
 	});
 
 }
-*/
+
 // ================================================================================================================== //
 // ============================================= Implementação SERVIÇO ============================================== //
 // ================================================================================================================== //
@@ -386,8 +384,8 @@ function usernameAlreadyExists(usr) {
 	let req = db.transaction("tableUser", "readonly")
 	.objectStore("tableUser").index("username").get(usr);
 	
-	req.onsuccess = e => return true;
-	req.onerror = e => return false;
+	req.onsuccess = e => {return true;}
+	req.onerror = e => {return false;}
 }
 // ================================================================================================================== //
 // ============================================== Implementação VENDA  ============================================== //
