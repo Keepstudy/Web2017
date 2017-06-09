@@ -4,7 +4,7 @@ var row = 0;
 var itemList = [];
 
 /*Funcao que inicia a busca*/
-function startSearch(){
+function startProductSearch(){
 	row = 0;
 	
 
@@ -13,6 +13,20 @@ function startSearch(){
 
 	searchProductByName(document.getElementById("txtSearch").value, productList => {
 		itemList = productList;
+		appendProducts();
+	});
+}
+
+/*Funcao que inicia a busca*/
+function startProductAndServiceSearch(){
+	row = 0;	
+
+	document.getElementById("productList").innerHTML = "";
+	document.getElementById("sortProducts").value = "relevancia";
+
+	searchProductAndServiceByName(document.getElementById("txtSearch").value, productAndServiceList => {
+		itemList = productAndServiceList;
+		console.log(itemList);
 		appendProducts();
 	});
 }
@@ -49,7 +63,7 @@ function appendProducts(){
 	}
 }
 
-$("#sortProducts").change( function () {
+function sortItems(){
 	if(document.getElementById("sortProducts").value == "menorPreco"){
 		itemList.sort((a,b)=>{
 			return a.price - b.price;
@@ -63,4 +77,4 @@ $("#sortProducts").change( function () {
 	row = 0;
 	document.getElementById("productList").innerHTML = "";
 	appendProducts();
-});
+}

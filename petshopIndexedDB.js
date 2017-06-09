@@ -260,6 +260,45 @@ function searchProductByName(pattern, callback) {
 
 }
 
+function searchServiceByName(pattern, callback) {
+
+	readAll("tableService", list => {
+		let serviceList = [];
+			
+		for(let i in list) {
+			if (list[i].name.search(pattern) >= 0) {
+				serviceList.push(list[i]);
+			}
+		};
+		callback(serviceList);
+	});
+}
+
+function searchProductAndServiceByName(pattern, callback) {
+
+	readAll("tableService", serviceList => {
+		let productAndServiceList = [];
+			
+		for(let i in serviceList) {
+			if (serviceList[i].name.search(pattern) >= 0) {
+				productAndServiceList.push(serviceList[i]);
+			}
+		}
+
+		readAll("tableProduct", list => {
+				
+			for(let i in list) {
+				if (list[i].name.search(pattern) >= 0) {
+					productAndServiceList.push(list[i]);
+				}
+			};
+			
+			callback(productAndServiceList);
+		});
+	});
+}
+
+
 // ================================================================================================================== //
 // ============================================= Implementação SERVIÇO ============================================== //
 // ================================================================================================================== //
