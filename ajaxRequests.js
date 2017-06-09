@@ -5,6 +5,7 @@ function ajaxRequestDoc(docname)
 	{
 		if (this.readyState == 4 && this.status == 200) 
 		{
+
 			document.getElementsByTagName("main")[0].innerHTML = 
 			this.responseText.substring(this.responseText.search("<main>") + "<main>".length, this.responseText.search("</main>") - 1);
 
@@ -12,7 +13,7 @@ function ajaxRequestDoc(docname)
 			this.responseText.substring(this.responseText.search("<aside>") + "<aside>".length, this.responseText.search("</aside>") - 1);
 		}
 	};
-	xhttp.open("GET", docname, true);
+	xhttp.open("GET", docname, false);
 	xhttp.send();
 }
 

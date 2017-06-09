@@ -6,14 +6,15 @@ var itemList = [];
 /*Funcao que inicia a busca*/
 function startSearch(){
 	row = 0;
+	
+
 	document.getElementById("productList").innerHTML = "";
 	document.getElementById("sortProducts").value = "relevancia";
-	
+
 	searchProductByName(document.getElementById("txtSearch").value, productList => {
 		itemList = productList;
 		appendProducts();
 	});
-	
 }
 
 function appendProducts(){
@@ -34,7 +35,7 @@ function appendProducts(){
 			document.getElementById("productListRow" + (i.toString())).innerHTML += `
 				<div class='item'> <!-- Put an element here! -->
 				<div style="width:100%;height:120px;overflow:hidden;">
-						<img src="images/racao.jpg" alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
+						<img src='images/racao.jpg' alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
 				</div>
 				<a class="productLink" href="#">`+itemList[i*3+k].name+`</a>
 				<label class="productPrize"><br>R$ `+itemList[i*3+k].price.toFixed(2).toString()+`</label>
@@ -47,6 +48,7 @@ function appendProducts(){
 		document.getElementById("addMoreProducts").style.background="DarkGrey";
 	}
 }
+
 $("#sortProducts").change( function () {
 	if(document.getElementById("sortProducts").value == "menorPreco"){
 		itemList.sort((a,b)=>{
