@@ -89,7 +89,6 @@
 		</footer>
 		
 		<script>
-			localStorage.clear();
 			var subtotal = 0.0;
 
 			/*Exemplos para teste*/
@@ -120,7 +119,7 @@
 				  	
 				  	//valor subtotal das compras
 					subtotal+=parseFloat(value[2]);
-					
+
 					//adiciona no html os caras do carrinho
 					document.getElementById("cartShopping").innerHTML+= `
 					<tr> 
@@ -131,16 +130,15 @@
 						<label>` + value[1] + `</label>
 					</td>
 					<td> <!-- Quantidade do produto -->
-						<input id="` + value[1] + `amount" type="number"  min="1" max = "99" step="1" value="`+ parseInt(value[3])+`" onclick="updateTotalValue(this.id)"/>
+						<input id="` + value[1] + `amount" type="number"  min="1" max = "99" step="1" value="`+ parseInt(value[3]).toString()+`" onclick="updateTotalValue(this.id)"/>
 					</td>
 					<td> <!-- Valor do Produto*Quantidade -->
-						<label> R$ ` + value[2] + `</label>
+						<label> R$ ` + parseFloat(value[2]).toFixed(2).toString() + `</label>
 					</td>
 					<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
 						<button id="`+ value[1] +`button" class="shoppingCartButtonRemove" type="button" onclick="removeItemCartShopping(this.id)">x</button>
 					</td>
 					</tr>`;
-
 				}
 				
 				document.getElementById("cartShopping").innerHTML+= `<tr style="background-color: #fff;">
