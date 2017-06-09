@@ -53,7 +53,7 @@
 			</h2> 
 			
 			<div> <!-- Contêm a tabela com os produtos do carrinho-->
-				<table class = "shoppingCartTable">
+				<table  class = "shoppingCartTable">
 				  <tr> <!-- Colunas do carrinho -->
 					<th></th>
 					<th>Produto</th>
@@ -62,43 +62,14 @@
 					<th>Remover</th>
 				  </tr>
 				  
-				  <!-- Cada tr e um elemento do carrinho -->
-				  <tr>
-					<td> <!-- Foto do produto -->						
-						<img src="images/racao.jpg" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
-					</td>
-					<td> <!-- Nome do produto -->
-						<label> Ração Para Cachorro 10Kg </label>
-					</td>
-					<td> <!-- Quantidade do produto -->
-						<input id=quantidade_produtos" type="number"  min="1" max = "99" step="1" value="1"/>
-					</td>
-					<td> <!-- Valor do Produto*Quantidade -->
-						<label> R$ 50,00 </label>
-					</td>
-					<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
-						<button class="shoppingCartButtonRemove" type="button">x</button>
-					</td>
-				  </tr>
-				  
+				  </table>
 				  <!-- Aqui vao as outras linhas da tabela -->
 				  
-				  <!-- Contêm a última linha da tabela, que contem o subtotal e o total do preço dos produtos-->
-				  <tr style="background-color: #fff;">
-					<td></td>
-					<td></td>
-					<td> 
-						<label><b> Subtotal<b></label>
-					</td>
-					<td> <!-- Soma de todos os valores do carrinho -->
-						<label><b>R$ 50,00 </b></label>
-					</td>
-				  </tr>
-				  
+				<table id="cartShopping" class = "shoppingCartTable">
 				</table>
 				
 				<div> <!-- Botão de Confirmar Compra do carrinho -->
-					<button class = "shoppingCartButtonConfirm" type="button" onclick="location.href='payment.html';">Confirmar Compra</button>
+					<br><button id ="confirmPayment" class = "shoppingCartButtonConfirm" type="button" onclick="location.href='payment.html';">Confirmar Compra</button>
 				</div>
 			</div>
 		</main>
@@ -117,6 +88,91 @@
 			</div>
 		</footer>
 		
+		<script>
+			localStorage.clear();
+			var subtotal = 0.0;
+
+			/*Exemplos para teste*/
+			//Padrao de insercao dos elementos (imagem,nome do produto,valor)
+			localStorage.setItem("racao pra periquito 10kg",["1", "racao pra periquito 10kg", "100.00", "1"]);
+			localStorage.setItem("racao pra periquito 20kg",["1", "racao pra periquito 20kg", "200.00", "1"]);
+			localStorage.setItem("racao pra periquito 30kg",["1", "racao pra periquito 30kg", "300.00", "1"]);
+
+
+			initializeCart();
+			if(localStorage.length == 0){
+				document.getElementById("confirmPayment").disabled = true; 
+				document.getElementById("confirmPayment").style.background="DarkGrey";
+			}
+
+			function initializeCart(){
+				subtotal = 0.0;
+				
+				if(localStorage.length == 0){
+					document.getElementById("confirmPayment").disabled = true; 
+					document.getElementById("confirmPayment").style.background="DarkGrey";
+				}
+				
+				/*Falta o bangue da imagem, ver isso quando tiver baum*/
+				for(let key in localStorage) {
+					// Pega a tupla e tira as virgulas
+					let value = localStorage.getItem(key).split(',');
+				  	
+				  	//valor subtotal das compras
+					subtotal+=parseFloat(value[2]);
+					
+					//adiciona no html os caras do carrinho
+					document.getElementById("cartShopping").innerHTML+= `
+					<tr> 
+					<td> <!-- Foto do produto -->						
+						<img src="images/racao.jpg" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
+					</td>
+					<td> <!-- Nome do produto -->
+						<label>` + value[1] + `</label>
+					</td>
+					<td> <!-- Quantidade do produto -->
+						<input id="` + value[1] + `amount" type="number"  min="1" max = "99" step="1" value="`+ parseInt(value[3])+`" onclick="updateTotalValue(this.id)"/>
+					</td>
+					<td> <!-- Valor do Produto*Quantidade -->
+						<label> R$ ` + value[2] + `</label>
+					</td>
+					<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
+						<button id="`+ value[1] +`button" class="shoppingCartButtonRemove" type="button" onclick="removeItemCartShopping(this.id)">x</button>
+					</td>
+					</tr>`;
+
+				}
+				
+				document.getElementById("cartShopping").innerHTML+= `<tr style="background-color: #fff;">
+					<td></td>
+					<td></td>
+					<td> 
+						<label><b> Subtotal<b></label>
+					</td>
+					<td> <!-- Soma de todos os valores do carrinho -->
+						<label><b>R$ <b></label><label id ="subtotal"><b>`+ (subtotal.toFixed(2)).toString() +`</b></label>
+					</td>
+				  </tr>`;
+			}
+
+			function removeItemCartShopping(clicked_id){
+				localStorage.removeItem(clicked_id.substring(0,clicked_id.length-6));
+				console.log(clicked_id.substring(0,clicked_id.length-6));
+				console.log(localStorage.length);
+				document.getElementById("cartShopping").innerHTML = "";
+				initializeCart();
+			}
+
+			function updateTotalValue(updated_id){
+				let key = (updated_id.substring(0,updated_id.length-6));
+				let value = localStorage.getItem(key).split(',');
+				subtotal-=parseFloat(value[2])*parseFloat(value[3]);
+				subtotal+=parseFloat(value[2])*parseFloat(document.getElementById(updated_id).value);
+				localStorage.setItem(value[1],[value[0],value[1],value[2],document.getElementById(updated_id).value.toString()]);
+				document.getElementById("subtotal").innerHTML = subtotal.toFixed(2).toString();
+			}
+
+		</script>
 	</body>
 	
 </html>
