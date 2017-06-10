@@ -80,17 +80,29 @@ function sortItems(){
 }
 
 function findItemToAdd(name){
-	console.log(name);
+
 	for(let i in itemList){
 		if(itemList[i].name == name){
 			if(itemList[i].quantity === undefined){
 				ajaxRequestDoc("showService.html");
-				document.getElementById("nameService").innerHTML = name;
 				
+				document.getElementById("nameService").innerHTML = name;
 				// COLOCAR IMAGEM document.getElementById("name").innerHTML = name;		
-
 				document.getElementById("lblServicePrice").innerHTML = itemList[i].price.toFixed(2).toString();
 				document.getElementById("pDescription").innerHTML = itemList[i].description;
+				
+				/*Inicia os pets*/
+				slotFreeClick();
+				localStorage.setItem("appointment","{}");
+				if(localStorage.id !== null && localStorage.id !== undefined){
+					searchPetsByUserId(localStorage.id, petsList => {
+						appendPets(petsList);
+					});
+				}
+				else{
+					/*Usuario nao logado*/
+					document.getElementById("listAnimals").innerHTML = "<h4>Você não tem Pets.</h4>";
+				}
 			}
 			else{
 				ajaxRequestDoc("showProduct.html");
@@ -106,6 +118,41 @@ function findItemToAdd(name){
 	}
 }
 
+function appendPets(petsList){
+	document.getElementById("listAnimals").innerHTML = "";
+	for(let i in petsList){
+		document.getElementById("listAnimals").innerHTML += `
+			<input type="radio" name="chooseAnimal" value="`+i+`" onclick="setPetAppointment(`+petsList[i].idPet+`)">
+				<div class="divAnimalInfo">
+					<div class="divAnimalPhoto">
+						<img src="images/jackphoto.jpg" class="fullImage" alt="Imagem do Animal"/>
+					</div>
+					<table class="table2Items">
+						<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
+						<tr><td>ID</td><td><input type="text" id="animalID" value="`+petsList[i].idPet+`" readonly></td></tr>
+						<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="`+petsList[i].age+`" readonly></td></tr>
+						<tr><td>Raça</td><td><input type="text" id="animalBreed" value="`+petsList[i].breed+`" readonly></td></tr>
+					</table>
+				</div>
+			</input>
+			<br>`;
+	}
+}
+
+function setPetAppointment(idPet){
+	searchServiceByName(document.getElementById("nameService").innerHTML, list =>{
+		localStorage.setItem("appointment",
+
+			JSON.stringify({ idPet: idPet,
+			  idUser:-1,
+			  idService:list[0].id,
+			  total: parseFloat(document.getElementById("lblServicePrice").innerHTML), 
+			  totalPortions:-1, 
+			  dateApointment:-1
+			}));
+	});
+}
+
 function addItemToCart(){
 	let itemKey = document.getElementById("nameProduct").innerHTML;
 	let itemImage = "";
@@ -114,7 +161,7 @@ function addItemToCart(){
 	console.log(localStorage.getItem(itemKey));
 	if(localStorage.getItem(itemKey) === null)
 		localStorage.setItem(itemKey,["1",itemName,itemPrice,"1"]);
-	else{
+	else{ 
 		let value = localStorage.getItem(itemKey).split(',');
 		localStorage.setItem(itemKey,["1",itemName,itemPrice,(parseInt(value[3])+1).toString()]);
 	}
@@ -136,9 +183,9 @@ function initializeCart(){
 		document.getElementById("confirmPayment").style.background="DarkGrey";
 	}
 	
-	/*Falta o bangue da imagem, ver isso quando tiver baum*/
+	
 	for(let key in localStorage) {
-		if(key == 'user' || key == 'id'){
+		if(key == 'user' || key == 'id' || key == 'appointment'){
 			continue;
 		}
 		// Pega a tupla e tira as virgulas
@@ -207,15 +254,23 @@ function checkLogin() {
 	
 	user = document.getElementById("txtUsername").value;
 	pass = document.getElementById("txtPassword").value;
-		
-	if(isValidUser(user, pass)){
-		alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
-		localStorage.user = user;
-	}
-	else{
-		alert("Login inválido, tente novamente.");
-		localStorage.user = null;
-	}
+	
+	console.log(user);
+	console.log(pass);
+
+	isValidUser(user,pass, (validatedUser,idUser) => {
+		if(validatedUser){
+			alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
+			localStorage.user = user;
+			localStorage.id = idUser;
+			console.log(localStorage.id);
+		}
+		else{
+			alert("Login inválido, tente novamente.");
+			localStorage.user = null;
+			localStorage.id = null;
+		}
+	});
 }
 
 
@@ -234,7 +289,7 @@ function finalizeSale(){
 	let total = 0.0;
 
 	for(let key in localStorage) {
-		if(key == 'user' || key == 'id'){
+		if(key == 'user' || key == 'id' || key == 'appointment'){
 			continue;
 		}
 		value = localStorage.getItem(key).split(',');
@@ -272,4 +327,34 @@ function openTab(evt, tagName) {
 	// Show the current tab, and add an "active" class to the link that opened the tab
 	document.getElementById(tagName).style.display = "block";
 	evt.currentTarget.className += " active";
+}
+
+function slotFreeClick() {
+	var i, tabcontent;
+	tabcontent = document.getElementsByClassName("slotFree");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].onclick = function (e) {
+			
+			if(localStorage.user !== null && localStorage.user !== undefined){
+				let value = JSON.parse(localStorage.getItem("appointment"));
+				let d = new Date(document.getElementById("dayAppointment").value);
+				value.idUser = localStorage.id;
+				value.dateApointment = new Date(d.getFullYear() + "-" +d.getMonth()+ "-" +d.getDate()+ "T" +(parseInt(this.id.substring(("divSlot").length)) + 7).toString() + ":00:00Z");
+				localStorage.setItem(("appointment"),JSON.stringify(value));
+				ajaxRequestDoc('paymentService.html');
+			}
+			else{
+				alert("Logue-se!");
+			}
+		};
+	}
+}
+
+
+function finalizeAppointment(){
+	let value = JSON.parse(localStorage.getItem("appointment"));
+	value.totalPortions = document.getElementById("numberOfPortions").value;
+	console.log("obj: " + value);
+	insertAppointment(value.idUser,value.idPet,value.idService,value.total,value.totalPortions,value.dateApointment);
+	//console.log(document.getElementById("dayBirthPayment").value);
 }

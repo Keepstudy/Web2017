@@ -235,7 +235,6 @@ function updateProduct() {
 }
 /*
 function listProduct() {
-
 	readAll("tableProduct", list => {
 		let text = "";	
 		
@@ -245,6 +244,22 @@ function listProduct() {
 		document.getElementById("productList").innerHTML = text;
 	});
 }*/
+
+function searchPetsByUserId(id, callback) {
+
+	readAll("tablePet", list => {
+		let petsList = [];
+			
+		for(let i in list) {
+			if (list[i].idUser == id) {
+				petsList.push(list[i]);
+			}
+		};
+		callback(petsList);
+	});
+}
+
+
 function searchProductByName(pattern, callback) {
 
 	readAll("tableProduct", list => {
@@ -257,7 +272,6 @@ function searchProductByName(pattern, callback) {
 		};
 		callback(productList);
 	});
-
 }
 
 function searchServiceByName(pattern, callback) {
@@ -412,12 +426,12 @@ function updateUser(isAdmin) {
 		});
 	}
 }
-function isValidUser(usr, pw) {
+function isValidUser(usr, pw, callback) {
 	let req = db.transaction("tableUser", "readonly")
 	.objectStore("tableUser").index("username").get(usr);
 	
-	req.onsuccess = e => { return (req.result.password == pw); }
-	req.onerror = e => { return false; }
+	req.onsuccess = e => {  callback(req.result.password == pw,req.result.id); }
+	req.onerror   = e => {	callback(false, -1); }
 }
 function usernameAlreadyExists(usr) {
 	let req = db.transaction("tableUser", "readonly")

@@ -102,11 +102,11 @@ Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-
 				</input>
 			</div>
 			
+			<div id="divAppointment">
 				<p>Escolha um dia para o agendamento:</p>
-				<input type="date" name="dayAppointment" onclick=""/>
+				<input type="date" id="dayAppointment" onclick=""/>
 				<p>Escolha o horário:</p>
 
-			<div id="divAppointment">
 				<a id="divSlot1" class="slotCalendar slotOccupied">
 					<label>08h</label>
 					<img id="slot1Image" class="serviceImage" src="images/vacinacao.jpg" alt="Imagem do Serviço"/>
@@ -168,17 +168,6 @@ Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-
 					<label id="slot10Status"></label>
 				</a>
 			</div>
-			
-			<script>
-				function slotFreeClick() {
-					var i, tabcontent;
-					tabcontent = document.getElementsByClassName("slotFree");
-					for (i = 0; i < tabcontent.length; i++) {
-						tabcontent[i].href = "paymentService.html";
-					}
-				}
-				//slotFreeClick();
-			</script>
 		</main>
 
 		<aside> <!-- right-sidebar -->
