@@ -5,7 +5,6 @@ function ajaxRequestDoc(docname)
 	{
 		if (this.readyState == 4 && this.status == 200) 
 		{
-
 			document.getElementsByTagName("main")[0].innerHTML = 
 			this.responseText.substring(this.responseText.search("<main>") + "<main>".length, this.responseText.search("</main>") - 1);
 

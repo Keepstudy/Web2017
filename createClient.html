@@ -50,7 +50,8 @@
 		<aside> <!-- left-sidebar -->
 		</aside>
 
-		<main style="float:left;background-color:white;width:50%;height:auto;"> <!-- main content -->
+		<main> <!-- main content -->
+		<div  style="float:left;background-color:white;width:50%;height:auto;">
 		<br><br>
 			<h1> Identificação do Cliente</h1>
 			<form action="#" method="post">
@@ -166,9 +167,10 @@
 						</div>					
 				</fieldset>
 				<div>
-				 	<a id="C1" href="createdClient.html">Cadastrar</a>
+				 	<a id="C1" href="#" onclick='insertUser(0);ajaxRequestDoc("createdClient.html");'>Cadastrar</a>
 				</div>
 			</form>			
+			</div>
 		</main>
 
 		<aside> <!-- right-sidebar -->

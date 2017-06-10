@@ -140,7 +140,7 @@ function initializeCart(){
 	for(let key in localStorage) {
 		// Pega a tupla e tira as virgulas
 		let value = localStorage.getItem(key).split(',');
-	  	
+	  		
 	  	//valor subtotal das compras
 		subtotal+= parseFloat(value[2])*parseInt(value[3]);
 
@@ -199,22 +199,27 @@ function updateTotalValue(updated_id){
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 
-function checkLogin()
-{
-	console.log("hahahhihihiho");
+function checkLogin() {
 	let user, pass;
 	
 	user = document.getElementById("txtUsername").value;
 	pass = document.getElementById("txtPassword").value;
 		
-	if(isValidUser(user, pass))
-	{
+	if(isValidUser(user, pass)){
 		alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
 		localStorage.user = user;
 	}	
-	else
-	{
+	else{
 		alert("Login inválido, tente novamente.");
 		localStorage.user = null;
 	}
 }
+
+
+/*--------------------------------------------Confirmacao de pagamento--------------------------------------------------------------------------------*/
+
+
+function paymentScreen(){
+	ajaxRequestDoc("showService.html");
+	// Inserir uma nova compra. Falta os negócios dos usuários.
+}	
