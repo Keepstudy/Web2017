@@ -73,7 +73,7 @@
 						<label class = "paymentLabel"> Forma de Pagamento </label>
 					</td>
 						<td>
-							<select>
+							<select id="numberOfPortions">
 							<option value="none"> Escolha uma forma de Parcelamento</option>
 							<option value="1Parcela"> 1 Parcela</option>
 							<option value="2Parcela"> 2 Parcelas</option>
@@ -108,8 +108,7 @@
 						<label class = "paymentLabel"> Validade </label>
 					</td>
 					<td>
-						<input class = "paymentFields" type="number" size="15" name="txtUsername" placeholder="MM">
-						<input class = "paymentFields" type="number" size="15" name="txtUsername" placeholder="AA">
+						<input type="date" id="dueDateCreditCard" onclick=""/>
 					</td>
 				</tr>
 				
@@ -137,19 +136,20 @@
 					</td>
 					
 					<td>
-						<input class = "paymentFields" type="number" size="8" name="txtUsername" placeholder="DD">
-						<input class = "paymentFields" type="number" size="8" name="txtUsername" placeholder="MM">
-						<input class = "paymentFields" type="number" size="8" name="txtUsername" placeholder="AAAA">
+						<input type="date" id="dayBirthPayment" onclick=""/>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td> <!-- Botão de Confirmar Compra do carrinho -->
 						<br/>
-						<button class = "paymentConfirm" type="button" onclick="alert('Pagamento realizado com sucesso!')">Pagar com cartão</button>
+						<button class = "paymentConfirm" type="button" onclick="finalizeSale();">Pagar com cartão</button>
 					</td>
 				</tr>
 			</table>
+			<script>
+				$("#dayBirthPayment").datepicker({format: 'dd/mm/yyyy'});
+			</script>
 		</main>
 
 		<aside style="opacity: 0;"> <!-- right-sidebar -->
@@ -165,7 +165,5 @@
 				<a class="hyperlink" href="about.html" >Quem Somos</a>
 			</div>
 		</footer>
-		
 	</body>
-	
 </html>

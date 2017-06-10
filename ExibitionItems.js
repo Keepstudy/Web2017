@@ -138,6 +138,9 @@ function initializeCart(){
 	
 	/*Falta o bangue da imagem, ver isso quando tiver baum*/
 	for(let key in localStorage) {
+		if(key == 'user' || key == 'id'){
+			continue;
+		}
 		// Pega a tupla e tira as virgulas
 		let value = localStorage.getItem(key).split(',');
 	  		
@@ -208,7 +211,7 @@ function checkLogin() {
 	if(isValidUser(user, pass)){
 		alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
 		localStorage.user = user;
-	}	
+	}
 	else{
 		alert("Login inválido, tente novamente.");
 		localStorage.user = null;
@@ -220,6 +223,53 @@ function checkLogin() {
 
 
 function paymentScreen(){
-	ajaxRequestDoc("showService.html");
+	ajaxRequestDoc("payment.html");
 	// Inserir uma nova compra. Falta os negócios dos usuários.
 }	
+
+/*--------------------------------------------Finalizar Compra de Produtos ---------------------------------------------------------------------------*/
+
+function finalizeSale(){
+	let productsInCart = [];
+	let total = 0.0;
+
+	for(let key in localStorage) {
+		if(key == 'user' || key == 'id'){
+			continue;
+		}
+		value = localStorage.getItem(key).split(',');
+		productsInCart.push([localStorage.getItem(key)]);
+		total += (parseFloat(value[2])*parseFloat(value[3]));
+	}
+
+	console.log(JSON.stringify(productsInCart));
+	console.log(total);
+	console.log(document.getElementById("numberOfPortions").value);
+	insertSale(localStorage.id,JSON.stringify(productsInCart),total,document.getElementById("numberOfPortions").value);
+
+	console.log(document.getElementById("dayBirthPayment").value);
+}
+
+/*-----------------------------------------------------userProfile----------------------------------*/
+
+	
+function openTab(evt, tagName) {
+	// Declare all variables
+	var i, tabcontent, tablinks;
+
+	// Get all elements with class="tabcontent" and hide them
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+
+	// Get all elements with class="tablinks" and remove the class "active"
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+
+	// Show the current tab, and add an "active" class to the link that opened the tab
+	document.getElementById(tagName).style.display = "block";
+	evt.currentTarget.className += " active";
+}

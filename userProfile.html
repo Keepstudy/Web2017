@@ -467,35 +467,8 @@
 			<div id="manageAdmin" class="tabcontent">
 			  <h3>Gerenciar Administrador</h3>
 			  <h4>Cadastrar Administrador</h4>
-			  <a href="createAdmin.html" class="hyperlink">Clique aqui para cadastrar um novo administrador!</a>
+			  <a href="#" class="hyperlink" onclick="ajaxRequestDoc('createAdmin.html');">Clique aqui para cadastrar um novo administrador!</a>
 			</div>
-			
-			<script>
-		
-				function openTab(evt, tagName) {
-					// Declare all variables
-					var i, tabcontent, tablinks;
-
-					// Get all elements with class="tabcontent" and hide them
-					tabcontent = document.getElementsByClassName("tabcontent");
-					for (i = 0; i < tabcontent.length; i++) {
-						tabcontent[i].style.display = "none";
-					}
-
-					// Get all elements with class="tablinks" and remove the class "active"
-					tablinks = document.getElementsByClassName("tablinks");
-					for (i = 0; i < tablinks.length; i++) {
-						tablinks[i].className = tablinks[i].className.replace(" active", "");
-					}
-
-					// Show the current tab, and add an "active" class to the link that opened the tab
-					document.getElementById(tagName).style.display = "block";
-					evt.currentTarget.className += " active";
-				}
-
-				document.getElementById("btnMyInfo").click();
-				
-			</script>
 		
 		</main>
 

@@ -101,30 +101,12 @@ Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-
 					</div>
 				</input>
 			</div>
-			<div id="divAppointment">
-				<p>Escolha uma semana:</p>
-				<select id="selectWeek" name="selectWeek">
-					<option value="1">17/04/2017 - 22/04/2017</option>
-					<option value="2">24/04/2017 - 29/04/2017</option>
-					<option value="3">01/05/2017 - 06/05/2017</option>
-					<option value="4">08/05/2017 - 13/05/2017</option>
-					<option value="5">15/05/2017 - 20/05/2017</option>
-					<option value="6">22/05/2017 - 27/05/2017</option>
-					<option value="7">29/05/2017 - 03/06/2017</option>
-					<option value="8">05/06/2017 - 10/06/2017</option>
-					<option value="9">12/06/2017 - 17/06/2017</option>
-					<option value="10">19/06/2017 - 24/06/2017</option>
-				</select>
-				<p>Escolha o dia da semana:</p>
-				<select id="selectDayOfTheWeek" name="selectDayOfTheWeek">
-					<option value="1">Segunda-feira</option>
-					<option value="2">Terça-feira</option>
-					<option value="3">Quarta-feira</option>
-					<option value="4">Quinta-feira</option>
-					<option value="5">Sexta-feira</option>
-					<option value="6">Sábado</option>
-				</select>
+			
+				<p>Escolha um dia para o agendamento:</p>
+				<input type="date" name="dayAppointment" onclick=""/>
 				<p>Escolha o horário:</p>
+
+			<div id="divAppointment">
 				<a id="divSlot1" class="slotCalendar slotOccupied">
 					<label>08h</label>
 					<img id="slot1Image" class="serviceImage" src="images/vacinacao.jpg" alt="Imagem do Serviço"/>
@@ -195,8 +177,7 @@ Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-
 						tabcontent[i].href = "paymentService.html";
 					}
 				}
-				
-				slotFreeClick();
+				//slotFreeClick();
 			</script>
 		</main>
 
