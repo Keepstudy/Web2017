@@ -26,14 +26,14 @@
 			</div>
 			<div id="divUser">      <!-- div para coisas da direita (login, carrinho, etc.) -->
 				<div id="divCart">  <!-- imagem do carrinho -->
-					<a href="cartShopping.html" ><img src="images/cart.jpg" alt="Carrinho"/></a>
+					<a onclick="ajaxRequestDoc('cartShopping.html');initializeCart();"><img src="images/cart.jpg" alt="Carrinho"/></a>
 				</div>
 				<div id="divLogin"> <!-- informacoes de login -->
 					<a class="hyperlink" href="userProfile.html" >Minha Conta</a>
 					<div>
-						<input type="text" name="txtUsername" placeholder="Usuário">
-						<input type="password" name="txtPassword" placeholder="Senha">
-						<button id="loginButton" type="button">Login</button>
+						<input type="text" id="txtUsername" placeholder="Usuário">
+						<input type="password" id="txtPassword" placeholder="Senha">
+						<button id="loginButton" type="button" onclick="checkLogin();">Login</button>
 					</div>
 					<a class="hyperlink" href="createClient.html" >Cadastro</a> |
 					<a class="hyperlink" href="#" >Esqueceu a senha?</a>

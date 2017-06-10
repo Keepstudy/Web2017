@@ -29,9 +29,10 @@ $("a[href='index.html']").click(function(e)
 	ajaxRequestDoc("index.html"); 
 });
 
-$("a[href='cartShopping.html']").click(function(e)
+$('a[href="cartShopping.html"]').click(function(e)
 {
 	e.preventDefault();
+	console.log("né");
 	ajaxRequestDoc("cartShopping.html"); 
 });
 

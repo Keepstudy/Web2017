@@ -59,9 +59,9 @@
 			</div>
 			<div id="divProductOptions">
 				<hr>
-				<p>Por R$<p id="lblProductPrice">121.90</p></p>
+				Por R$<span id="lblProductPrice">121.90</span>
 				<hr>
-				<p id="lblInStock">Quantidade em Estoque: 47</p>
+				<p>Quantidade em Estoque: <span id="lblInStock">47</span></p>
 				<button class="button" type="button" onclick="addItemToCart();">Adicionar ao Carrinho</button>
 			</div>
 			<div id="divProductDescription">
@@ -98,16 +98,5 @@ C√£es com mais de 7 anos de idade podem apresentar maior dificuldade na mastiga√
 				<a class="hyperlink" href="about.html" >Quem Somos</a>
 			</div>
 		</footer>
-		<script>
-			localStorage.clear();
-			function addItemToCart(){
-				let itemKey = document.getElementById("nameProduct").innerHTML;
-				let itemImage = "";
-				let itemName = document.getElementById("nameProduct").innerHTML;
-				let itemPrice = document.getElementById("lblProductPrice").innerHTML;
-				localStorage.setItem(itemKey,["1",itemName,itemPrice,"1"]);
-				console.log(localStorage.getItem(itemKey));
-			}
-		</script>
 	</body>
 </html>
