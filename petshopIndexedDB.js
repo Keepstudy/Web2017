@@ -115,8 +115,8 @@ function initializeDB() {
 			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");
 			
 			let countProducts = tableProduct.count();
-			countRequest.onsuccess = function() {
-				if (countRequest.result == 0) {
+			countProducts.onsuccess = function() {
+				if (countProducts.result == 0) {
 					// inserindo os registros pré-definidos
 					for(let i in productList) {
 						tableProduct.add(productList[i]);
