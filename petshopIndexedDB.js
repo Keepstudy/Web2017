@@ -112,55 +112,61 @@ function initializeDB() {
 			/* ----------------------------- tableProduct -------------------------------- */
 			
 			// inicializando a tabela
-			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");	
-			// inserindo os registros pré-definidos
-			for(let i in productList) {
-				tableProduct.add(productList[i]);
-			}
+			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");
 			
-			/* ----------------------------- tableService -------------------------------- */
-			
-			// inicializando a tabela
-			let tableService = db.transaction("tableService", "readwrite").objectStore("tableService");			
-			// inserindo os registros pré-definidos
-			for(let i in serviceList) {
-				tableService.add(serviceList[i]);
-			}
-			
-			/* ------------------------------- tablePet ---------------------------------- */
-			
-			// inicializando a tabela
-			let tablePet = db.transaction("tablePet", "readwrite").objectStore("tablePet");			
-			// inserindo os registros pré-definidos
-			for(let i in petList) {
-				tablePet.add(petList[i]);
-			}
-			
-			/* ------------------------------- tableUser ---------------------------------- */
-			
-			// inicializando a tabela
-			let tableUser = db.transaction("tableUser", "readwrite").objectStore("tableUser");			
-			// inserindo os registros pré-definidos
-			for(let i in userList) {
-				tableUser.add(userList[i]);
-			}
-			
-			/* ------------------------------- tableSale ---------------------------------- */
-			
-			// inicializando a tabela
-			let tableSale = db.transaction("tableSale", "readwrite").objectStore("tableSale");			
-			// inserindo os registros pré-definidos
-			for(let i in saleList) {
-				tableSale.add(saleList[i]);
-			}
-			
-			/* ---------------------------- tableAppointment ------------------------------ */
-			
-			// inicializando a tabela
-			let tableAppointment = db.transaction("tableAppointment", "readwrite").objectStore("tableAppointment");			
-			// inserindo os registros pré-definidos
-			for(let i in appointmentList) {
-				tableAppointment.add(appointmentList[i]);
+			let countProducts = tableProduct.count();
+			countRequest.onsuccess = function() {
+				if (countRequest.result == 0) {
+					// inserindo os registros pré-definidos
+					for(let i in productList) {
+						tableProduct.add(productList[i]);
+					}
+
+					/* ----------------------------- tableService -------------------------------- */
+
+					// inicializando a tabela
+					let tableService = db.transaction("tableService", "readwrite").objectStore("tableService");			
+					// inserindo os registros pré-definidos
+					for(let i in serviceList) {
+						tableService.add(serviceList[i]);
+					}
+
+					/* ------------------------------- tablePet ---------------------------------- */
+
+					// inicializando a tabela
+					let tablePet = db.transaction("tablePet", "readwrite").objectStore("tablePet");			
+					// inserindo os registros pré-definidos
+					for(let i in petList) {
+						tablePet.add(petList[i]);
+					}
+
+					/* ------------------------------- tableUser ---------------------------------- */
+
+					// inicializando a tabela
+					let tableUser = db.transaction("tableUser", "readwrite").objectStore("tableUser");			
+					// inserindo os registros pré-definidos
+					for(let i in userList) {
+						tableUser.add(userList[i]);
+					}
+
+					/* ------------------------------- tableSale ---------------------------------- */
+
+					// inicializando a tabela
+					let tableSale = db.transaction("tableSale", "readwrite").objectStore("tableSale");			
+					// inserindo os registros pré-definidos
+					for(let i in saleList) {
+						tableSale.add(saleList[i]);
+					}
+
+					/* ---------------------------- tableAppointment ------------------------------ */
+
+					// inicializando a tabela
+					let tableAppointment = db.transaction("tableAppointment", "readwrite").objectStore("tableAppointment");			
+					// inserindo os registros pré-definidos
+					for(let i in appointmentList) {
+						tableAppointment.add(appointmentList[i]);
+					}
+				}
 			}
 		}
 
