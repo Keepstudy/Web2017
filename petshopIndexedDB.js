@@ -246,18 +246,47 @@ function listProduct() {
 }*/
 
 function searchAppointmentsByDate(date, callback) {
-
+	date = new Date(date);
 	readAll("tableAppointment", list => {
 		let appList = [];
 			
 		for(let i in list) {
-			let dateApp = list[i].dateAppointment;
-			if (dateApp.getMonth() == date.getMonth()
+			let dateApp = new Date(list[i].dateAppointment);
+			if (   dateApp.getFullYear() == date.getFullYear()
+				&& dateApp.getMonth() == date.getMonth()
 				&& dateApp.getDay() == date.getDay()) {
 				appList.push(list[i]);
 			}
 		};
 		callback(appList);
+	});
+}
+
+function searchPetsByPetId(id, callback) {
+
+	readAll("tablePet", list => {
+		let petsList = [];
+			
+		for(let i in list) {
+			if (list[i].idPet == id) {
+				petsList.push(list[i]);
+			}
+		};
+		callback(petsList);
+	});
+}
+
+function searchServiceById(id, callback) {
+
+	readAll("tableService", list => {
+		let serviceList = [];
+			
+		for(let i in list) {
+			if (list[i].id == id) {
+				serviceList.push(list[i]);
+			}
+		};
+		callback(serviceList);
 	});
 }
 
@@ -274,7 +303,6 @@ function searchPetsByUserId(id, callback) {
 		callback(petsList);
 	});
 }
-
 
 function searchProductByName(pattern, callback) {
 

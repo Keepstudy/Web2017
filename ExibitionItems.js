@@ -345,8 +345,8 @@ function slotFreeClick() {
 			if(localStorage.user !== null && localStorage.user !== undefined){
 				let value = JSON.parse(localStorage.getItem("appointment"));
 				let d = new Date(document.getElementById("dayAppointment").value);
-				d.setHours(parseInt(this.id.substring(("divSlot").length)) + 7 - 3); // subtraindo 3 devido a time zone
-				d.setDate(d.getDate() + 1);
+				d.setHours(parseInt(this.id.substring(("divSlot").length)) + 7);
+				d.setDate(d.getDate());
 				value.idUser = localStorage.id;
 				value.dateApointment = d;
 				localStorage.setItem(("appointment"),JSON.stringify(value));
@@ -371,14 +371,37 @@ function finalizeAppointment(){
 function showSlots() {
 	let date = document.getElementById("dayAppointment").value;
 	for(let i = 1; i <= 10; i++) {
+
 		let elem = document.getElementById("divSlot" + i.toString());
 		elem.className = "slotCalendar slotFree";
+
+		elem = document.getElementById("slot" + i.toString() + "Image");
+		elem.className = "";
+		elem.src = "";
+		elem.alt = "";
+
+		elem = document.getElementById("slot" + i.toString() + "Status");
+		elem.innerHTML = "";
 	}
 	searchAppointmentsByDate(date, list => {
 		for (let i in list) {
-			let d = list[i].dateApointment;
-			let elem = document.getElementById("divSlot" + (d.getHours() - 7).toString());
-			elem.className = "slotCalendar slotOccupied";
+			searchServiceById(list[i].idService, l1 => {
+				searchPetsByPetId(list[i].idPet, l2 => {
+					let d = new Date(list[i].dateAppointment);
+					let idx = d.getHours() - 7;
+
+					let elem = document.getElementById("divSlot" + idx.toString());
+					elem.className = "slotCalendar slotOccupied";
+
+					elem = document.getElementById("slot" + idx.toString() + "Image");
+					elem.className = "serviceImage";
+					elem.src = "images/vacinacao.jpg";
+					elem.alt = "Imagem do Serviço";
+
+					elem = document.getElementById("slot" + idx.toString() + "Status");
+					elem.innerHTML = "Horário Ocupado - Serviço: "+ l1[0].name +" no animal " + l2[0].name;
+				});
+			});
 		}
 	});
 }
