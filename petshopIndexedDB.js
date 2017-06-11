@@ -112,54 +112,54 @@ function initializeDB() {
 			/* ----------------------------- tableProduct -------------------------------- */
 			
 			// inicializando a tabela
-			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");
-			
+			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");	
+
 			let countProducts = tableProduct.count();
-			countProducts.onsuccess = function() {
+			countProducts.onsuccess = function () {
 				if (countProducts.result == 0) {
 					// inserindo os registros pré-definidos
 					for(let i in productList) {
 						tableProduct.add(productList[i]);
 					}
-
+					
 					/* ----------------------------- tableService -------------------------------- */
-
+					
 					// inicializando a tabela
 					let tableService = db.transaction("tableService", "readwrite").objectStore("tableService");			
 					// inserindo os registros pré-definidos
 					for(let i in serviceList) {
 						tableService.add(serviceList[i]);
 					}
-
+					
 					/* ------------------------------- tablePet ---------------------------------- */
-
+					
 					// inicializando a tabela
 					let tablePet = db.transaction("tablePet", "readwrite").objectStore("tablePet");			
 					// inserindo os registros pré-definidos
 					for(let i in petList) {
 						tablePet.add(petList[i]);
 					}
-
+					
 					/* ------------------------------- tableUser ---------------------------------- */
-
+					
 					// inicializando a tabela
 					let tableUser = db.transaction("tableUser", "readwrite").objectStore("tableUser");			
 					// inserindo os registros pré-definidos
 					for(let i in userList) {
 						tableUser.add(userList[i]);
 					}
-
+					
 					/* ------------------------------- tableSale ---------------------------------- */
-
+					
 					// inicializando a tabela
 					let tableSale = db.transaction("tableSale", "readwrite").objectStore("tableSale");			
 					// inserindo os registros pré-definidos
 					for(let i in saleList) {
 						tableSale.add(saleList[i]);
 					}
-
+					
 					/* ---------------------------- tableAppointment ------------------------------ */
-
+					
 					// inicializando a tabela
 					let tableAppointment = db.transaction("tableAppointment", "readwrite").objectStore("tableAppointment");			
 					// inserindo os registros pré-definidos
@@ -222,7 +222,7 @@ function insertProduct() {
 		price: parseFloat(document.forms[0]["preço"].value),
 		quantity: Number(document.forms[0]["quantidade"].value),
 		description: document.forms[0]["desc"].value,
-		photo: "-1"//document.forms[0][""].value
+		photo: localStorage.getItem("img64Base")
 	});
 }
 function deleteProduct() {
@@ -236,7 +236,7 @@ function updateProduct() {
 		price: parseFloat(document.getElementById("priceProduct").value),
 		quantity: Number(document.getElementById("quantityProduct").value),
 		description: document.getElementById("descriptionProduct").value,
-		photo: document.getElementById("").value
+		photo: localStorage.getItem("img64Base")
 	});
 }
 /*
@@ -372,7 +372,7 @@ function insertService() {
 		name: document.forms[0]["pname"].value,
 		price: parseFloat(document.forms[0]["preço"].value),
 		description: document.forms[0]["desc"].value,
-		photo: "-1" //document.forms[0][""].value
+		photo: localStorage.getItem("img64Base")
 	});
 }
 
@@ -387,7 +387,7 @@ function updateService() {
 		name: document.getElementById("nameService").value,
 		price: parseFloat(document.getElementById("priceService").value),
 		description: document.getElementById("descriptionService").value,
-		photo: document.getElementById("").value
+		photo: localStorage.getItem("img64Base")
 	});
 }
 // ================================================================================================================== //
@@ -400,7 +400,7 @@ function insertPet() {
 		name: parseFloat(document.forms[0]["animal"].value),
 		age: document.forms[0]["idade"].value,
 		breed: document.forms[0]["raça"].value,
-		photo: "-1"//document.forms[0][""].value
+		photo: localStorage.getItem("img64Base")
 	});
 }
 function deletePet() {
@@ -418,7 +418,7 @@ function insertUser(isAdmin) {
 			name: document.forms[0]["name"].value,
 			username: document.forms[0]["user"].value,
 			password: document.forms[0]["password"].value,
-			photo: "",
+			photo: localStorage.getItem("img64Base"),
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
 			cep: document.forms[0]["cep"].value, 
@@ -436,7 +436,7 @@ function insertUser(isAdmin) {
 			name: document.forms[0]["nome"].value,
 			username: document.forms[0]["username"].value,
 			password: document.forms[0]["senha"].value,
-			photo: "",
+			photo: localStorage.getItem("img64Base"),
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone number"].value, 
 			isAdmin: isAdmin
@@ -453,7 +453,7 @@ function updateUser(isAdmin) {
 			name: document.forms[0]["name"].value,
 			username: document.forms[0]["user"].value,
 			password: document.forms[0]["password"].value,
-			photo: "",
+			photo: localStorage.getItem("img64Base"),
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
 			cep: document.forms[0]["cep"].value, 
@@ -471,7 +471,7 @@ function updateUser(isAdmin) {
 			name: document.forms[0]["name"].value,
 			username: document.forms[0]["user"].value,
 			password: document.forms[0]["password"].value,
-			photo: "",
+			photo: localStorage.getItem("img64Base"),
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone number"].value, 
 			isAdmin: isAdmin
@@ -482,7 +482,7 @@ function isValidUser(usr, pw, callback) {
 	let req = db.transaction("tableUser", "readonly")
 	.objectStore("tableUser").index("username").get(usr);
 	
-	req.onsuccess = e => {  callback(req.result.password == pw,req.result.id); }
+	req.onsuccess = e => {  console.log(req); callback(req.result.password == pw, req.result.id); }
 	req.onerror   = e => {	callback(false, -1); }
 }
 function usernameAlreadyExists(usr) {

@@ -68,12 +68,16 @@
 									<td><input type="text" name="nome"></td>
 								</tr>
 								<tr>
+									<td><label for="username">Login</label></td>
+									<td><input type="text" name="username"></td>
+								</tr>
+								<tr>
 									<td><label for="id">ID</label></td>
 									<td><input type="number" name="id"></td>
 								</tr>
 								<tr>
 									<td><label for="foto">Foto</label></td>
-									<td><button id="uploadfoto" class="button" type="button" >Upload foto...</button></td>		
+									<td><img id="previewfoto" src="#" alt="Sua imagem"/><input id="uploadfoto" type="file" onchange="readImgURL(this);"/></td>
 								</tr>
 								<tr>
 									<td><label for="telefone">Telefone</label></td>
@@ -92,7 +96,7 @@
 									<td><input type="password" name="password"></td>
 								</tr>
 							</table>								
-					 		<a class="button"  href="#" on click="insertUser(1);ajaxRequestDoc('createdAdmin.html');">Cadastrar</a>
+					 		<a class="button" href="#" onclick="insertUser(1);ajaxRequestDoc('createdAdmin.html');">Cadastrar</a>
 						</div>
 					</div>
 				</form>

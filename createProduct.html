@@ -74,7 +74,7 @@
 								</tr>
 								<tr>
 									<td><label for="foto">Foto</label></td>
-									<td><button id="uploadfoto" class="button" type="button" >Upload foto...</button></td>
+									<td><img id="previewfoto" src="#" alt="Sua imagem"/><input id="uploadfoto" type="file" onchange="readImgURL(this);"/></td>
 								</tr>
 								<tr>
 									<td><label for="preço">Preço</label></td>
@@ -90,7 +90,7 @@
 								</tr>
 							</table>
 							<div class="centerElements">
-								<a class="button"  href="#" onclick="insertProduct();ajaxRequestDoc('createdProduct.html');">Cadastrar<\/a>
+								<a class="button"  href="#" onclick="insertProduct();ajaxRequestDoc('createdProduct.html');">Cadastrar</a>
 							</div>
 						</div>										
 					</div>

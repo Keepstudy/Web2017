@@ -49,7 +49,7 @@ function appendProducts(){
 			document.getElementById("productListRow" + (i.toString())).innerHTML += `
 				<div class='item'> <!-- Put an element here! -->
 				<div style="width:100%;height:120px;overflow:hidden;">
-						<img src='images/racao.jpg' alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
+						<img src=`+itemList[i*3+k].photo+` alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
 				</div>
 				<a class="productLink" href="#" onclick='findItemToAdd("`+itemList[i*3+k].name+`");'>`+itemList[i*3+k].name+`</a>
 				<label class="productPrize"><br>R$ `+itemList[i*3+k].price.toFixed(2).toString()+`</label>
@@ -87,7 +87,7 @@ function findItemToAdd(name){
 				ajaxRequestDoc("showService.html");
 				
 				document.getElementById("nameService").innerHTML = name;
-				// COLOCAR IMAGEM document.getElementById("name").innerHTML = name;		
+				document.getElementById("serviceImage").src = itemList[i].photo;	
 				document.getElementById("lblServicePrice").innerHTML = itemList[i].price.toFixed(2).toString();
 				document.getElementById("pDescription").innerHTML = itemList[i].description;
 				$("#dayAppointment").on('load', () => {
@@ -113,10 +113,8 @@ function findItemToAdd(name){
 			}
 			else{
 				ajaxRequestDoc("showProduct.html");
-				document.getElementById("nameProduct").innerHTML = name;
-				
-				// COLOCAR IMAGEM document.getElementById("name").innerHTML = name;		
-
+				document.getElementById("nameProduct").innerHTML = name;		
+				document.getElementById("productImage").src = itemList[i].photo;
 				document.getElementById("lblProductPrice").innerHTML = itemList[i].price.toFixed(2).toString();
 				document.getElementById("lblInStock").innerHTML = itemList[i].quantity;
 				document.getElementById("pDescription").innerHTML = itemList[i].description;
@@ -132,7 +130,7 @@ function appendPets(petsList){
 			<input type="radio" name="chooseAnimal" value="`+i+`" onclick="setPetAppointment(`+petsList[i].idPet+`)">
 				<div class="divAnimalInfo">
 					<div class="divAnimalPhoto">
-						<img src="images/jackphoto.jpg" class="fullImage" alt="Imagem do Animal"/>
+						<img src="`+petsList[i].photo+`" class="fullImage" alt="Imagem do Animal"/>
 					</div>
 					<table class="table2Items">
 						<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
@@ -162,17 +160,17 @@ function setPetAppointment(idPet){
 
 function addItemToCart(){
 	let itemKey = document.getElementById("nameProduct").innerHTML;
-	let itemImage = "";
+	let itemImage = document.getElementById("productImage").src;
 	let itemName = document.getElementById("nameProduct").innerHTML;
 	let itemPrice = document.getElementById("lblProductPrice").innerHTML;
 	console.log(localStorage.getItem(itemKey));
 	if(localStorage.getItem(itemKey) === null)
-		localStorage.setItem(itemKey,["1",itemName,itemPrice,"1"]);
+		localStorage.setItem(itemKey,JSON.stringify({photo:itemImage.toString(),name:itemName,price:itemPrice,quantity:"1"}));
 	else{ 
-		let value = localStorage.getItem(itemKey).split(',');
-		localStorage.setItem(itemKey,["1",itemName,itemPrice,(parseInt(value[3])+1).toString()]);
+		let value = JSON.parse(localStorage.getItem(itemKey));
+		localStorage.setItem(itemKey,JSON.stringify({photo:itemImage.toString(),name:itemName,price:itemPrice,quantity:(parseInt(value.quantity)+1).toString()}));
 	}
-	alert("Add esta porquera" + itemKey);
+	alert("Add esta porquera: " + itemKey);
 }
 
 
@@ -184,40 +182,48 @@ var subtotal = 0.0;
 
 function initializeCart(){
 	subtotal = 0.0;
+	let countProducts = 0;
 	
-	if(localStorage.length == 0){
+	for(let key in localStorage) {
+		if(key == 'user' || key == 'id' || key == 'appointment' || key == 'img64Base'){
+			continue;
+		}
+		countProducts++;
+	}
+
+	if(countProducts == 0){
 		document.getElementById("confirmPayment").disabled = true; 
 		document.getElementById("confirmPayment").style.background="DarkGrey";
 	}
 	
 	
 	for(let key in localStorage) {
-		if(key == 'user' || key == 'id' || key == 'appointment'){
+		if(key == 'user' || key == 'id' || key == 'appointment' || key == 'img64Base'){
 			continue;
 		}
 		// Pega a tupla e tira as virgulas
-		let value = localStorage.getItem(key).split(',');
+		let value = JSON.parse(localStorage.getItem(key));
 	  		
 	  	//valor subtotal das compras
-		subtotal+= parseFloat(value[2])*parseInt(value[3]);
+		subtotal+= parseFloat(value.price)*parseInt(value.quantity);
 
 		//adiciona no html os caras do carrinho
 		document.getElementById("cartShopping").innerHTML+= `
 		<tr> 
-		<td> <!-- Foto do produto -->						
-			<img src="images/racao.jpg" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
+		<td> <!-- Foto do produto -->	
+			<img src="`+value.photo+`" alt="Produto No Carrinho" border=1 height=50px width=auto></img>
 		</td>
 		<td> <!-- Nome do produto -->
-			<label>` + value[1] + `</label>
+			<label>` + value.name + `</label>
 		</td>
 		<td> <!-- Quantidade do produto -->
-			<input id="` + value[1] + `amount" type="number"  min="1" max = "99" step="1" value="`+ parseInt(value[3]).toString()+`" onclick="updateTotalValue(this.id)"/>
+			<input id="` + value.name + `amount" type="number"  min="1" max = "99" step="1" value="`+ parseInt(value.quantity).toString()+`" onclick="updateTotalValue(this.id)"/>
 		</td>
 		<td> <!-- Valor do Produto*Quantidade -->
-			<label> R$ ` + parseFloat(value[2]).toFixed(2).toString() + `</label>
+			<label> R$ ` + parseFloat(value.price).toFixed(2).toString() + `</label>
 		</td>
 		<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
-			<button id="`+ value[1] +`button" class="shoppingCartButtonRemove" type="button" onclick="removeItemCartShopping(this.id)">x</button>
+			<button id="`+ value.name +`button" class="shoppingCartButtonRemove" type="button" onclick="removeItemCartShopping(this.id)">x</button>
 		</td>
 		</tr>`;
 	}
@@ -244,10 +250,11 @@ function removeItemCartShopping(clicked_id){
 
 function updateTotalValue(updated_id){
 	let key = (updated_id.substring(0,updated_id.length-6));
-	let value = localStorage.getItem(key).split(',');
-	subtotal-=parseFloat(value[2])*parseFloat(value[3]);
-	subtotal+=parseFloat(value[2])*parseFloat(document.getElementById(updated_id).value);
-	localStorage.setItem(value[1],[value[0],value[1],value[2],document.getElementById(updated_id).value.toString()]);
+	let value = JSON.parse(localStorage.getItem(key));
+	subtotal-=parseFloat(value.price)*parseFloat(value.quantity);
+	subtotal+=parseFloat(value.price)*parseFloat(document.getElementById(updated_id).value);
+	value.quantity = document.getElementById(updated_id).value.toString();
+	localStorage.setItem(value.name,JSON.stringify(value));
 	document.getElementById("subtotal").innerHTML = subtotal.toFixed(2).toString();
 }
 
@@ -296,12 +303,13 @@ function finalizeSale(){
 	let total = 0.0;
 
 	for(let key in localStorage) {
-		if(key == 'user' || key == 'id' || key == 'appointment'){
+		if(key == 'user' || key == 'id' || key == 'appointment' || key == 'img64Base'){
 			continue;
 		}
-		value = localStorage.getItem(key).split(',');
-		productsInCart.push([localStorage.getItem(key)]);
-		total += (parseFloat(value[2])*parseFloat(value[3]));
+		value = JSON.parse(localStorage.getItem(key));
+		productsInCart.push(value);
+		localStorage.removeItem(value.name);
+		total += (parseFloat(value.price)*parseFloat(value.quantity));
 	}
 
 	console.log(JSON.stringify(productsInCart));
@@ -406,11 +414,17 @@ function showSlots() {
 	});
 }
 
-
-
-
-
-
-
-
+function readImgURL(input) {
+	if (input.files && input.files[0]) {
+		let reader = new FileReader();
+		reader.onload = function (e) {
+			$("#previewfoto")
+				.attr("src", e.target.result)
+				.width(50)
+				.height(50);
+			localStorage.setItem("img64Base", e.target.result);
+		};
+		reader.readAsDataURL(input.files[0]);
+	}
+}
 
