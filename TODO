@@ -1,8 +1,3 @@
- JS
- * Login ta zuando no carrinho, tem que ver se a chave não é um login
-
- AJAX
- * Fazer while no ajax até encontrar o fecha Tag da main ( não deu certo pq nao vai encontrar a tag main). PENSAR outro jeito.
-
- HTML
- * Arrumar a main os estilos das paginas que tão zuado
+- formularios (exceto compra)
+- ibagens
+- userProfile (tem q aparecer as abas de acordo com o nivel de usuario)
