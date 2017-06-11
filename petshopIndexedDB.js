@@ -216,7 +216,7 @@ function insertProduct() {
 		price: parseFloat(document.forms[0]["preço"].value),
 		quantity: Number(document.forms[0]["quantidade"].value),
 		description: document.forms[0]["desc"].value,
-		photo: document.forms[0][""].value
+		photo: "-1"//document.forms[0][""].value
 	});
 }
 function deleteProduct() {
@@ -366,12 +366,14 @@ function insertService() {
 		name: document.forms[0]["pname"].value,
 		price: parseFloat(document.forms[0]["preço"].value),
 		description: document.forms[0]["desc"].value,
-		photo: document.forms[0][""].value
+		photo: "-1" //document.forms[0][""].value
 	});
 }
+
 function deleteService() {
 	deleteFromDB("tableService", Number(document.forms[0]["idservice"].value));
 }
+
 function updateService() {
 	deleteFromDB("tableService", Number(document.getElementById("idService").value));
 	insertIntoDB("tableService", {
@@ -392,7 +394,7 @@ function insertPet() {
 		name: parseFloat(document.forms[0]["animal"].value),
 		age: document.forms[0]["idade"].value,
 		breed: document.forms[0]["raça"].value,
-		photo: document.forms[0][""].value
+		photo: "-1"//document.forms[0][""].value
 	});
 }
 function deletePet() {
