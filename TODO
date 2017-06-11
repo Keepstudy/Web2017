@@ -2,3 +2,14 @@
 - Limpar a base64 da localStorage.
 - Data default do calendário.
 - Update user.
+	
+  
+  para quando fizer o login :D
+  <!-- Trocar quando for feito o login -->
+  <div id="divLogin"> <!-- informacoes de login -->
+    <a class="hyperlink" href="#" onclick='ajaxRequestDoc("userProfile.html");openTab(event, "myInfo");'>Minha Conta</a>
+    <div>
+      <a href="#" onclick="ajaxRequestDoc('userProfile.html');"><img src="images/admin.png" width="50" height="50"/></a>
+      <a href="#" onclick="ajaxRequestDoc('userProfile.html');">Admin</a>
+    </div>
+  </div>
