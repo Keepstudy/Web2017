@@ -90,14 +90,21 @@ function findItemToAdd(name){
 				// COLOCAR IMAGEM document.getElementById("name").innerHTML = name;		
 				document.getElementById("lblServicePrice").innerHTML = itemList[i].price.toFixed(2).toString();
 				document.getElementById("pDescription").innerHTML = itemList[i].description;
-				
+				$("#dayAppointment").on('load', () => {
+					defaultDate : new Date()
+				});
+				//$(document).on('ready', function() {
+				//	document.getElementById("dayAppointment").value = new Date();
+				//});
 				/*Inicia os pets*/
 				slotFreeClick();
+
 				localStorage.setItem("appointment","{}");
 				if(localStorage.id !== null && localStorage.id !== undefined){
 					searchPetsByUserId(localStorage.id, petsList => {
 						appendPets(petsList);
 					});
+					showSlots();
 				}
 				else{
 					/*Usuario nao logado*/
@@ -338,8 +345,10 @@ function slotFreeClick() {
 			if(localStorage.user !== null && localStorage.user !== undefined){
 				let value = JSON.parse(localStorage.getItem("appointment"));
 				let d = new Date(document.getElementById("dayAppointment").value);
+				d.setHours(parseInt(this.id.substring(("divSlot").length)) + 7 - 3); // subtraindo 3 devido a time zone
+				d.setDate(d.getDate() + 1);
 				value.idUser = localStorage.id;
-				value.dateApointment = new Date(d.getFullYear() + "-" +d.getMonth()+ "-" +d.getDate()+ "T" +(parseInt(this.id.substring(("divSlot").length)) + 7).toString() + ":00:00Z");
+				value.dateApointment = d;
 				localStorage.setItem(("appointment"),JSON.stringify(value));
 				ajaxRequestDoc('paymentService.html');
 			}
@@ -358,3 +367,27 @@ function finalizeAppointment(){
 	insertAppointment(value.idUser,value.idPet,value.idService,value.total,value.totalPortions,value.dateApointment);
 	//console.log(document.getElementById("dayBirthPayment").value);
 }
+
+function showSlots() {
+	let date = document.getElementById("dayAppointment").value;
+	for(let i = 1; i <= 10; i++) {
+		let elem = document.getElementById("divSlot" + i.toString());
+		elem.className = "slotCalendar slotFree";
+	}
+	searchAppointmentsByDate(date, list => {
+		for (let i in list) {
+			let d = list[i].dateApointment;
+			let elem = document.getElementById("divSlot" + (d.getHours() - 7).toString());
+			elem.className = "slotCalendar slotOccupied";
+		}
+	});
+}
+
+
+
+
+
+
+
+
+

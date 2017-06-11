@@ -32,7 +32,7 @@ const saleList = [
 
 // agendamentos para serem inseridos ao iniciar
 const appointmentList = [
-	{ idUser: 7, idPet: 8931, idService: 1, total: 11.00, totalPortions: 1, dateAppointment: new Date(2017, 6, 3, 8), datePaid: new Date(2017, 6, 1, 8, 15) }
+	{ idUser: 7, idPet: 8931, idService: 1, total: 11.00, totalPortions: 1, dateAppointment: new Date(2017, 6, 10, 8), datePaid: new Date(2017, 6, 1, 8, 15) }
 ];
 
 let db;
@@ -244,6 +244,22 @@ function listProduct() {
 		document.getElementById("productList").innerHTML = text;
 	});
 }*/
+
+function searchAppointmentsByDate(date, callback) {
+
+	readAll("tableAppointment", list => {
+		let appList = [];
+			
+		for(let i in list) {
+			let dateApp = list[i].dateAppointment;
+			if (dateApp.getMonth() == date.getMonth()
+				&& dateApp.getDay() == date.getDay()) {
+				appList.push(list[i]);
+			}
+		};
+		callback(appList);
+	});
+}
 
 function searchPetsByUserId(id, callback) {
 
