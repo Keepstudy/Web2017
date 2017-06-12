@@ -223,7 +223,7 @@ function initializeCart(){
 			<label> R$ ` + parseFloat(value.price).toFixed(2).toString() + `</label>
 		</td>
 		<td> <!-- Botao Que Remove todas as unidades do Item no carrinho -->
-			<button id="`+ value.name +`button" class="shoppingCartButtonRemove" type="button" onclick="removeItemCartShopping(this.id)">x</button>
+			<a class="btn-floating btn-large waves-effect waves-light red" id="` + value.name + `button" onclick="removeItemCartShopping(this.id)" style="height:36px;width:36px;"><i class="material-icons" style="transform:translate(0px, -8px);"> delete </i></a>			
 		</td>
 		</tr>`;
 	}
@@ -290,6 +290,12 @@ function checkLogin(callback) {
 
 
 function paymentScreen(){
+
+	if (localStorage.id === null || localStorage.id === undefined) {
+		Materialize.toast("Você não está logado!\nLogue Primeiro.", 4000);
+		return;
+	}
+
 	ajaxRequestDoc("payment.html");
 	// Inserir uma nova compra. Falta os negócios dos usuários.
 }	
@@ -470,9 +476,9 @@ function setInfoAdmin(user) {
 	document.forms[0]["id"].value = user.id;
 
 	document.forms[0]["email"].value = user.email;
-	document.forms[0]["phone number"].value = user.phone_number;
+	document.forms[0]["phone_number"].value = user.phone_number;
 
-	document.getElementsByClassName("fieldsetAdress")[0].style.display = "none";
+	document.getElementsByClassName("fieldsetAddress")[0].style.display = "none";
 
 	/* aba UpdateMyInfo */
 
@@ -488,9 +494,9 @@ function setInfoAdmin(user) {
 	document.forms[1]["id"].value = user.id;
 
 	document.forms[1]["email"].value = user.email;
-	document.forms[1]["phone number"].value = user.phone_number;
+	document.forms[1]["phone_number"].value = user.phone_number;
 
-	document.getElementsByClassName("fieldsetAdress")[1].style.display = "none";
+	document.getElementsByClassName("fieldsetAddress")[1].style.display = "none";
 
 	startProductSearchAdmin();
 }
@@ -531,7 +537,7 @@ function setInfoClient(user) {
 	document.forms[0]["email"].value = user.email;
 	document.forms[0]["phone number"].value = user.phone_number;
 
-	document.getElementsByClassName("fieldsetAdress")[0].style.display = "block";
+	document.getElementsByClassName("fieldsetAddress")[0].style.display = "block";
 
 	document.forms[0]["cep"].value = user.cep;
 	document.forms[0]["address"].value = user.address;
@@ -556,7 +562,7 @@ function setInfoClient(user) {
 	document.forms[1]["email"].value = user.email;
 	document.forms[1]["phone number"].value = user.phone_number;
 
-	document.getElementsByClassName("fieldsetAdress")[1].style.display = "block";
+	document.getElementsByClassName("fieldsetAddress")[1].style.display = "block";
 
 	document.forms[1]["cep"].value = user.cep;
 	document.forms[1]["address"].value = user.address;
@@ -655,6 +661,7 @@ function setIndexHeader(){
 		if(localStorage.id !== null && localStorage.id !== undefined){
 			// exibitionItems.js linha 435 ver se o login atual eh adm
 			let isAdmin = 0;
+
 			readAll("tableUser", list => {
 				let user = {};
 				for (let i in list) {
@@ -664,26 +671,23 @@ function setIndexHeader(){
 					}
 				}
 				isAdmin = user.isAdmin;
+				if (isAdmin === true){
+					console.log(isAdmin);
+					document.getElementById("divCart").style.visibility = "hidden";
+				}
 			});
 
-			ajaxRequestDoc('index.html');
+			document.getElementById("divLogin").innerHTML = `
+				<div id="homeLogin">
+					Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();">`+localStorage.user+`.</a> 
+					| <a class="waves-effect waves-light" href="#" onclick="logout();">Logout</a></p> 
+					<a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();"><img src="images/admin.png" width="50" height="50"/></a>
+	      		</div>
+			`;
 			
-			$(document).ready(function(){
-				if (isAdmin)
-					document.getElementById("divCart").style.visibility = "hide";
+			console.log(isAdmin);
 
-				document.getElementById("divLogin").innerHTML = `
-					<div id="homeLogin">
-						Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();">`+localStorage.user+`.</a></p>
-						<a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();"><img src="images/admin.png" width="50" height="50"/></a>
-		      		</div>
-				`;
-				console.log(document.getElementById("homeLogin").innerHTML);
-			});
 			ajaxRequestDoc('index.html');
-		}
-		else{
-			console.log("ho");
 		}
 	});
 }
@@ -920,7 +924,31 @@ function changeFormsServicesAdm(service){
 	document.getElementById("descriptionService").value = value.description;
 }
 
-
+function updateMyInfoClick() {
+	readAll("tableUser", userList => {
+		for(let i in userList) {
+			if (userList[i].id == localStorage.getItem("id")) {
+				if (userList[i].isAdmin && !checkFieldUpdateAdmin()) return ;
+				if (!userList[i].isAdmin && !checkFieldUpdateClient()) return ;
+				deleteFromDB("tableUser", parseInt(localStorage.getItem("id")));
+				updateUser(userList[i].isAdmin);
+				alert("Suas alterações foram salvas com sucesso!");
+				readAll("tableUser", uList => {
+					for(let j in uList) {
+						if (uList[j].id == localStorage.getItem("id")) {
+							if (uList[j].isAdmin)
+								setInfoAdmin(uList[j]);
+							else
+								setInfoClient(uList[j]);
+							break;
+						}
+					}
+				});
+				break;
+			}
+		}
+	});
+}
 
 
 

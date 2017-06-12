@@ -231,13 +231,16 @@ function readAllWithKey(tableName, callback) {
 // ============================================= Implementação PRODUTO ============================================== //
 // ================================================================================================================== //
 function insertProduct() {
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	insertIntoDB("tableProduct", {
 		id: Number(document.forms[0]["idproduct"].value),
 		name: document.forms[0]["produto"].value,
 		price: parseFloat(document.forms[0]["preço"].value),
 		quantity: Number(document.forms[0]["quantidade"].value),
 		description: document.forms[0]["desc"].value,
-		photo: localStorage.getItem("img64Base")
+		photo: img
 	});
 }
 function deleteProduct() {
@@ -245,13 +248,16 @@ function deleteProduct() {
 }
 function updateProduct() {
 	deleteFromDB("tableProduct", Number(document.getElementById("idProduct").value));
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	insertIntoDB("tableProduct", {
 		id: Number(document.getElementById("idProduct").value),
 		name: document.getElementById("nameProduct").value,
 		price: parseFloat(document.getElementById("priceProduct").value),
 		quantity: Number(document.getElementById("quantityProduct").value),
 		description: document.getElementById("descriptionProduct").value,
-		photo: localStorage.getItem("img64Base")
+		photo: img
 	});
 }
 /*
@@ -382,12 +388,15 @@ function searchProductAndServiceByName(pattern, callback) {
 // ============================================= Implementação SERVIÇO ============================================== //
 // ================================================================================================================== //
 function insertService() {
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	insertIntoDB("tableService", {
 		id: Number(document.forms[0]["idservice"].value),
 		name: document.forms[0]["pname"].value,
 		price: parseFloat(document.forms[0]["preço"].value),
 		description: document.forms[0]["desc"].value,
-		photo: localStorage.getItem("img64Base")
+		photo: img
 	});
 }
 
@@ -396,26 +405,32 @@ function deleteService() {
 }
 
 function updateService() {
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	deleteFromDB("tableService", Number(document.getElementById("idService").value));
 	insertIntoDB("tableService", {
 		id: Number(document.getElementById("idService").value),
 		name: document.getElementById("nameService").value,
 		price: parseFloat(document.getElementById("priceService").value),
 		description: document.getElementById("descriptionService").value,
-		photo: localStorage.getItem("img64Base")
+		photo: img
 	});
 }
 // ================================================================================================================== //
 // =============================================  Implementação ANIMAL  ============================================= //
 // ================================================================================================================== //
 function insertPet() {
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	insertIntoDB("tablePet", {
 		idPet: Number(document.forms[0]["id"].value),
 		idUser: document.forms[0]["User"].value,
 		name: document.forms[0]["animal"].value,
 		age: parseInt(document.forms[0]["idade"].value),
 		breed: document.forms[0]["raça"].value,
-		photo: localStorage.getItem("img64Base")
+		photo: img
 	});
 }
 function deletePet() {
@@ -427,13 +442,16 @@ function updatePet() {
 // ============================================= Implementação USUÁRIO  ============================================= //
 // ================================================================================================================== //
 function insertUser(isAdmin) {
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	if (!isAdmin) {
 		insertIntoDB("tableUser", {
 			id: Number(document.forms[0]["id"].value),
 			name: document.forms[0]["name"].value,
 			username: document.forms[0]["user"].value,
 			password: document.forms[0]["password"].value,
-			photo: localStorage.getItem("img64Base"),
+			photo: img,
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
 			cep: document.forms[0]["cep"].value, 
@@ -451,7 +469,7 @@ function insertUser(isAdmin) {
 			name: document.forms[0]["nome"].value,
 			username: document.forms[0]["username"].value,
 			password: document.forms[0]["senha"].value,
-			photo: localStorage.getItem("img64Base"),
+			photo: img,
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
 			isAdmin: isAdmin
@@ -462,13 +480,16 @@ function deleteUser() {
 	deleteFromDB("tableUser", Number(document.forms[0]["id"].value));
 }
 function updateUser(isAdmin) {
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
 	if (!isAdmin) {
 		insertIntoDB("tableUser", {
 			id: Number(document.forms[1]["id"].value),
 			name: document.forms[1]["name"].value,
 			username: document.forms[1]["user"].value,
 			password: document.forms[1]["password"].value,
-			photo: localStorage.getItem("img64Base"),
+			photo: img,
 			email: document.forms[1]["email"].value,
 			phone_number: document.forms[1]["phone_number"].value, 
 			cep: document.forms[1]["cep"].value, 
@@ -486,7 +507,7 @@ function updateUser(isAdmin) {
 			name: document.forms[1]["name"].value,
 			username: document.forms[1]["user"].value,
 			password: document.forms[1]["password"].value,
-			photo: localStorage.getItem("img64Base"),
+			photo: img,
 			email: document.forms[1]["email"].value,
 			phone_number: document.forms[1]["phone_number"].value, 
 			isAdmin: isAdmin
@@ -506,6 +527,33 @@ function usernameAlreadyExists(usr) {
 	
 	req.onsuccess = e => {return true;}
 	req.onerror = e => {return false;}
+}
+function cpfAlreadyExists(cpf) {
+	readAll("tableUser", userList => {
+		for(let i in userList) {
+			if (userList[i].id == parseInt(cpf))
+				return true;	
+		}
+		return false;
+	});
+}
+function productAlreadyExists(id) {
+	readAll("tableProduct", list => {
+		for(let i in list) {
+			if (list[i].id == parseInt(id))
+				return true;
+		}
+		return false;
+	});
+}
+function serviceAlreadyExists(id) {
+	readAll("tableService", list => {
+		for(let i in list) {
+			if (list[i].id == parseInt(id))
+				return true;
+		}
+		return false;
+	});
 }
 // ================================================================================================================== //
 // ============================================== Implementação VENDA  ============================================== //

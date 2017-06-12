@@ -74,7 +74,7 @@
 			<div id="myInfo" class="tabcontent">
 				<h3>Minhas Informações</h3>
 				<p class="pUserLevel">Administrador</p>
-				<form class="col s12">
+				<form class="col s12" action="#" method="#" onsubmit="event.preventDefault(); return false;">
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 
@@ -116,14 +116,14 @@
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input name="phone number" type="tel" value="(16) 3373-9700" class="validate">
+									<input name="phone_number" type="tel" value="(16) 3373-9700" class="validate">
 									<label for="phone number"  class="active">Telefone</label>	
 								</div>
 							</div>	
 						</div>					
 				</fieldset>
 
-				<fieldset class="fieldsetAdress" >
+				<fieldset class="fieldsetAddress">
 					<legend>Endereço</legend>						
 						<div class="row">
 							<div class="row">
@@ -170,13 +170,13 @@
 			<div id="updateMyInfo" class="tabcontent">
 			  <h3>Alterar Meus Dados</h3>
 			  <p class="pUserLevel">Administrador</p>
-				<form class="col s12" onsubmit="">
+				<form class="col s12" onsubmit="event.preventDefault(); return false;" method="#" action="#">
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 						<div class="row">							
 							<div class="row">									
 								<div class="input-field col s12">
-									<input  id="name" type="text" value="Danilo F. Ted" class="validate">
+									<input  name="name" type="text" value="Danilo F. Ted" class="validate">
 									<label for="nome" class="active">Nome Completo</label>
 								</div>	
 							</div>
@@ -225,14 +225,14 @@
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input name="phone number" type="tel" value="(16) 3373-9700" class="validate">
+								<input name="phone_number" type="tel" value="(16) 3373-9700" class="validate">
 								<label for="phone number" class="active">Telefone</label>	
 							</div>
 						</div>	
 					</div>					
 				</fieldset>
 
-				<fieldset class="fieldsetAdress">
+				<fieldset class="fieldsetAddress">
 					<legend>Endereço</legend>
 						<div class="row">
 							<div class="row">
@@ -271,15 +271,15 @@
 									<label for="estado" class="active">Estado</label>
 								</div>																					
 							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Suas informações foram salvas com sucesso!')">Cadastrar
-										<i class="material-icons right">send</i>
-									</button>
-								</div>
-							</div>
 						</div>
 				</fieldset>
+				<div class="row">
+					<div class="input-field col s12">
+						<button class="btn waves-effect waves-light" onclick="updateMyInfoClick();">Salvar alterações
+							<i class="material-icons right">send</i>
+						</button>
+					</div>
+				</div>
 				</form>
 			</div>
 
@@ -428,7 +428,7 @@
 				</div>
 				<h5>Dados do produto selecionado</h5>
 				<div class="row">
-					<form class="col s12">
+					<form class="col s12" action="#" onsubmit="event.preventDefault();  return false;" method="#">
 						<div class="row">									
 							<div class="input-field col s12">
 								<input  id="nameProduct" type="text" value="PEDIGREE® Equilíbrio Natural" class="validate">
@@ -470,7 +470,7 @@
 						</div>	
 						<div class="row">
 							<div class="input-field col s12">
-								<button class="btn waves-effect waves-light" type="submit" name="action"onclick="updateProduct();">Salvar alterações</button>
+								<button class="btn waves-effect waves-light" type="submit" name="action" onclick="updateProduct();">Salvar alterações</button>
 							</div>
 						</div>	
 					</form>
@@ -487,7 +487,7 @@
 				<br><br>
 				<div>
 					<div class="listSearchUpdateProductHeader">
-						<label id="serviceCountAdm"> 1 Serviço(s) encontrado(s) </label>
+						<label id="serviceCountAdm"> 1</label><label> Serviço(s) encontrado(s) </label>
 					</div>
 					<div id = "serviceListRowAdm" class='maskSearchUpdateProduct'>
 						<div class='containerSearchUpdateProduct'>
@@ -506,7 +506,7 @@
 				<h5>Dados do serviço selecionado</h5>
 				
 				<div class="row">
-					<form class="col s12">
+					<form class="col s12" action="#" onsubmit="event.preventDefault();  return false;" method="#">
 						<div class="row">									
 							<div class="input-field col s12">
 								<input  id="nameService" type="text" value="Vacinação" class="validate">
