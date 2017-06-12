@@ -568,13 +568,6 @@ div.tab button.active {
     border-radius: 10px;
 	padding: 1% 1% 1% 1%;
 }
-.btn {
-  display:block;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  border: 1px solid red;
-}
 .shoppingCartButtonConfirm{
 	float: right;
 	background-color: #0090FF;
