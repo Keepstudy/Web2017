@@ -419,11 +419,11 @@
 				<button class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateProduct" >Buscar por nome</button>
 				<br><br>
 				<div>
-					<div class="listSearchUpdateProductHeader">
+					<div id="productCountAdm" class="listSearchUpdateProductHeader">
 						<label> 1 Produto(s) encontrado(s) </label>
 					</div>
-					<div class='maskSearchUpdateProduct'>
-						<div class='containerSearchUpdateProduct'>
+					<div id="productListAdm" class='maskSearchUpdateProduct'>
+						<div id="productListRowAdm" class='containerSearchUpdateProduct'>
 							<div class='item'> <!-- Put an element here! -->
 								<img src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
 								<br>
@@ -432,9 +432,8 @@
 							</div>							
 						</div>
 					</div>
-					<div class="listSearchUpdateProductHeader">
-						<button class="btn waves-effect waves-light" type="button">Anterior</button>
-						<button class="btn waves-effect waves-light" type="button" >Próximo</button>
+					<div id="addMoreProductsAdm" class="listSearchUpdateProductHeader">
+						<button id="addMoreProductsAdm" class="buttonPageProduct" type="button" onclick="appendProductsAdmin();">Adicionar mais</button>
 					</div>
 				</div>
 				<h5>Dados do produto selecionado</h5>
