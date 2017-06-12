@@ -63,7 +63,7 @@
 			  <button id="btnManageProduct" class="tablinks" onclick="openTab(event, 'manageProduct')">Gerenciar Produto</button>
 			  <button id="btnManageService" class="tablinks" onclick="openTab(event, 'manageService')">Gerenciar Serviço</button>
 			  <button id="btnManageAdmin"   class="tablinks" onclick="openTab(event, 'manageAdmin')">Gerenciar Administrador</button>
-			  <button id="btnProfit" class="tablinks" onclick="ajaxRequestDoc('profit.html'); showProfit();">Tela de Ganhos</button>
+			  <button id="btnProfit"        class="tablinks" onclick="ajaxRequestDoc('profit.html'); showProfit();">Tela de Ganhos</button>
 			</div>
 		</aside>
 
@@ -79,7 +79,7 @@
 					<legend>Dados Pessoais</legend>
 
 					<div class="divUserPhoto"> 
-						<img id ="userImage" src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
+						<img id="userImage" src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
 					</div>
 					
 					<div class="row">
@@ -100,7 +100,8 @@
 									<input name="id" type="text" value="89373611" class="validate">
 									<label for="id" class="active">CPF</label>	
 								</div>
-							</div>					</div>				
+							</div>				
+						</div>				
 				</fieldset>
 
 				<fieldset>
@@ -115,7 +116,7 @@
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input name="phone_number" type="tel" value="(16) 3373-9700" class="validate">
+									<input name="phone number" type="tel" value="(16) 3373-9700" class="validate">
 									<label for="phone number"  class="active">Telefone</label>	
 								</div>
 							</div>	
@@ -169,7 +170,7 @@
 			<div id="updateMyInfo" class="tabcontent">
 			  <h3>Alterar Meus Dados</h3>
 			  <p class="pUserLevel">Administrador</p>
-				<form class="col s12">
+				<form class="col s12" action="#">
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 						<div class="row">							
@@ -275,7 +276,7 @@
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Suas informações foram salvas com sucesso!')">Cadastrar
+									<button class="btn waves-effect waves-light" name="action" onclick="alert('Suas informações foram salvas com sucesso!')">Cadastrar
 										<i class="material-icons right">send</i>
 									</button>
 								</div>
