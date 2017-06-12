@@ -493,7 +493,6 @@ function setInfoAdmin(user) {
 	document.getElementsByClassName("fieldsetAdress")[1].style.display = "none";
 
 	startProductSearchAdmin();
-	startServicesSearchAdmin();
 }
 
 function saleDetails(sale) {
@@ -821,6 +820,8 @@ function showProfit() {
 
 
 /*----------------------------------- novas funcoes ------------------------------------------ */
+var itemListAdmin = [];
+var rowAdminProducts = 0;
 
 function appendProductsAdmin(){
 	document.getElementById("productCountAdm").innerHTML = itemListAdmin.length;
@@ -849,6 +850,8 @@ function appendProductsAdmin(){
 		document.getElementById("addMoreProductsAdm").disabled = true; 
 		document.getElementById("addMoreProductsAdm").style.background="DarkGrey";
 	}
+
+	startServicesSearchAdmin();
 }
 
 /*Funcao que inicia a busca*/
