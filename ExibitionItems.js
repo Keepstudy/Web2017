@@ -672,8 +672,8 @@ function setIndexHeader(){
 
 				document.getElementById("divLogin").innerHTML = `
 					<div id="homeLogin">
-						Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');">`+localStorage.user+`.</a></p>
-						<a href="#" onclick="ajaxRequestDoc('userProfile.html');"><img src="images/admin.png" width="50" height="50"/></a>
+						Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();">`+localStorage.user+`.</a></p>
+						<a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();"><img src="images/admin.png" width="50" height="50"/></a>
 		      		</div>
 				`;
 				console.log(document.getElementById("homeLogin").innerHTML);
