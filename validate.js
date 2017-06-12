@@ -23,6 +23,12 @@ function checkFieldAdmin()
 	else if(email.length == 0)
 		window.alert("Insira um email, campo obrigatório");
 	
+	else if (pass.length == 0)
+		window.alert("Insira uma senha, campo obrigatório");
+	
+	else if (confpass.length == 0)
+		window.alert("Insira a confirmação de senha, campo obrigatório");
+		
 	else if (pass.localeCompare(confpass) != 0)
 		window.alert("Senhas diferentes, digite novamente.");
 	
@@ -65,6 +71,14 @@ function checkFieldUpdateAdmin()
 		ret = false;
 		window.alert("Insira um email, campo obrigatório");
 	}
+	else if (pass.length == 0){
+		ret = false;
+		window.alert("Insira uma senha, campo obrigatório");
+	}
+	else if (confpass.length == 0){
+		ret = false;
+		window.alert("Insira a confirmação de senha, campo obrigatório");
+	}
 	else if (pass.localeCompare(confpass) != 0){
 		ret = false;
 		window.alert("Senhas diferentes, digite novamente.");
@@ -97,6 +111,12 @@ function checkFieldClient()
 	else if(cpfAlreadyExists(cpf))
 		window.alert("CPF já cadastrado, insira outro CPF.");
 	
+	else if (pass.length == 0)
+		window.alert("Insira uma senha, campo obrigatório");
+	
+	else if (confpass.length == 0)
+		window.alert("Insira a confirmação de senha, campo obrigatório");
+	
 	else if (pass.localeCompare(confpass) != 0)
 		window.alert("Senhas diferentes, digite novamente.");
 	
@@ -105,10 +125,7 @@ function checkFieldClient()
 	
 	else if(phone.length == 0)
 		window.alert("Insira um telefone, campo obrigatório");
-	
-	else if(email.length == 0)
-		window.alert("Insira um email, campo obrigatório"); 
-	
+
 	else if(CEP.length == 0)
 		window.alert("Insira um CEP, campo obrigatório.");
 	
@@ -164,6 +181,14 @@ function checkFieldUpdateClient()
 		ret = false;
 		window.alert("CPF já cadastrado, insira outro CPF.");
 	}
+	else if (pass.length == 0){
+		ret = false;
+		window.alert("Insira uma senha, campo obrigatório");
+	}
+	else if (confpass.length == 0){
+		ret = false;
+		window.alert("Insira a confirmação de senha, campo obrigatório");
+	}
 	else if (pass.localeCompare(confpass) != 0) {
 		ret = false;
 		window.alert("Senhas diferentes, digite novamente.");
@@ -175,10 +200,6 @@ function checkFieldUpdateClient()
 	else if(phone.length == 0) {
 		ret = false;
 		window.alert("Insira um telefone, campo obrigatório");
-	}
-	else if(email.length == 0) {
-		ret = false;
-		window.alert("Insira um email, campo obrigatório"); 
 	}
 	else if(CEP.length == 0) {
 		ret = false;
