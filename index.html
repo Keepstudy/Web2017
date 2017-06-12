@@ -17,7 +17,7 @@
 	<body>
 		<header>
 			<div id="divLogo">   <!-- div para o logo -->
-				<a href="index.html"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+				<a href="#" onclick="ajaxRequestDoc('index.html');"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
 			</div>
 			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
 				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
@@ -28,11 +28,10 @@
 					<a  href="#" onclick="ajaxRequestDoc('cartShopping.html');initializeCart();"><img src="images/cart.jpg" alt="Carrinho"/></a>
 				</div>
 				<div id="divLogin"> <!-- informacoes de login -->
-					<a class="hyperlink" href="#" onclick='ajaxRequestDoc("userProfile.html");openTab(event, "myInfo");setInfo();'>Minha Conta</a>
-					<div>
+					<div id="homeLogin">
 						<input type="text" id="txtUsername" placeholder="Usuário">
 						<input type="password" id="txtPassword" placeholder="Senha">
-						<button id="loginButton" type="button" onclick="checkLogin();">Login</button>
+						<button id="loginButton" type="button" onclick="setIndexHeader();">Login</button>
 					</div>
 					<a class="hyperlink" href="#" onclick='ajaxRequestDoc("createClient.html");'>Cadastro</a> |
 					<a class="hyperlink" href="#" >Esqueceu a senha?</a>

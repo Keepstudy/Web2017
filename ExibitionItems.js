@@ -263,18 +263,15 @@ function updateTotalValue(updated_id){
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 
-function checkLogin() {
+function checkLogin(callback) {
 	let user, pass;
 	
 	user = document.getElementById("txtUsername").value;
 	pass = document.getElementById("txtPassword").value;
-	
-	console.log(user);
-	console.log(pass);
 
 	isValidUser(user,pass, (validatedUser,idUser) => {
 		if(validatedUser){
-			alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
+			//alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
 			localStorage.user = user;
 			localStorage.id = idUser;
 			console.log(localStorage.id);
@@ -284,6 +281,7 @@ function checkLogin() {
 			localStorage.user = null;
 			localStorage.id = null;
 		}
+		callback();
 	});
 }
 
@@ -648,7 +646,45 @@ function setInfoClient(user) {
 
 
 
+/*---------------------index html login ------------ */
+function setIndexHeader(){
+	
+	checkLogin(function(){
+		if(localStorage.id !== null && localStorage.id !== undefined){
+			// exibitionItems.js linha 435 ver se o login atual eh adm
+			let isAdmin = 0;
+			readAll("tableUser", list => {
+				let user = {};
+				for (let i in list) {
+					if (list[i].id == localStorage.getItem("id")) {
+						user = list[i];
+						break;
+					}
+				}
+				isAdmin = user.isAdmin;
+			});
 
+			ajaxRequestDoc('index.html');
+			
+			$(document).ready(function(){
+				if (isAdmin)
+					document.getElementById("divCart").style.visibility = "hide";
+
+				document.getElementById("divLogin").innerHTML = `
+					<div id="homeLogin">
+						Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');">`+localStorage.user+`.</a></p>
+						<a href="#" onclick="ajaxRequestDoc('userProfile.html');"><img src="images/admin.png" width="50" height="50"/></a>
+		      		</div>
+				`;
+				console.log(document.getElementById("homeLogin").innerHTML);
+			});
+			ajaxRequestDoc('index.html');
+		}
+		else{
+			console.log("ho");
+		}
+	});
+}
 
 
 
