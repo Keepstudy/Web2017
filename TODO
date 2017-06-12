@@ -5,7 +5,6 @@
 - Trocar botao carrinho.
 - tirar o "esqueceu a senha?"
 - validar campos
-- criar usernameAlreadyExists(username), cpfAlreadyExists(cpf), productAlreadyExists(id), , serviceAlreadyExists(id)
   
   
   -------- Colocar tudo no index .html -------
