@@ -74,6 +74,7 @@
 			<div id="myInfo" class="tabcontent">
 				<h3>Minhas Informações</h3>
 				<p class="pUserLevel">Administrador</p>
+				<form class="col s12">
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 
@@ -82,7 +83,6 @@
 					</div>
 					
 					<div class="row">
-						<form class="col s12">
 							<div class="row">									
 								<div class="input-field col s12">
 									<input  id="name" type="text" value="Danilo F. Ted" class="validate">
@@ -100,131 +100,13 @@
 									<input name="id" type="text" value="89373611" class="validate">
 									<label for="id" class="active">CPF</label>	
 								</div>
-							</div>	
-						</form>
-					</div>				
+							</div>					</div>				
 				</fieldset>
 
 				<fieldset>
 					<legend>Contatos</legend>
 						<div class="row">
-							<form class="col s12">					
-								<div class="row">
-									<div class="input-field col s12">
-										<input name="email" type="email" value="danfted@gmail.com" class="validate">
-										<label for="email" class="active">Email</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<input name="phone_number" type="tel" value="(16) 3373-9700" class="validate">
-										<label for="phone number"  class="active">Telefone</label>	
-									</div>
-								</div>	
-							</form>
-						</div>					
-				</fieldset>
-
-				<fieldset class="fieldsetAdress" >
-					<legend>Endereço</legend>						
-						<div class="row">
-							<form class="col s12">
-								<div class="row">
-									<div class="input-field col s6">
-										<input name="cep" type="text" value="13566-590" class="validate">
-										<label for="cep" class="active">CEP</label>	
-									</div>
-								</div>
-								<div class="row">									
-									<div class="input-field col s12">
-										<input  name="address" type="text" value="Trabalhador Sancarlense" class="validate">
-										<label for="address" class="active">Endereço</label>
-									</div>																					
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input name="number" type="number" value="400" class="validate">
-										<label for="numero" class="active">Número</label>	
-									</div>
-								</div>
-								<div class="row">									
-									<div class="input-field col s12">
-										<input  name="district" type="text" value="Centro" class="validate">
-										<label for="bairro" class="active">Bairro</label>
-									</div>																					
-								</div>
-								<div class="row">									
-									<div class="input-field col s6">
-										<input  name="city" type="text" value="São Carlos" class="validate">
-										<label for="cidade" class="active">Cidade</label>
-									</div>																					
-								</div>
-								<div class="row">									
-									<div class="input-field col s6">
-										<input  name="state" type="text" value="São Paulo" class="validate">
-										<label for="estado" class="active">Estado</label>
-									</div>																					
-								</div>	
-							</form>
-						</div>	
-				</fieldset>
-			</div>
-
-			<div id="updateMyInfo" class="tabcontent">
-			  <h3>Alterar Meus Dados</h3>
-			  <p class="pUserLevel">Administrador</p>
-				<fieldset>
-					<legend>Dados Pessoais</legend>
-						<div class="row">
-							<form class="col s12">
-								<div class="row">									
-									<div class="input-field col s12">
-										<input  id="name" type="text" value="Danilo F. Ted" class="validate">
-										<label for="nome" class="active">Nome Completo</label>
-									</div>	
-								</div>
-								<div class="row">									
-									<div class="input-field col s12">
-										<input  name="user" type="text" value="danfted" class="validate">
-										<label for="user" class="active">Nome usuário</label>
-									</div>	
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input name="id" type="text" value="89373611" class="validate">
-										<label for="id" class="active">CPF</label>	
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<input name="password" type="password" class="validate">
-										<label for="password" class="active">Senha</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<input name="confpassword" type="password" class="validate">
-										<label for="conf" class="active">Confirmar senha</label>
-									</div>
-								</div>
-								<div class="file-field input-field">
-									<div class="btn">
-										<span>Foto</span>
-										<input id="uploadfoto" type="file">
-									</div>
-									<div class="file-path-wrapper">
-										<input class="file-path validate" type="text">
-									</div>
-								</div>
-							</form>
-						</div>			
-				</fieldset>
-
-				<fieldset>
-					<legend>Contatos</legend>
-					
-					<div class="row">
-						<form class="col s12">
+										
 							<div class="row">
 								<div class="input-field col s12">
 									<input name="email" type="email" value="danfted@gmail.com" class="validate">
@@ -233,64 +115,174 @@
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input name="phone number" type="tel" value="(16) 3373-9700" class="validate">
-									<label for="phone number" class="active">Telefone</label>	
+									<input name="phone_number" type="tel" value="(16) 3373-9700" class="validate">
+									<label for="phone number"  class="active">Telefone</label>	
 								</div>
 							</div>	
-						</form>
+						</div>					
+				</fieldset>
+
+				<fieldset class="fieldsetAdress" >
+					<legend>Endereço</legend>						
+						<div class="row">
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="cep" type="text" value="13566-590" class="validate">
+									<label for="cep" class="active">CEP</label>	
+								</div>
+							</div>
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  name="address" type="text" value="Trabalhador Sancarlense" class="validate">
+									<label for="address" class="active">Endereço</label>
+								</div>																					
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="number" type="number" value="400" class="validate">
+									<label for="numero" class="active">Número</label>	
+								</div>
+							</div>
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  name="district" type="text" value="Centro" class="validate">
+									<label for="bairro" class="active">Bairro</label>
+								</div>																					
+							</div>
+							<div class="row">									
+								<div class="input-field col s6">
+									<input  name="city" type="text" value="São Carlos" class="validate">
+									<label for="cidade" class="active">Cidade</label>
+								</div>																					
+							</div>
+							<div class="row">									
+								<div class="input-field col s6">
+									<input  name="state" type="text" value="São Paulo" class="validate">
+									<label for="estado" class="active">Estado</label>
+								</div>																					
+							</div>
+						</div>	
+				</fieldset>
+				</form>
+			</div>
+
+			<div id="updateMyInfo" class="tabcontent">
+			  <h3>Alterar Meus Dados</h3>
+			  <p class="pUserLevel">Administrador</p>
+				<form class="col s12">
+				<fieldset>
+					<legend>Dados Pessoais</legend>
+						<div class="row">							
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  id="name" type="text" value="Danilo F. Ted" class="validate">
+									<label for="nome" class="active">Nome Completo</label>
+								</div>	
+							</div>
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  name="user" type="text" value="danfted" class="validate">
+									<label for="user" class="active">Nome usuário</label>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="id" type="text" value="89373611" class="validate">
+									<label for="id" class="active">CPF</label>	
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="password" type="password" class="validate">
+									<label for="password" class="active">Senha</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="confpassword" type="password" class="validate">
+									<label for="conf" class="active">Confirmar senha</label>
+								</div>
+							</div>
+							<div class="file-field input-field">
+								<div class="btn">
+									<span>Foto</span>
+									<input id="uploadfoto" type="file">
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text">
+								</div>
+							</div>
+						</div>			
+				</fieldset>
+
+				<fieldset>
+					<legend>Contatos</legend>
+					
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s12">
+								<input name="email" type="email" value="danfted@gmail.com" class="validate">
+								<label for="email" class="active">Email</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input name="phone number" type="tel" value="(16) 3373-9700" class="validate">
+								<label for="phone number" class="active">Telefone</label>	
+							</div>
+						</div>	
 					</div>					
 				</fieldset>
 
 				<fieldset class="fieldsetAdress">
 					<legend>Endereço</legend>
 						<div class="row">
-							<form class="col s12">
-								<div class="row">
-									<div class="input-field col s6">
-										<input name="cep" type="text" value="13566-590" class="validate">
-										<label for="cep" class="active">CEP</label>	
-									</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="cep" type="text" value="13566-590" class="validate">
+									<label for="cep" class="active">CEP</label>	
 								</div>
-								<div class="row">									
-									<div class="input-field col s12">
-										<input  name="address" type="text" value="Trabalhador Sancarlense" class="validate">
-										<label for="address" class="active">Endereço</label>
-									</div>																					
+							</div>
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  name="address" type="text" value="Trabalhador Sancarlense" class="validate">
+									<label for="address" class="active">Endereço</label>
+								</div>																					
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="number" type="number" value="400" class="validate">
+									<label for="numero" class="active">Número</label>	
 								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input name="number" type="number" value="400" class="validate">
-										<label for="numero" class="active">Número</label>	
-									</div>
+							</div>
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  name="district" type="text" value="Centro" class="validate">
+									<label for="bairro" class="active">Bairro</label>
+								</div>																					
+							</div>
+							<div class="row">									
+								<div class="input-field col s6">
+									<input  name="city" type="text" value="São Carlos" class="validate">
+									<label for="cidade" class="active">Cidade</label>
+								</div>																					
+							</div>
+							<div class="row">									
+								<div class="input-field col s6">
+									<input  name="state" type="text" value="São Paulo" class="validate">
+									<label for="estado" class="active">Estado</label>
+								</div>																					
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Suas informações foram salvas com sucesso!')">Cadastrar
+										<i class="material-icons right">send</i>
+									</button>
 								</div>
-								<div class="row">									
-									<div class="input-field col s12">
-										<input  name="district" type="text" value="Centro" class="validate">
-										<label for="bairro" class="active">Bairro</label>
-									</div>																					
-								</div>
-								<div class="row">									
-									<div class="input-field col s6">
-										<input  name="city" type="text" value="São Carlos" class="validate">
-										<label for="cidade" class="active">Cidade</label>
-									</div>																					
-								</div>
-								<div class="row">									
-									<div class="input-field col s6">
-										<input  name="state" type="text" value="São Paulo" class="validate">
-										<label for="estado" class="active">Estado</label>
-									</div>																					
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Suas informações foram salvas com sucesso!')">Cadastrar
-											<i class="material-icons right">send</i>
-										</button>
-									</div>
-								</div>									
-							</form>
+							</div>
 						</div>
 				</fieldset>
+				</form>
 			</div>
 
 			<div id="manageAnimal" class="tabcontent">
@@ -419,11 +411,11 @@
 				<button class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateProduct" >Buscar por nome</button>
 				<br><br>
 				<div>
-					<div id="productCountAdm" class="listSearchUpdateProductHeader">
+					<div class="listSearchUpdateProductHeader">
 						<label> 1 Produto(s) encontrado(s) </label>
 					</div>
-					<div id="productListAdm" class='maskSearchUpdateProduct'>
-						<div id="productListRowAdm" class='containerSearchUpdateProduct'>
+					<div class='maskSearchUpdateProduct'>
+						<div class='containerSearchUpdateProduct'>
 							<div class='item'> <!-- Put an element here! -->
 								<img src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
 								<br>
@@ -432,8 +424,9 @@
 							</div>							
 						</div>
 					</div>
-					<div id="addMoreProductsAdm" class="listSearchUpdateProductHeader">
-						<button id="addMoreProductsAdm" class="buttonPageProduct" type="button" onclick="appendProductsAdmin();">Adicionar mais</button>
+					<div class="listSearchUpdateProductHeader">
+						<button class="btn waves-effect waves-light" type="button">Anterior</button>
+						<button class="btn waves-effect waves-light" type="button" >Próximo</button>
 					</div>
 				</div>
 				<h5>Dados do produto selecionado</h5>
