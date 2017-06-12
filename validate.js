@@ -187,7 +187,7 @@ function checkFieldUpdateClient()
 	else if(adress.length == 0) {
 		ret = false;
 		window.alert("Insira um endereço, campo obrigatório");
-	}}
+	}
 	else if(number.length == 0) {
 		ret = false;
 		window.alert("Insira um número, campo obrigatório.");
