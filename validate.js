@@ -3,7 +3,7 @@ function checkFieldAdmin()
 	let name     = document.forms[1]["nome"].value;
 	let username = document.forms[1]["username"].value;
 	let cpf      = document.forms[1]["id"].value;
-	let phone = document.forms[1]["phone number"];
+	let phone    = document.forms[1]["phone number"];
 	let email    = document.forms[1]["email"];
 	let pass     = document.forms[1]["senha"].value;
 	let confpass = document.forms[1]["confsenha"].value;
