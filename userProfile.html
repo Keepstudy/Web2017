@@ -8,6 +8,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" href="css/petshop.css">
 		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+		 
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+		 
+		
 	</head>
 	
 	<body>
@@ -56,7 +63,7 @@
 			  <button id="btnManageProduct" class="tablinks" onclick="openTab(event, 'manageProduct')">Gerenciar Produto</button>
 			  <button id="btnManageService" class="tablinks" onclick="openTab(event, 'manageService')">Gerenciar Serviço</button>
 			  <button id="btnManageAdmin"   class="tablinks" onclick="openTab(event, 'manageAdmin')">Gerenciar Administrador</button>
-			  <button id="btnProfit"        class="tablinks" onclick="ajaxRequestDoc('profit.html');">Tela de Ganhos</button>
+			  <button class="tablinks" onclick="ajaxRequestDoc('profit.html'); showProfit();">Tela de Ganhos</button>
 			</div>
 		</aside>
 
@@ -67,173 +74,223 @@
 			<div id="myInfo" class="tabcontent">
 				<h3>Minhas Informações</h3>
 				<p class="pUserLevel">Administrador</p>
-				<form>
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 
-					<div class="divUserPhoto">
-						<img id="userImage" src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
+					<div class="divUserPhoto"> 
+						<img src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
 					</div>
-					<br>
-					<table class="table2Items">
-						<tr>
-							<td><label for="nome">Nome Completo</label></td>
-							<td><input type="text" name="name" value="Danilo F. Ted" readonly></td>
-						</tr>
-						<tr>
-							<td><label for="user">Nome de Usuário</label></td>
-							<td><input type="text" name="user" value="danfted" readonly></td>
-						</tr>
-						<tr>
-							<td><label for="id">ID</label></td>
-							<td><input type="text" name="id" value="89373611" readonly></td>
-						</tr>
-					</table>
-									
+					
+					<div class="row">
+						<form class="col s12">
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  id="name" type="text" value="Danilo F. Ted" class="validate">
+									<label for="nome" class="active">Nome</label>
+								</div>	
+							</div>
+							<div class="row">									
+								<div class="input-field col s12">
+									<input  name="user" type="text" value="danfted" class="validate">
+									<label for="nome" class="active">Nome de Usuário</label>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="id" type="text" value="89373611" class="validate">
+									<label for="id" class="active">CPF</label>	
+								</div>
+							</div>	
+						</form>
+					</div>				
 				</fieldset>
 
 				<fieldset>
 					<legend>Contatos</legend>
-					<br>
-					<table class="table2Items">
-						<tr>
-							<td><label for="email">Email</label></td>
-							<td><input type="text" name="email" value="danfted@gmail.com" readonly></td>
-						</td>
-						<tr>
-							<td><label for="phone number">Telefone</label></td>
-							<td><input type="text" name="phone number" value="(16) 3373-9700" readonly></td>
-						</tr>
-					</table>
+						<div class="row">
+							<form class="col s12">					
+								<div class="row">
+									<div class="input-field col s12">
+										<input name="email" type="email" value="danfted@gmail.com" class="validate">
+										<label for="email" class="active">Email</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input name="phone_number" type="tel" value="(16) 3373-9700" class="validate">
+										<label for="phone number"  class="active">Telefone</label>	
+									</div>
+								</div>	
+							</form>
+						</div>					
 				</fieldset>
 
-				<fieldset class="fieldsetAdress" style="display:none;">
-					<legend>Endereço</legend>
-					<br>
-					<table class="table2Items">
-						<tr>
-							<td><label for="cep">CEP</label></td>
-							<td><input type="text" name="cep" value="13566-590" readonly></td>
-						</tr>
-				
-						<tr>
-							<td><label for="address">Endereço</label></td>  
-							<td><input type="text" name="address" value="Trabalhador Sancarlense" readonly></td>
-						</tr>
-
-						<tr>
-							<td><label for="número">Número</label></td>
-							<td><input type="text" name="number" value="400" readonly></td>
-						</tr>
-
-						<tr>
-							<td><label for="nairro">Bairro</label></td>
-							<td><input type="text" name="district" value="Centro" readonly></td>
-						</tr>
-
-						<tr>
-							<td><label for="cidade">Cidade</label></td>
-							<td><input type="text" name="city" value="São Carlos" readonly></td>
-						</tr>
-
-						<tr>
-							<td><label for="estado">Estado</label></td>
-							<td><input type="text" name="state" value="São Paulo" readonly></td>
-						</tr>
-					</table>	                 
+				<fieldset class="fieldsetAdress" >
+					<legend>Endereço</legend>						
+						<div class="row">
+							<form class="col s12">
+								<div class="row">
+									<div class="input-field col s6">
+										<input name="cep" type="text" value="13566-590" class="validate">
+										<label for="cep" class="active">CEP</label>	
+									</div>
+								</div>
+								<div class="row">									
+									<div class="input-field col s12">
+										<input  name="address" type="text" value="Trabalhador Sancarlense" class="validate">
+										<label for="address" class="active">Endereço</label>
+									</div>																					
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input name="number" type="number" value="400" class="validate">
+										<label for="numero" class="active">Número</label>	
+									</div>
+								</div>
+								<div class="row">									
+									<div class="input-field col s12">
+										<input  name="district" type="text" value="Centro" class="validate">
+										<label for="bairro" class="active">Bairro</label>
+									</div>																					
+								</div>
+								<div class="row">									
+									<div class="input-field col s6">
+										<input  name="city" type="text" value="São Carlos" class="validate">
+										<label for="cidade" class="active">Cidade</label>
+									</div>																					
+								</div>
+								<div class="row">									
+									<div class="input-field col s6">
+										<input  name="state" type="text" value="São Paulo" class="validate">
+										<label for="estado" class="active">Estado</label>
+									</div>																					
+								</div>	
+							</form>
+						</div>	
 				</fieldset>
-				</form>
 			</div>
 
 			<div id="updateMyInfo" class="tabcontent">
 			  <h3>Alterar Meus Dados</h3>
 			  <p class="pUserLevel">Administrador</p>
-			  	<form>
 				<fieldset>
 					<legend>Dados Pessoais</legend>
-
-					<br>
-					<table class="table2Items">
-						<tr>
-							<td><label for="nome">Nome Completo</label></td>
-							<td><input type="text" id="name" value="Danilo F. Ted"></td>
-						</tr>
-						<tr>
-							<td><label for="user">Nome de Usuário</label></td>
-							<td><input type="text" name="user" value="danfted"></td>
-						</tr>
-						<tr>
-							<td><label for="id">ID</label></td>
-							<td><input type="number" name="id" value="89373611"></td>
-						</tr>
-						<tr>
-							<td><label for="password">Senha</label></td>
-							<td><input type="password" name="password"></td>
-						</tr>
-						<tr>
-							<td><label for="conf">Confirmar senha</label></td>
-							<td><input type="password" name="confpassword"></td>
-						</tr>
-						<tr>
-							<td><label for="foto">Foto</label></td>
-							<td><img id="previewfoto" width="50px" height="50px" src="#" alt="Sua imagem"/><input id="uploadfoto" type="file" onchange="readImgURL(this);"/></td>
-						</tr>
-					</table>
-									
+						<div class="row">
+							<form class="col s12">
+								<div class="row">									
+									<div class="input-field col s12">
+										<input  id="name" type="text" value="Danilo F. Ted" class="validate">
+										<label for="nome" class="active">Nome Completo</label>
+									</div>	
+								</div>
+								<div class="row">									
+									<div class="input-field col s12">
+										<input  name="user" type="text" value="danfted" class="validate">
+										<label for="user" class="active">Nome usuário</label>
+									</div>	
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input name="id" type="text" value="89373611" class="validate">
+										<label for="id" class="active">CPF</label>	
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input name="password" type="password" class="validate">
+										<label for="password" class="active">Senha</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input name="confpassword" type="password" class="validate">
+										<label for="conf" class="active">Confirmar senha</label>
+									</div>
+								</div>
+								<div class="file-field input-field">
+									<div class="btn">
+										<span>Foto</span>
+										<input id="uploadfoto" type="file">
+									</div>
+									<div class="file-path-wrapper">
+										<input class="file-path validate" type="text">
+									</div>
+								</div>
+							</form>
+						</div>			
 				</fieldset>
 
 				<fieldset>
 					<legend>Contatos</legend>
-					<br>
-					<table class="table2Items">
-						<tr>
-							<td><label for="email">Email</label></td>
-							<td><input type="email" name="email" value="danfted@gmail.com"></td>
-						</td>
-						<tr>
-							<td><label for="phone number">Telefone</label></td>
-							<td><input type="tel" name="phone number" value="(16) 3373-9700"></td>
-						</tr>
-					</table>
+					
+					<div class="row">
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="email" type="email" value="danfted@gmail.com" class="validate">
+									<label for="email" class="active">Email</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="phone number" type="tel" value="(16) 3373-9700" class="validate">
+									<label for="phone number" class="active">Telefone</label>	
+								</div>
+							</div>	
+						</form>
+					</div>					
 				</fieldset>
 
-				<fieldset class="fieldsetAdress" style="display:none;">
+				<fieldset class="fieldsetAdress">
 					<legend>Endereço</legend>
-					<br>
-					<table class="table2Items">
-						<tr>
-							<td><label for="cep">CEP</label></td>
-							<td><input type="text" name="cep" value="13566-590"></td>
-						</tr>
-				
-						<tr>
-							<td><label for="address">Endereço</label></td>  
-							<td><input type="text" name="address" value="Trabalhador Sancarlense"></td>
-						</tr>
-
-						<tr>
-							<td><label for="número">Número</label></td>
-							<td><input type="number" name="number" value="400"></td>
-						</tr>
-
-						<tr>
-							<td><label for="bairro">Bairro</label></td>
-							<td><input type="text" name="district" value="Centro"></td>
-						</tr>
-
-						<tr>
-							<td><label for="cidade">Cidade</label></td>
-							<td><input type="text" name="city" value="São Carlos"></td>
-						</tr>
-
-						<tr>
-							<td><label for="estado">Estado</label></td>
-							<td><input type="text" name="state" value="São Paulo"></td>
-						</tr>
-					</table>	                 
+						<div class="row">
+							<form class="col s12">
+								<div class="row">
+									<div class="input-field col s6">
+										<input name="cep" type="text" value="13566-590" class="validate">
+										<label for="cep" class="active">CEP</label>	
+									</div>
+								</div>
+								<div class="row">									
+									<div class="input-field col s12">
+										<input  name="address" type="text" value="Trabalhador Sancarlense" class="validate">
+										<label for="address" class="active">Endereço</label>
+									</div>																					
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input name="number" type="number" value="400" class="validate">
+										<label for="numero" class="active">Número</label>	
+									</div>
+								</div>
+								<div class="row">									
+									<div class="input-field col s12">
+										<input  name="district" type="text" value="Centro" class="validate">
+										<label for="bairro" class="active">Bairro</label>
+									</div>																					
+								</div>
+								<div class="row">									
+									<div class="input-field col s6">
+										<input  name="city" type="text" value="São Carlos" class="validate">
+										<label for="cidade" class="active">Cidade</label>
+									</div>																					
+								</div>
+								<div class="row">									
+									<div class="input-field col s6">
+										<input  name="state" type="text" value="São Paulo" class="validate">
+										<label for="estado" class="active">Estado</label>
+									</div>																					
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Suas informações foram salvas com sucesso!')">Cadastrar
+											<i class="material-icons right">send</i>
+										</button>
+									</div>
+								</div>									
+							</form>
+						</div>
 				</fieldset>
-				</form>
-				<button class="button" type="button" onclick="alert('Suas informações foram salvas com sucesso!')">Salvar alterações</button>
 			</div>
 
 			<div id="manageAnimal" class="tabcontent">
@@ -241,8 +298,7 @@
 				<h4>Cadastrar Animal</h4>
 				<a href="#" onclick="ajaxRequestDoc('createPet.html');" class="hyperlink">Clique aqui para cadastrar um novo animal!</a>
 				<h4>Seus animais cadastrados</h4>
-				<div id="listAnimals">
-				
+				<div id="listAnimals">				
 					<div class="divAnimalInfo">
 						<div class="divAnimalPhoto">
 							<img src="images/jackphoto.jpg" class="fullImage" alt="Imagem do Animal"/>
@@ -274,14 +330,14 @@
 			<div id="historic" class="tabcontent">
 			  <h3>Históricos</h3>
 			  <fieldset>
-				<legend> Compra de Produtos </legend>
+				<legend> Produtos </legend>
 				<div class="centerElements">
 					<table class="tableHistoric">
 						<tr>
-							<th>Nº da Compra</th>
-							<th>Data da Compra</th>
-							<th>Valor Total</th>
-							<th>Total de Parcelas</th>
+							<th>Produto</th>
+							<th>Quantidade comprada</th>
+							<th>Valor unitário</th>
+							<th>Valor total </th>
 						</tr>
 						<tr>
 							<td>
@@ -314,7 +370,7 @@
 			</fieldset>
 			<br><br>
 			<fieldset>
-				<legend> Agendamento de Serviços </legend>
+				<legend> Serviços </legend>
 				<div class="centerElements">
 					<table class="tableHistoric">
 						<tr>
@@ -352,8 +408,6 @@
 					</table>
 				</div>
 			</fieldset>
-			<div id="details">
-			</div>
 			</div>
 			
 			<div id="manageProduct" class="tabcontent">
@@ -362,7 +416,7 @@
 				<a href="#" onclick="ajaxRequestDoc('createProduct.html');" class="hyperlink">Clique aqui para cadastrar um novo produto!</a>
 				<h4>Alterar Produto</h4>
 				<input id="txtSearchUpdateProduct" type="text" name="txtSearchUpdateProduct" placeholder="Qual produto você deseja alterar?">
-				<button id="btnSearchUpdateProduct" class="button" type="button">Buscar por nome</button>
+				<button class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateProduct" >Buscar por nome</button>
 				<br><br>
 				<div>
 					<div class="listSearchUpdateProductHeader">
@@ -379,40 +433,59 @@
 						</div>
 					</div>
 					<div class="listSearchUpdateProductHeader">
-						<button class="buttonPageProduct" type="button">Anterior</button>
-						<button class="buttonPageProduct" type="button">Proxima</button>
+						<button class="btn waves-effect waves-light" type="button">Anterior</button>
+						<button class="btn waves-effect waves-light" type="button" >Próximo</button>
 					</div>
 				</div>
 				<h5>Dados do produto selecionado</h5>
-				<table>
-					<tbody>
-						<tr>
-							<td><label for="produto">Nome</label></td>
-							<td><input type="text" id="nameProduct" value="PEDIGREE® Equilíbrio Natural"></td>
-						</tr>
-						<tr>
-							<td><label for="id">ID</label></td>
-							<td><input type="number" id="idProduct" value="194"></td>
-						</tr>
-						<tr>
-							<td><label for="foto">Foto</label></td>
-							<td><button id="uploadfoto" class="button" type="button" style="width:190px;height:35px;">Upload photo...</button></td>
-						</tr>
-						<tr>
-							<td><label for="preço">Preço</label></td>
-							<td><input type="text" id="priceProduct" value="121,90"></td>
-						</tr>
-						<tr>
-							<td><label for="quantidade">Quantidade em estoque</label></td>
-							<td><input type="number" id="quantityProduct" value="47"></td>
-						</tr>
-						<tr>
-							<td><label for="desc">Descrição</label></td>			
-							<td><textarea id="descriptionProduct" rows="4" cols="50">O novo PEDIGREE® Equilíbrio Natural é um alimento que ajuda a equilibrar o organismo do seu cão de forma irresistível. Isso porque ele oferece em sua fórmula grãos integrais e suculentos pedaços macios sabor carne, fontes naturais de proteínas, carboidratos e vitaminas. Além disso, não tem gordura trans nem aromatizantes artificiais. Seu cão tem muito mais para viver ainda, e qualidade de vida começa com uma alimentação mais saudável e equilibrada.</textarea></td>
-						</tr>
-					</tbody>
-				</table>
-				<a class="button" onclick="alert('Produto alterado com sucesso!')">Salvar alterações</a>
+				<div class="row">
+					<form class="col s12">
+						<div class="row">									
+							<div class="input-field col s12">
+								<input  id="nameProduct" type="text" value="PEDIGREE® Equilíbrio Natural" class="validate">
+								<label for="produto" class="active">Nome</label>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="idProduct" type="number" value="194" class="validate">
+								<label for="id" class="active">ID</label>	
+							</div>
+						</div>
+						<div class="file-field input-field">
+							<div class="btn">
+								<span>Foto</span>
+								<input id="uploadfoto" type="file">
+							</div>									
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="priceProduct" type="text" value="121,90" class="validate">
+								<label for="preço" class="active">Preço</label>	
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="quantityProduct" type="number" value="47" class="validate">
+								<label for="quantidade" class="active">Quantidade em estoque</label>	
+							</div>
+						</div>	
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea id="descriptionProduct" class="materialize-textarea">O novo PEDIGREE® Equilíbrio Natural é um alimento que ajuda a equilibrar o organismo do seu cão de forma irresistível. Isso porque ele oferece em sua fórmula grãos integrais e suculentos pedaços macios sabor carne, fontes naturais de proteínas, carboidratos e vitaminas. Além disso, não tem gordura trans nem aromatizantes artificiais. Seu cão tem muito mais para viver ainda, e qualidade de vida começa com uma alimentação mais saudável e equilibrada.</textarea>
+								<label for="descrição" class="active">Descrição</label>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Produto alterado com sucesso!')">Salvar alterações</button>
+							</div>
+						</div>	
+					</form>
+				</div>	
 			</div>
 			
 			<div id="manageService" class="tabcontent">
@@ -421,7 +494,7 @@
 				<a href="#" onclick="ajaxRequestDoc('createService.html');" class="hyperlink">Clique aqui para cadastrar um novo serviço!</a>
 				<h4>Alterar Serviço</h4>
 				<input id="txtSearchUpdateService" type="text" name="txtSearchUpdateService" placeholder="Qual serviço você deseja alterar?">
-				<button id="btnSearchUpdateService" class="button" type="button">Buscar por nome</button>
+				<button class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateService">Buscar por nome</button>	
 				<br><br>
 				<div>
 					<div class="listSearchUpdateProductHeader">
@@ -438,42 +511,58 @@
 						</div>
 					</div>
 					<div class="listSearchUpdateProductHeader">
-						<button class="buttonPageProduct" type="button">Anterior</button>
-						<button class="buttonPageProduct" type="button">Proxima</button>
+						<button class="btn waves-effect waves-light" type="button">Anterior</button>
+						<button class="btn waves-effect waves-light" type="button" >Próximo</button>
 					</div>
 				</div>
 				<h5>Dados do serviço selecionado</h5>
-				<table>
-					<tbody>
-						<tr>
-							<td><label for="servico">Nome</label></td>
-							<td><input type="text" id="nameService" value="Vacinação"></td>
-						</tr>
-						<tr>
-							<td><label for="id">ID</label></td>
-							<td><input type="number" id="idService" value="195"></td>
-						</tr>
-						<tr>
-							<td><label for="foto">Foto</label></td>
-							<td><button id="uploadfotoservico" class="button" type="button" style="width:190px;height:35px;">Upload photo...</button></td>
-						</tr>
-						<tr>
-							<td><label for="preço">Preço</label></td>
-							<td><input type="text" id="priceService" value="229,90"></td>
-						</tr>
-						<tr>
-							<td><label for="desc">Descrição</label></td>			
-							<td><textarea id="descriptionService" rows="4" cols="50">Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-los imunes confiando em nossos funcionários altamente qualificados com equipamentos de ponta para realizar o melhor serviço para você.</textarea></td>
-						</tr>
-					</tbody>
-				</table>
-				<a class="button" onclick="alert('Serviço alterado com sucesso!')">Salvar alterações</a>
+				
+				<div class="row">
+					<form class="col s12">
+						<div class="row">									
+							<div class="input-field col s12">
+								<input  id="nameService" type="text" value="Vacinação" class="validate">
+								<label for="servico" class="active">Nome</label>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="idService" type="number" value="195" class="validate">
+								<label for="id" class="active">ID</label>	
+							</div>
+						</div>
+						<div class="file-field input-field">
+							<div class="btn">
+								<span>Foto</span>
+								<input id="uploadfotoservico" type="file">
+							</div>									
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>	
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="priceService" type="text" value="229,90" class="validate">
+								<label for="preço" class="active">Preço</label>	
+							</div>
+						</div>	
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea id="descriptionService" class="materialize-textarea">Vacinação é tão importante para seus pets quanto para você. Ajude a mantê-los imunes confiando em nossos funcionários altamente qualificados com equipamentos de ponta para realizar o melhor serviço para você.</textarea>
+								<label for="descrição" class="active">Descrição</label>
+							</div>
+						</div>	
+						<div class="input-field col s12">
+							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Serviço alterado com sucesso!')">Salvar Alterações</button>
+						</div>
+					</form>
+				</div>
 			</div>
 			
 			<div id="manageAdmin" class="tabcontent">
 			  <h3>Gerenciar Administrador</h3>
-			  <h4>Cadastrar Administrador</h4>
-			  <a href="#" class="hyperlink" onclick="ajaxRequestDoc('createAdmin.html');">Clique aqui para cadastrar um novo administrador!</a>
+			  <h4>Cadastrar Administrador</h4>			  
+			  	<button class="btn waves-effect waves-light" type="submit" name="action" onclick="ajaxRequestDoc('createAdmin.html');">Clique aqui para cadastrar um novo administrador!</button>
 			</div>
 		
 		</main>

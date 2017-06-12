@@ -8,6 +8,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 		<link rel="stylesheet" href="css/petshop.css">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+		 
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+		 
 
 	</head>
 	
@@ -66,32 +73,53 @@
 
 						
 						<div class="conteudo">
-							<table>
-								<tr>
-									<td><label for="nome">Nome</label></td>
-									<td><input type="text" name="name" ></td>
-								</tr>
-								<tr>
-									<td><label for="user">Nome do usuário</label></td>
-									<td><input type="text" name="user"></td>
-								</tr>
-								<tr>
-									<td><label for="id">ID</label></td>
-									<td><input type="number" name="id"></td>
-								</tr>
-								<tr>
-									<td><label for="passwprd">Senha</label></td>
-									<td><input type="password" name="password"></td>
-								</tr>
-								<tr>
-									<td><label for="conf">Confirmar senha</label></td>
-									<td><input type="password" name="confirm_password"></td>
-								</tr>
-								<tr>
-									<td><label for="foto">Foto</label></td>
-									<td><img id="previewfoto" src="#" alt="Sua imagem"/><input id="uploadfoto" type="file" onchange="readImgURL(this);"/></td>
-								</tr>
-							</table>
+							
+							<div class="row">
+								<form class="col s12">	
+								
+									<div class="row">									
+										<div class="input-field col s12">
+											<input  name="name" type="text" class="validate">
+											<label for="nome" class="active">Nome</label>
+										</div>	
+									</div>
+									
+									<div class="row">									
+										<div class="input-field col s12">
+											<input  name="user" type="text" class="validate">
+											<label for="user" class="active">Nome usuário</label>
+										</div>	
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+											<input name="id" type="number" class="validate">
+											<label for="id" class="active">CPF</label>	
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+											<input name="senha" type="password" class="validate">
+											<label for="senha" class="active">Senha</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+											<input name="senha" type="password" class="validate">
+											<label for="senha" class="active">Confirmar senha</label>
+										</div>
+									</div>
+									
+									<div class="file-field input-field">
+										<div class="btn">
+											<span>Foto</span>
+											<input id="uploadfoto" type="file">
+										</div>
+										<div class="file-path-wrapper">
+											<input class="file-path validate" type="text">
+										</div>
+									</div>
+								</form>
+							</div>	
 						</div>						
 					</div>				
 				</fieldset>
@@ -106,18 +134,23 @@
 						</div>
 
 						<div class="conteudo">
-							<br><br>
-							<table>
-								<tr>
-									<td><label for="email">Email</label></td>
-									<td><input type="text" name="email"></td>
-								</td>
-
-								<tr>
-									<td><label for="phone number">Telefone</label></td>
-									<td><input type="text" name="phone_number" ></td>
-								</tr>
-							</table>
+						
+							<div class="row">
+								<form class="col s12">
+									<div class="row">
+										<div class="input-field col s12">
+											<input name="email" type="email" class="validate">
+											<label for="email" class="active">Email</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+											<input name="phone_number" type="tel" class="validate">
+											<label for="phone number" class="active">Telefone</label>	
+										</div>
+									</div>							
+								</form>
+							</div>	
 						</div>
 					</div>
 				</fieldset>
@@ -131,42 +164,53 @@
 							</div>
 					
 							<div class="conteudo">
-								<table>
-									<tr>
-										<td><label for="cep">CEP</label></td>
-										<td><input type="text" name="cep"></td>
-									</tr>
-							
-									<tr>
-										<td><label for="address">Endereço</label></td>	
-										<td><input type="text" name="address"></td>
-									</tr>
-
-									<tr>
-										<td><label for="número">Número</label></td>
-										<td><input type="number" name="number"></td>
-									</tr>
-
-									<tr>
-										<td><label for="bairro">Bairro</label></td>
-										<td><input type="text" name="district"></td>
-									</tr>
-
-									<tr>
-										<td><label for="cidade">Cidade</label></td>
-										<td><input type="text" name="city"></td>
-									</tr>
-
-									<tr>
-										<td><label for="estado">Estado</label></td>
-										<td><input type="text" name="state"></td>
-									</tr>
-								</table>
+								<div class="row">
+									<form class="col s12">
+										<div class="row">
+											<div class="input-field col s12">
+												<input name="cep" type="number" class="validate">
+												<label for="cep" class="active">CEP</label>	
+											</div>
+										</div>
+										<div class="row">									
+											<div class="input-field col s12">
+												<input  name="address" type="text" class="validate">
+												<label for="address" class="active">Endereço</label>
+											</div>																					
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<input name="number" type="number" class="validate">
+												<label for="numero" class="active">Número</label>	
+											</div>
+										</div>
+										<div class="row">									
+											<div class="input-field col s12">
+												<input  name="district" type="text" class="validate">
+												<label for="bairro" class="active">Bairro</label>
+											</div>																					
+										</div>
+										<div class="row">									
+											<div class="input-field col s6">
+												<input  name="city" type="text" class="validate">
+												<label for="cidade" class="active">Cidade</label>
+											</div>																					
+										</div>
+										<div class="row">									
+											<div class="input-field col s6">
+												<input  name="state" type="text" class="validate">
+												<label for="estado" class="active">Estado</label>
+											</div>																					
+										</div>								
+									</form>
+								</div>	
 							</div>
 						</div>					
 				</fieldset>
 				<div>
-				 	<a id="C1" href="#" onclick='insertUser(0);ajaxRequestDoc("createdClient.html");'>Cadastrar</a>
+					<button class="btn waves-effect waves-light" type="submit" name="action" onclick='insertUser(0);ajaxRequestDoc("createdClient.html");'>Cadastrar
+							<i class="material-icons right">send</i>
+					</button>
 				</div>
 			</form>			
 		</main>
