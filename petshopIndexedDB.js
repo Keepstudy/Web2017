@@ -27,7 +27,7 @@ const userList = [
 
 // vendas para serem inseridos ao iniciar
 const saleList = [
-	{ idUser: 7, items: "[['1', 'racao pra periquito 10kg', '100.00', '1'], ['1', 'racao pra periquito 20kg', '200.00', '1']]", total: 600.00, totalPortions: 6, datePaid: new Date(2014, 9, 13, 11, 13) }
+	{ idUser: 7, items: `[{"photo":"1","name":"racao pra periquito 10kg","price":"100.00","quantity":"1"},{"photo":"1","name":"racao pra periquito 20kg","price":"200.00","quantity":"1"}]`, total: 600.00, totalPortions: 6, datePaid: new Date(2014, 9, 13, 11, 13) }
 ];
 
 // agendamentos para serem inseridos ao iniciar

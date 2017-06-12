@@ -687,7 +687,131 @@ function setIndexHeader(){
 }
 
 
+/* -------------------  profit.html ---------------- */
+function showProfit() {
+	let tableProduct = document.getElementsByClassName("tableGanhos")[0];
+	let mapProduct = new Map();
+	readAll("tableSale", saleList => {
+		for (let i in saleList) {
+			let itemList = JSON.parse(saleList[i].items);
+			for(let j in itemList) {
+				if (mapProduct.has(itemList[j].name)) {
+					let prod = JSON.parse(mapProduct.get(itemList[j].name));
+					prod.quantity = (parseInt(prod.quantity) + parseInt(itemList[j].quantity)).toString();
+					mapProduct.set(prod.name, JSON.stringify(prod));
+				}
+				else {
+					mapProduct.set(itemList[j].name, JSON.stringify(itemList[j]));
+				}
+			}
+		}
+		
+		tableProduct.innerHTML = `
+			<tr>
+				<th>Produto(s)</th>
+				<th>Quantidade vendida</th>
+				<th>Valor unitário</th>
+				<th>Valor total </th>
+			</tr>`;
+		let totalProduct = 0.0;
 
+		for(let prod of mapProduct.values()) {
+			prod = JSON.parse(prod);
+			prod.price = parseFloat(prod.price);
+			prod.quantity = parseInt(prod.quantity);
+			totalProduct += prod.price * prod.quantity;
+			tableProduct.innerHTML += `
+				<tr>
+					<td>
+						<div>
+							<img src="` + prod.photo + `" alt="Imagem do Produto" height="42" width="42">
+						</div>
+						<div>
+							` + prod.name + `
+						<div>
+					</td>
+					<td> ` + prod.quantity.toString() + ` </td>
+					<td> R$ ` + prod.price.toFixed(2).toString() + ` </td>
+					<td> R$ ` + (prod.price * prod.quantity).toFixed(2).toString() + ` </td>
+				</tr>
+			`;
+		}
+
+		tableProduct = document.getElementsByClassName("tableGanhos")[1];
+		tableProduct.innerHTML = `
+			<tr>
+				<th align="right"> Total </th>
+			</tr>
+			<tr>
+				<td align="right"> ` + totalProduct.toFixed(2).toString() + ` </td> 	
+			</tr>
+		`;
+	});
+
+
+	let tableService = document.getElementsByClassName("tableGanhos")[2];
+	let mapService = new Map();
+	readAll("tableAppointment", appList => {
+		for (let i in appList) {
+			if (mapService.has(appList[i].idService)) {
+				let app = JSON.parse(mapService.get(appList[i].idService));
+				app.quantity = (parseInt(app.quantity) + 1).toString();
+				mapService.set(app.idService, JSON.stringify(app));
+			}
+			else {
+				mapService.set(appList[i].idService, JSON.stringify({ idService : appList[i].idService, quantity: "1", price : appList[i].total.toString()}));
+			}
+		}
+		
+		tableService.innerHTML = `
+			<tr>
+				<th>Serviço(s)</th>
+				<th>Quantidade realizado</th>
+				<th>Valor unitário</th>
+				<th>Valor total </th>
+			</tr>`;
+		let totalService = 0.0;
+
+		readAll("tableService", serviceList => {
+			for(let app of mapService.values()) {
+				app = JSON.parse(app);
+				app.price = parseFloat(app.price);
+				app.quantity = parseInt(app.quantity);
+				totalService += app.price * app.quantity;
+				for(let i in serviceList) {
+					if (serviceList[i].id == app.idService) {
+						tableService.innerHTML += `
+							<tr>
+								<td>
+									<div>
+										<img src="` + serviceList[i].photo + `" alt="Imagem do Serviço" height="42" width="42">
+									</div>
+									<div>
+										` + serviceList[i].name + `
+									<div>
+								</td>
+								<td> ` + app.quantity.toString() + ` </td>
+								<td> R$ ` + app.price.toFixed(2).toString() + ` </td>
+								<td> R$ ` + (app.price * app.quantity).toFixed(2).toString() + ` </td>
+							</tr>
+						`;
+					}
+				}
+			}
+
+			tableService = document.getElementsByClassName("tableGanhos")[3];
+			tableService.innerHTML = `
+				<tr>
+					<th align="right"> Total </th>
+				</tr>
+				<tr>
+					<td align="right"> ` + totalService.toFixed(2).toString() + ` </td> 	
+				</tr>
+			`;
+		});
+		
+	});
+}
 
 
 
