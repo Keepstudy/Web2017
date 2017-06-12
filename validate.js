@@ -3,8 +3,8 @@ function checkFieldAdmin()
 	let name     = document.forms[1]["nome"].value;
 	let username = document.forms[1]["username"].value;
 	let cpf      = document.forms[1]["id"].value;
-	let phone    = document.forms[1]["phone number"];
-	let email    = document.forms[1]["email"];
+	let phone    = document.forms[1]["phone number"].value;
+	let email    = document.forms[1]["email"].value;
 	let pass     = document.forms[1]["senha"].value;
 	let confpass = document.forms[1]["confsenha"].value;
 	
@@ -33,6 +33,44 @@ function checkFieldAdmin()
 	}
 }
 
+function checkFieldUpdateAdmin()
+{
+	let ret = true;
+	
+	let name     = document.forms[1]["name"].value;
+	let username = document.forms[1]["user"].value;
+	let cpf      = document.forms[1]["id"].value;
+	let phone    = document.forms[1]["phone_number"].value;
+	let email    = document.forms[1]["email"].value;
+	let pass     = document.forms[1]["password"].value;
+	let confpass = document.forms[1]["confpassword"].value;
+	
+	if(name.length == 0) {
+		ret = false;
+		window.alert("Insira um nome, campo obrigatório");
+	}
+	else if(usernameAlreadyExists(username)){
+		ret = false;
+		window.alert("Nome de usuário já existe, tente outro.");
+	}
+	else if(cpfAlreadyExists(cpf)){
+		ret = false;
+		window.alert("CPF já cadastrado, insira outro CPF.");
+	}
+	else if(phone.length == 0){
+		ret = false;
+		window.alert("Insira um telefone, campo obrigatório");
+	}
+	else if(email.length == 0){
+		ret = false;
+		window.alert("Insira um email, campo obrigatório");
+	}
+	else if (pass.localeCompare(confpass) != 0){
+		ret = false;
+		window.alert("Senhas diferentes, digite novamente.");
+	}
+	return ret;
+}
 
 function checkFieldClient()
 {
@@ -96,6 +134,78 @@ function checkFieldClient()
 	}
 }
 
+function checkFieldUpdateClient()
+{
+	let ret = true;
+	
+	let name     = document.forms[1]["name"].value;
+	let username = document.forms[1]["user"].value;
+	let cpf      = document.forms[1]["id"].value;	
+	let pass     = document.forms[1]["password"].value;
+	let confpass = document.forms[1]["confpassword"].value;
+	let phone    = document.forms[1]["phone_number"].value;
+	let email    = document.forms[1]["email"].value;
+	let CEP      = document.forms[1]["cep"].value;
+	let adress   = document.forms[1]["address"].value;
+	let number   = document.forms[1]["number"].value;
+	let district = document.forms[1]["district"].value;
+	let city     = document.forms[1]["city"].value;
+	let State    = document.forms[1]["state"].value;
+	
+	if(name.length == 0) {
+		ret = false;
+		window.alert("Insira um nome, campo obrigatório");
+	}
+	else if(usernameAlreadyExists(username)) {
+		ret = false;
+		window.alert("Nome de usuário já existe, tente outro.");
+	}
+	else if(cpfAlreadyExists(cpf)) {
+		ret = false;
+		window.alert("CPF já cadastrado, insira outro CPF.");
+	}
+	else if (pass.localeCompare(confpass) != 0) {
+		ret = false;
+		window.alert("Senhas diferentes, digite novamente.");
+	}
+	else if(email.length == 0) {
+		ret = false;
+		window.alert("Insira um email, campo obrigatório");
+	}
+	else if(phone.length == 0) {
+		ret = false;
+		window.alert("Insira um telefone, campo obrigatório");
+	}
+	else if(email.length == 0) {
+		ret = false;
+		window.alert("Insira um email, campo obrigatório"); 
+	}}
+	else if(CEP.length == 0) {
+		ret = false;
+		window.alert("Insira um CEP, campo obrigatório.");
+	}
+	else if(adress.length == 0) {
+		ret = false;
+		window.alert("Insira um endereço, campo obrigatório");
+	}}
+	else if(number.length == 0) {
+		ret = false;
+		window.alert("Insira um número, campo obrigatório.");
+	}
+	else if(district.length == 0) {
+		ret = false;
+		window.alert("Insira um bairro, campo obrigatório.");
+	}
+	else if(city.length == 0) {
+		ret = false;
+		window.alert("Insira uma cidade, campo obrigatório.");
+	}
+	else if(state.length == 0) {
+		ret = false;
+		window.alert("Insira uma cidade, campo obrigatório.");
+	}
+	return ret;
+}
 
 function checkPetField()
 {
