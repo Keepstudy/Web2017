@@ -183,7 +183,7 @@ var subtotal = 0.0;
 function initializeCart(){
 	subtotal = 0.0;
 	let countProducts = 0;
-	
+
 	for(let key in localStorage) {
 		if(key == 'user' || key == 'id' || key == 'appointment' || key == 'img64Base'){
 			continue;
@@ -414,6 +414,8 @@ function showSlots() {
 	});
 }
 
+/* -----------------------------------------  Funcao pra imagem ------------------------------- */
+
 function readImgURL(input) {
 	if (input.files && input.files[0]) {
 		let reader = new FileReader();
@@ -427,4 +429,235 @@ function readImgURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+/* ---------------------------------------- userProfile ---------------------------------------- */
+
+function setInfo() {
+	readAll("tableUser", list => {
+		let user = {};
+		for (let i in list) {
+			if (list[i].id == localStorage.getItem("id")) {
+				user = list[i];
+				break;
+			}
+		}
+
+		if (user.isAdmin)
+			setInfoAdmin(user);
+		else
+			setInfoClient(user);
+	});
+}
+
+function setInfoAdmin(user) {
+	document.getElementById("btnManageAnimal").style.display = "none";
+	document.getElementById("btnHistoric").style.display = "none";
+
+	document.getElementById("btnManageProduct").style.display = "block";
+	document.getElementById("btnManageService").style.display = "block";
+	document.getElementById("btnManageAdmin").style.display = "block";
+	document.getElementById("btnProfit").style.display = "block";
+
+	/* aba MyInfo */
+
+	document.getElementsByClassName("pUserLevel")[0].innerHTML = "Administrador";
+
+	if (user.photo != null && user.photo != "")
+		document.getElementById("userImage").src = user.photo;
+	else
+		document.getElementById("userImage").src = "images/admin.png";
+
+	document.forms[0]["name"].value = user.name;
+	document.forms[0]["user"].value = user.username;
+	document.forms[0]["id"].value = user.id;
+
+	document.forms[0]["email"].value = user.email;
+	document.forms[0]["phone number"].value = user.phone_number;
+
+	document.getElementsByClassName("fieldsetAdress")[0].style.display = "none";
+
+	/* aba UpdateMyInfo */
+
+	document.getElementsByClassName("pUserLevel")[1].innerHTML = "Administrador";
+
+	if (user.photo != null && user.photo != "")
+		document.getElementById("userImage").src = user.photo;
+	else
+		document.getElementById("userImage").src = "";
+
+	document.forms[1]["name"].value = user.name;
+	document.forms[1]["user"].value = user.username;
+	document.forms[1]["id"].value = user.id;
+
+	document.forms[1]["email"].value = user.email;
+	document.forms[1]["phone number"].value = user.phone_number;
+
+	document.getElementsByClassName("fieldsetAdress")[1].style.display = "none";
+}
+
+function saleDetails(sale) {
+	sale = JSON.parse(sale);
+	console.log(sale);
+	//document.getElementById("details").innerHTML = sale.items;
+}
+
+function appDetails(sale) {
+	sale = JSON.parse(sale);
+	//document.getElementById("details").innerHTML;
+}
+
+function setInfoClient(user) {
+
+	document.getElementById("btnManageAnimal").style.display = "block";
+	document.getElementById("btnHistoric").style.display = "block";
+
+	document.getElementById("btnManageProduct").style.display = "none";
+	document.getElementById("btnManageService").style.display = "none";
+	document.getElementById("btnManageAdmin").style.display = "none";
+	document.getElementById("btnProfit").style.display = "none";
+
+	/* aba MyInfo */
+	document.getElementsByClassName("pUserLevel")[0].innerHTML = "Cliente";
+
+	if (user.photo != null && user.photo != "")
+		document.getElementById("userImage").src = user.photo;
+	else
+		document.getElementById("userImage").src = "images/userphoto.png";
+
+	document.forms[0]["name"].value = user.name;
+	document.forms[0]["user"].value = user.username;
+	document.forms[0]["id"].value = user.id;
+
+	document.forms[0]["email"].value = user.email;
+	document.forms[0]["phone number"].value = user.phone_number;
+
+	document.getElementsByClassName("fieldsetAdress")[0].style.display = "block";
+
+	document.forms[0]["cep"].value = user.cep;
+	document.forms[0]["address"].value = user.address;
+	document.forms[0]["number"].value = user.number;
+	document.forms[0]["district"].value = user.district;
+	document.forms[0]["city"].value = user.city;
+	document.forms[0]["state"].value = user.state;
+
+	/* aba UpdateMyInfo */
+
+	document.getElementsByClassName("pUserLevel")[1].innerHTML = "Cliente";
+
+	if (user.photo != null && user.photo != "")
+		document.getElementById("previewfoto").src = user.photo;
+	else
+		document.getElementById("previewfoto").src = "";
+
+	document.forms[1]["name"].value = user.name;
+	document.forms[1]["user"].value = user.username;
+	document.forms[1]["id"].value = user.id;
+
+	document.forms[1]["email"].value = user.email;
+	document.forms[1]["phone number"].value = user.phone_number;
+
+	document.getElementsByClassName("fieldsetAdress")[1].style.display = "block";
+
+	document.forms[1]["cep"].value = user.cep;
+	document.forms[1]["address"].value = user.address;
+	document.forms[1]["number"].value = user.number;
+	document.forms[1]["district"].value = user.district;
+	document.forms[1]["city"].value = user.city;
+	document.forms[1]["state"].value = user.state;
+
+	/* aba manageAnimal */
+
+	searchPetsByUserId(localStorage.id, petsList => {
+		document.getElementById("listAnimals").innerHTML = "";
+		if (petsList.length == 0)
+			document.getElementById("listAnimals").innerHTML = "<h4>Você não possui animais cadastrados.</h4>";
+		else {
+			for(let i in petsList){
+				document.getElementById("listAnimals").innerHTML += `
+						<div class="divAnimalInfo">
+							<div class="divAnimalPhoto">
+								<img src="`+petsList[i].photo+`" class="fullImage" alt="Imagem do Animal"/>
+							</div>
+							<table class="table2Items">
+								<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
+								<tr><td>ID</td><td><input type="text" id="animalID" value="`+petsList[i].idPet+`" readonly></td></tr>
+								<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="`+petsList[i].age+`" readonly></td></tr>
+								<tr><td>Raça</td><td><input type="text" id="animalBreed" value="`+petsList[i].breed+`" readonly></td></tr>
+							</table>
+						</div>
+					</input>
+					<br>`;
+			}
+		}
+	});
+
+	/* aba historic */
+
+	let tableSale = document.getElementsByClassName("tableHistoric")[0];
+	tableSale.innerHTML = `
+		<tr>
+			<th>Nº da Compra</th>
+			<th>Data da Compra</th>
+			<th>Valor Total</th>
+			<th>Total de Parcelas</th>
+		</tr>`;
+	
+	readAllWithKey("tableSale", saleList => {
+		for (let i in saleList) {
+			let sale = saleList[i].value;
+			if (sale.idUser == localStorage.id) {
+				tableSale.innerHTML += `
+				<tr>
+					<td>` + saleList[i].key + `</td>
+					<td>` + sale.datePaid + `</td>
+					<td>` + sale.total + `</td>
+					<td>` + sale.totalPortions + `</td>
+					<td><a href="#" onclick="saleDetails(` + JSON.stringify(sale) + `);">Detalhes</a></td>
+				</tr>`;
+			}
+		}
+	});
+
+	let tableAppointment = document.getElementsByClassName("tableHistoric")[1];
+	tableAppointment.innerHTML = `
+		<tr>
+			<th>Nº do Agendamento</th>
+			<th>Data do Pagamento</th>
+			<th>Valor Total</th>
+			<th>Total de Parcelas</th>
+		</tr>`;
+
+	readAllWithKey("tableAppointment", appList => {
+		for (let i in appList) {
+			let app = appList[i].value;
+			if (app.idUser == localStorage.id) {
+				tableAppointment.innerHTML += `
+				<tr>
+					<td>` + appList[i].key + `</td>
+					<td>` + app.datePaid + `</td>
+					<td>` + app.total + `</td>
+					<td>` + app.totalPortions + `</td>
+					<td><a href="#" onclick="appDetails(` + JSON.stringify(app) + `);">Detalhes</a></td>
+				</tr>`;
+			}
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

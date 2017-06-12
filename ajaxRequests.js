@@ -53,7 +53,7 @@ function setTagProperties(tagName, ans)
 			}
 		}
 	}
-	
+
 	document.getElementsByTagName(tagName)[0].style = tagStyle;
 	document.getElementsByTagName(tagName)[0].className = tagClass;
 	document.getElementsByTagName(tagName)[0].innerHTML = ans.substring(i, ans.search("</" + tagName + ">"));

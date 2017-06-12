@@ -56,7 +56,7 @@
 			  <button id="btnManageProduct" class="tablinks" onclick="openTab(event, 'manageProduct')">Gerenciar Produto</button>
 			  <button id="btnManageService" class="tablinks" onclick="openTab(event, 'manageService')">Gerenciar Serviço</button>
 			  <button id="btnManageAdmin"   class="tablinks" onclick="openTab(event, 'manageAdmin')">Gerenciar Administrador</button>
-			  <button class="tablinks" onclick="ajaxRequestDoc('profit.html');">Tela de Ganhos</button>
+			  <button id="btnProfit"        class="tablinks" onclick="ajaxRequestDoc('profit.html');">Tela de Ganhos</button>
 			</div>
 		</aside>
 
@@ -67,17 +67,18 @@
 			<div id="myInfo" class="tabcontent">
 				<h3>Minhas Informações</h3>
 				<p class="pUserLevel">Administrador</p>
+				<form>
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 
-					<div class="divUserPhoto"> 
-						<img src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
+					<div class="divUserPhoto">
+						<img id="userImage" src="images/userphoto.png" class="fullImage" alt="Imagem do Usuário"/>
 					</div>
 					<br>
 					<table class="table2Items">
 						<tr>
 							<td><label for="nome">Nome Completo</label></td>
-							<td><input type="text" id="name" value="Danilo F. Ted" readonly></td>
+							<td><input type="text" name="name" value="Danilo F. Ted" readonly></td>
 						</tr>
 						<tr>
 							<td><label for="user">Nome de Usuário</label></td>
@@ -127,7 +128,7 @@
 
 						<tr>
 							<td><label for="nairro">Bairro</label></td>
-							<td><input type="text" name="distict" value="Centro" readonly></td>
+							<td><input type="text" name="district" value="Centro" readonly></td>
 						</tr>
 
 						<tr>
@@ -141,11 +142,13 @@
 						</tr>
 					</table>	                 
 				</fieldset>
+				</form>
 			</div>
 
 			<div id="updateMyInfo" class="tabcontent">
 			  <h3>Alterar Meus Dados</h3>
 			  <p class="pUserLevel">Administrador</p>
+			  	<form>
 				<fieldset>
 					<legend>Dados Pessoais</legend>
 
@@ -173,7 +176,7 @@
 						</tr>
 						<tr>
 							<td><label for="foto">Foto</label></td>
-							<td><button class="button" type="button">Upload photo...</button></td>
+							<td><img id="previewfoto" width="50px" height="50px" src="#" alt="Sua imagem"/><input id="uploadfoto" type="file" onchange="readImgURL(this);"/></td>
 						</tr>
 					</table>
 									
@@ -215,7 +218,7 @@
 
 						<tr>
 							<td><label for="bairro">Bairro</label></td>
-							<td><input type="text" name="distict" value="Centro"></td>
+							<td><input type="text" name="district" value="Centro"></td>
 						</tr>
 
 						<tr>
@@ -229,6 +232,7 @@
 						</tr>
 					</table>	                 
 				</fieldset>
+				</form>
 				<button class="button" type="button" onclick="alert('Suas informações foram salvas com sucesso!')">Salvar alterações</button>
 			</div>
 
@@ -270,14 +274,14 @@
 			<div id="historic" class="tabcontent">
 			  <h3>Históricos</h3>
 			  <fieldset>
-				<legend> Produtos </legend>
+				<legend> Compra de Produtos </legend>
 				<div class="centerElements">
 					<table class="tableHistoric">
 						<tr>
-							<th>Produto</th>
-							<th>Quantidade comprada</th>
-							<th>Valor unitário</th>
-							<th>Valor total </th>
+							<th>Nº da Compra</th>
+							<th>Data da Compra</th>
+							<th>Valor Total</th>
+							<th>Total de Parcelas</th>
 						</tr>
 						<tr>
 							<td>
@@ -310,7 +314,7 @@
 			</fieldset>
 			<br><br>
 			<fieldset>
-				<legend> Serviços </legend>
+				<legend> Agendamento de Serviços </legend>
 				<div class="centerElements">
 					<table class="tableHistoric">
 						<tr>
@@ -348,6 +352,8 @@
 					</table>
 				</div>
 			</fieldset>
+			<div id="details">
+			</div>
 			</div>
 			
 			<div id="manageProduct" class="tabcontent">

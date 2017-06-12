@@ -212,6 +212,21 @@ function readAll(tableName, callback) {
 	
 	req.transaction.oncomplete = e => callback(list);
 }
+function readAllWithKey(tableName, callback) {
+	let list = [];
+	let req = db.transaction(tableName).objectStore(tableName).openCursor();
+
+	req.onsuccess = e => {
+		let cursor = e.target.result;
+
+		if (cursor) {
+			list.push({ key: cursor.key, value : cursor.value });
+			cursor.continue();
+		}
+	};
+	
+	req.transaction.oncomplete = e => callback(list);
+}
 // ================================================================================================================== //
 // ============================================= Implementação PRODUTO ============================================== //
 // ================================================================================================================== //
@@ -397,8 +412,8 @@ function insertPet() {
 	insertIntoDB("tablePet", {
 		idPet: Number(document.forms[0]["id"].value),
 		idUser: document.forms[0]["User"].value,
-		name: parseFloat(document.forms[0]["animal"].value),
-		age: document.forms[0]["idade"].value,
+		name: document.forms[0]["animal"].value,
+		age: parseInt(document.forms[0]["idade"].value),
 		breed: document.forms[0]["raça"].value,
 		photo: localStorage.getItem("img64Base")
 	});
@@ -449,31 +464,31 @@ function deleteUser() {
 function updateUser(isAdmin) {
 	if (!isAdmin) {
 		insertIntoDB("tableUser", {
-			id: Number(document.forms[0]["id"].value),
-			name: document.forms[0]["name"].value,
-			username: document.forms[0]["user"].value,
-			password: document.forms[0]["password"].value,
+			id: Number(document.forms[1]["id"].value),
+			name: document.forms[1]["name"].value,
+			username: document.forms[1]["user"].value,
+			password: document.forms[1]["password"].value,
 			photo: localStorage.getItem("img64Base"),
-			email: document.forms[0]["email"].value,
-			phone_number: document.forms[0]["phone_number"].value, 
-			cep: document.forms[0]["cep"].value, 
-			address: document.forms[0]["address"].value, 
-			number: document.forms[0]["number"].value,
-			district: document.forms[0]["district"].value, 
-			city: document.forms[0]["city"].value,
-			state: document.forms[0]["state"].value,
+			email: document.forms[1]["email"].value,
+			phone_number: document.forms[1]["phone_number"].value, 
+			cep: document.forms[1]["cep"].value, 
+			address: document.forms[1]["address"].value, 
+			number: document.forms[1]["number"].value,
+			district: document.forms[1]["district"].value, 
+			city: document.forms[1]["city"].value,
+			state: document.forms[1]["state"].value,
 			isAdmin: isAdmin
 		});
 	}
 	else {
 		insertIntoDB("tableUser", {
-			id: Number(document.forms[0]["id"].value),
-			name: document.forms[0]["name"].value,
-			username: document.forms[0]["user"].value,
-			password: document.forms[0]["password"].value,
+			id: Number(document.forms[1]["id"].value),
+			name: document.forms[1]["name"].value,
+			username: document.forms[1]["user"].value,
+			password: document.forms[1]["password"].value,
 			photo: localStorage.getItem("img64Base"),
-			email: document.forms[0]["email"].value,
-			phone_number: document.forms[0]["phone number"].value, 
+			email: document.forms[1]["email"].value,
+			phone_number: document.forms[1]["phone number"].value, 
 			isAdmin: isAdmin
 		});
 	}
