@@ -73,3 +73,19 @@ function ajaxRequestDoc(docname)
 	xhttp.open("GET", docname, false);
 	xhttp.send();
 }
+
+function ajaxRequestDoc(docname, callback)
+{
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() 
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			setTagProperties("main", this.responseText);
+			setTagProperties("aside", this.responseText);
+			callback();
+		}
+	};
+	xhttp.open("GET", docname, false);
+	xhttp.send();
+}
