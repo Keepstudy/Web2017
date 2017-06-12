@@ -491,6 +491,9 @@ function setInfoAdmin(user) {
 	document.forms[1]["phone number"].value = user.phone_number;
 
 	document.getElementsByClassName("fieldsetAdress")[1].style.display = "none";
+
+	startProductSearchAdmin();
+	startServicesSearchAdmin();
 }
 
 function saleDetails(sale) {
@@ -813,6 +816,106 @@ function showProfit() {
 	});
 }
 
+
+
+
+
+/*----------------------------------- novas funcoes ------------------------------------------ */
+
+function appendProductsAdmin(){
+	document.getElementById("productCountAdm").innerHTML = itemListAdmin.length;
+	let total = Math.ceil(itemListAdmin.length/3);
+	/*Percorre as linhas*/
+	for(let i = Math.ceil(rowAdminProducts/3), j = Math.ceil(rowAdminProducts/3); i < Math.min(total,j+3); i++){
+		/*Adiciona no HTML um novo container*/
+		document.getElementById("productListRowAdm").innerHTML+= `
+			<div id="productListRowAdm` + (i.toString()) + `" class='container'>
+			</div>`;
+
+		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
+		for(let k = 0; k < Math.min(3,itemListAdmin.length-(i*3));k++,rowAdminProducts++){
+			/*Adiciona itens um a um em cada linha*/
+			document.getElementById("productListRowAdm" + (i.toString())).innerHTML += `
+				<div class='item'> <!-- Put an element here! -->
+					<img src="`+itemListAdmin[i*3+k].photo+`" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
+					<br>
+					<input type="radio" name="product" onclick='changeFormsProductsAdm(`+JSON.stringify(itemListAdmin[i*3+k])+`)'>`+itemListAdmin[i*3+k].name+`</input>
+					<br><label class="productPrize">R$ <label id="priceProductAdmin">`+ itemListAdmin[i*3+k].price.toFixed(2).toString() +`</label></label>
+				</div>`;
+		}
+	}
+	
+	if(rowAdminProducts >= itemListAdmin.length){
+		document.getElementById("addMoreProductsAdm").disabled = true; 
+		document.getElementById("addMoreProductsAdm").style.background="DarkGrey";
+	}
+}
+
+/*Funcao que inicia a busca*/
+function startProductSearchAdmin(){
+	rowAdminProducts = 0;	
+	document.getElementById("productListRowAdm").innerHTML = ""; 
+	searchProductByName(document.getElementById("txtSearchUpdateProduct").value, productList => {
+		itemListAdmin = productList;
+		appendProductsAdmin();
+	});
+}
+
+function changeFormsProductsAdm(product){
+	let value = product;
+	document.getElementById("nameProduct").value = value.name;
+	document.getElementById("idProduct").value = value.id;
+	document.getElementById("priceProduct").value = value.price.toString();
+	document.getElementById("quantityProduct").value = value.quantity;
+	document.getElementById("descriptionProduct").value = value.description;
+}
+
+function appendServicesAdmin(){
+	document.getElementById("serviceCountAdm").innerHTML = itemListAdmin.length;
+	let total = Math.ceil(itemListAdmin.length/3);
+	/*Percorre as linhas*/
+	for(let i = Math.ceil(rowAdminProducts/3), j = Math.ceil(rowAdminProducts/3); i < Math.min(total,j+3); i++){
+		/*Adiciona no HTML um novo container*/
+		document.getElementById("serviceListRowAdm").innerHTML+= `
+			<div id="serviceListRowAdm` + (i.toString()) + `" class='container'>
+			</div>`;
+
+		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
+		for(let k = 0; k < Math.min(3,itemListAdmin.length-(i*3));k++,rowAdminProducts++){
+			/*Adiciona itens um a um em cada linha*/
+			document.getElementById("serviceListRowAdm" + (i.toString())).innerHTML += `
+				<div class='item'> <!-- Put an element here! -->
+					<img src="`+itemListAdmin[i*3+k].photo+`" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
+					<br>
+					<input type="radio" name="product" onclick='changeFormsServicesAdm(`+JSON.stringify(itemListAdmin[i*3+k])+`)'>`+itemListAdmin[i*3+k].name+`</input>
+					<br><label class="servicePrize">R$ <label id="serviceProductAdmin">`+ itemListAdmin[i*3+k].price.toFixed(2).toString() +`</label></label>
+				</div>`;
+		}
+	}
+	
+	if(rowAdminProducts >= itemListAdmin.length){
+		document.getElementById("addMoreServicesAdm").disabled = true; 
+		document.getElementById("addMoreServicesAdm").style.background="DarkGrey";
+	}
+}
+
+/*Funcao que inicia a busca*/
+function startServicesSearchAdmin(){
+	rowAdminProducts = 0;	
+	document.getElementById("serviceListRowAdm").innerHTML = ""; 
+	searchServiceByName(document.getElementById("txtSearchUpdateService").value, productList => {
+		itemListAdmin = productList;
+		appendServicesAdmin();
+	});
+}
+
+function changeFormsServicesAdm(service){
+	let value = service;
+	document.getElementById("nameService").value = value.name;
+	document.getElementById("idService").value = value.id;
+	document.getElementById("priceService").value = value.price.toString();
+	document.getElementById("descriptionService").value = value.description;
+}
 
 
 

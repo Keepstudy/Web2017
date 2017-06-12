@@ -408,14 +408,14 @@
 				<a href="#" onclick="ajaxRequestDoc('createProduct.html');" class="hyperlink">Clique aqui para cadastrar um novo produto!</a>
 				<h4>Alterar Produto</h4>
 				<input id="txtSearchUpdateProduct" type="text" name="txtSearchUpdateProduct" placeholder="Qual produto você deseja alterar?">
-				<button class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateProduct" >Buscar por nome</button>
+				<button onclick="startProductSearchAdmin();" class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateProduct" >Buscar por nome</button>
 				<br><br>
 				<div>
 					<div class="listSearchUpdateProductHeader">
-						<label> 1 Produto(s) encontrado(s) </label>
+						<label id="productCountAdm"> 1</label><label> Produto(s) encontrado(s) </label>
 					</div>
-					<div class='maskSearchUpdateProduct'>
-						<div class='containerSearchUpdateProduct'>
+					<div id = "productListRowAdm" class='maskSearchUpdateProduct'>
+						<div id="productListRowAdm" class='containerSearchUpdateProduct'>
 							<div class='item'> <!-- Put an element here! -->
 								<img src="images/racao-pedigree-equilibrio-natural-para-caes-adultos.jpg" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
 								<br>
@@ -425,8 +425,7 @@
 						</div>
 					</div>
 					<div class="listSearchUpdateProductHeader">
-						<button class="btn waves-effect waves-light" type="button">Anterior</button>
-						<button class="btn waves-effect waves-light" type="button" >Próximo</button>
+						<button id="addMoreProductsAdm" class="buttonPageProduct" type="button" onclick="appendProductsAdmin();">Adicionar mais</button>
 					</div>
 				</div>
 				<h5>Dados do produto selecionado</h5>
@@ -473,7 +472,7 @@
 						</div>	
 						<div class="row">
 							<div class="input-field col s12">
-								<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Produto alterado com sucesso!')">Salvar alterações</button>
+								<button class="btn waves-effect waves-light" type="submit" name="action"onclick="updateProduct();">Salvar alterações</button>
 							</div>
 						</div>	
 					</form>
@@ -486,13 +485,13 @@
 				<a href="#" onclick="ajaxRequestDoc('createService.html');" class="hyperlink">Clique aqui para cadastrar um novo serviço!</a>
 				<h4>Alterar Serviço</h4>
 				<input id="txtSearchUpdateService" type="text" name="txtSearchUpdateService" placeholder="Qual serviço você deseja alterar?">
-				<button class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateService">Buscar por nome</button>	
+				<button onclick="startServicesSearchAdmin();" class="btn waves-effect waves-light" type="submit" id="btnSearchUpdateService">Buscar por nome</button>	
 				<br><br>
 				<div>
 					<div class="listSearchUpdateProductHeader">
-						<label> 1 Serviço(s) encontrado(s) </label>
+						<label id="serviceCountAdm"> 1 Serviço(s) encontrado(s) </label>
 					</div>
-					<div class='maskSearchUpdateProduct'>
+					<div id = "serviceListRowAdm" class='maskSearchUpdateProduct'>
 						<div class='containerSearchUpdateProduct'>
 							<div class='item'> <!-- Put an element here! -->
 								<img src="images/vacinacao.jpg" alt="Imagem do Serviço" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
@@ -503,8 +502,7 @@
 						</div>
 					</div>
 					<div class="listSearchUpdateProductHeader">
-						<button class="btn waves-effect waves-light" type="button">Anterior</button>
-						<button class="btn waves-effect waves-light" type="button" >Próximo</button>
+						<button id="addMoreServicesAdm" class="buttonPageProduct" type="button" onclick="appendServicesAdmin();">Adicionar mais</button>
 					</div>
 				</div>
 				<h5>Dados do serviço selecionado</h5>
@@ -545,7 +543,7 @@
 							</div>
 						</div>	
 						<div class="input-field col s12">
-							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="alert('Serviço alterado com sucesso!')">Salvar Alterações</button>
+							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="updateService();">Salvar Alterações</button>
 						</div>
 					</form>
 				</div>
