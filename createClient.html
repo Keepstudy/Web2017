@@ -15,6 +15,7 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 		 
+		<script src="validate.js"></script>
 
 	</head>
 	
@@ -208,7 +209,7 @@
 						</div>					
 				</fieldset>
 				<div>
-					<button class="btn waves-effect waves-light" type="submit" name="action" onclick='insertUser(0);ajaxRequestDoc("createdClient.html");'>Cadastrar
+					<button class="btn waves-effect waves-light" type="submit" name="action" onclick="checkFieldClient()">Cadastrar
 							<i class="material-icons right">send</i>
 					</button>
 				</div>
