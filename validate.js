@@ -179,7 +179,7 @@ function checkFieldUpdateClient()
 	else if(email.length == 0) {
 		ret = false;
 		window.alert("Insira um email, campo obrigatório"); 
-	}}
+	}
 	else if(CEP.length == 0) {
 		ret = false;
 		window.alert("Insira um CEP, campo obrigatório.");
