@@ -453,7 +453,7 @@ function insertUser(isAdmin) {
 			password: document.forms[0]["senha"].value,
 			photo: localStorage.getItem("img64Base"),
 			email: document.forms[0]["email"].value,
-			phone_number: document.forms[0]["phone number"].value, 
+			phone_number: document.forms[0]["phone_number"].value, 
 			isAdmin: isAdmin
 		});
 	}
@@ -488,7 +488,7 @@ function updateUser(isAdmin) {
 			password: document.forms[1]["password"].value,
 			photo: localStorage.getItem("img64Base"),
 			email: document.forms[1]["email"].value,
-			phone_number: document.forms[1]["phone number"].value, 
+			phone_number: document.forms[1]["phone_number"].value, 
 			isAdmin: isAdmin
 		});
 	}
