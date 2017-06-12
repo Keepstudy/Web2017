@@ -38,7 +38,7 @@ function appendProducts(){
 	for(let i = Math.ceil(row/3), j = Math.ceil(row/3); i < Math.min(total,j+3); i++){
 		/*Adiciona no HTML um novo container*/
 		document.getElementById("productList").innerHTML+= `
-			<div id="productListRow` + (i.toString()) + `" class='container'>
+			<div id="productListRow` + (i.toString()) + `" class='row'>
 			</div>`;
 
 		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
@@ -47,7 +47,7 @@ function appendProducts(){
 			console.log(i*3+k);
 			
 			document.getElementById("productListRow" + (i.toString())).innerHTML += `
-				<div class='item'> <!-- Put an element here! -->
+				<div class='col s4'> <!-- Put an element here! -->
 				<div style="width:100%;height:120px;overflow:hidden;">
 						<img src=`+itemList[i*3+k].photo+` alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
 				</div>
@@ -834,14 +834,14 @@ function appendProductsAdmin(){
 	for(let i = Math.ceil(rowAdminProducts/3), j = Math.ceil(rowAdminProducts/3); i < Math.min(total,j+3); i++){
 		/*Adiciona no HTML um novo container*/
 		document.getElementById("productListRowAdm").innerHTML+= `
-			<div id="productListRowAdm` + (i.toString()) + `" class='container'>
+			<div id="productListRowAdm` + (i.toString()) + `" class='row'>
 			</div>`;
 
 		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
 		for(let k = 0; k < Math.min(3,itemListAdmin.length-(i*3));k++,rowAdminProducts++){
 			/*Adiciona itens um a um em cada linha*/
 			document.getElementById("productListRowAdm" + (i.toString())).innerHTML += `
-				<div class='item'> <!-- Put an element here! -->
+				<div class='col s4'> <!-- Put an element here! -->
 					<img src="`+itemListAdmin[i*3+k].photo+`" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
 					<br>
 					<input type="radio" name="product" onclick='changeFormsProductsAdm(`+JSON.stringify(itemListAdmin[i*3+k])+`)'>`+itemListAdmin[i*3+k].name+`</input>
@@ -884,14 +884,14 @@ function appendServicesAdmin(){
 	for(let i = Math.ceil(rowAdminProducts/3), j = Math.ceil(rowAdminProducts/3); i < Math.min(total,j+3); i++){
 		/*Adiciona no HTML um novo container*/
 		document.getElementById("serviceListRowAdm").innerHTML+= `
-			<div id="serviceListRowAdm` + (i.toString()) + `" class='container'>
+			<div id="serviceListRowAdm` + (i.toString()) + `" class='row'>
 			</div>`;
 
 		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
 		for(let k = 0; k < Math.min(3,itemListAdmin.length-(i*3));k++,rowAdminProducts++){
 			/*Adiciona itens um a um em cada linha*/
 			document.getElementById("serviceListRowAdm" + (i.toString())).innerHTML += `
-				<div class='item'> <!-- Put an element here! -->
+				<div class='col s4'> <!-- Put an element here! -->
 					<img src="`+itemListAdmin[i*3+k].photo+`" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
 					<br>
 					<input type="radio" name="product" onclick='changeFormsServicesAdm(`+JSON.stringify(itemListAdmin[i*3+k])+`)'>`+itemListAdmin[i*3+k].name+`</input>
