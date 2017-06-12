@@ -335,6 +335,8 @@ function finalizeSale(){
 		total += (parseFloat(value.price)*parseFloat(value.quantity));
 	}
 
+	updateStock(JSON.stringify(productsInCart));
+
 	console.log(JSON.stringify(productsInCart));
 	console.log(total);
 	console.log(document.getElementById("numberOfPortions").value);

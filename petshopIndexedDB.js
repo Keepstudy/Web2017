@@ -391,6 +391,27 @@ function searchProductAndServiceByName(pattern, callback) {
 	});
 }
 
+function updateStock(itemList) {
+	itemList = JSON.parse(itemList);
+	let tableProduct = db.transaction(['tableProduct'], 'readwrite').objectStore('tableProduct');
+	
+	tableProduct.openCursor().onsuccess = function(event) {
+		let cursor = event.target.result;
+		if(cursor) {
+			for(let i in itemList) {
+				if(cursor.value.name == itemList[i].name) {
+					let updateData = cursor.value;
+					  
+					updateData.quantity -= itemList[i].quantity;
+					let request = cursor.update(updateData);
+					request.onsuccess = function() { };
+					break;
+				};
+			}
+			cursor.continue();        
+		}
+	};
+}
 
 // ================================================================================================================== //
 // ============================================= Implementação SERVIÇO ============================================== //
