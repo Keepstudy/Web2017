@@ -9,11 +9,27 @@ function startProductSearch(){
 	
 
 	document.getElementById("productList").innerHTML = "";
-	document.getElementById("sortProducts").value = "relevancia";
+	
 
 	searchProductByName(document.getElementById("txtSearch").value, productList => {
 		itemList = productList;
 		appendProducts();
+		sortItems();
+	});
+}
+
+/*Funcao que inicia a busca*/
+function startServiceSearch(){
+	row = 0;
+	
+
+	document.getElementById("productList").innerHTML = "";
+	
+
+	searchServiceByName(document.getElementById("txtSearch").value, productList => {
+		itemList = productList;
+		appendProducts();
+		sortItems();
 	});
 }
 
@@ -22,12 +38,12 @@ function startProductAndServiceSearch(){
 	row = 0;	
 
 	document.getElementById("productList").innerHTML = "";
-	document.getElementById("sortProducts").value = "relevancia";
 
 	searchProductAndServiceByName(document.getElementById("txtSearch").value, productAndServiceList => {
 		itemList = productAndServiceList;
 		console.log(itemList);
 		appendProducts();
+		sortItems();
 	});
 }
 
@@ -51,7 +67,9 @@ function appendProducts(){
 				<div style="width:100%;height:120px;overflow:hidden;">
 						<img src=`+itemList[i*3+k].photo+` alt="Produto No Carrinho" style="width:100%;height:100%;"></img>
 				</div>
-				<a class="productLink" href="#" onclick='findItemToAdd("`+itemList[i*3+k].name+`");'>`+itemList[i*3+k].name+`</a>
+				<div style="height:30px; width:auto;">
+					<a class="productLink" href="#" onclick='findItemToAdd("`+itemList[i*3+k].name+`");'>`+itemList[i*3+k].name+`</a>
+				</div>
 				<label class="productPrize"><br>R$ `+itemList[i*3+k].price.toFixed(2).toString()+`</label>
 				</div>`;
 		}
@@ -77,6 +95,7 @@ function sortItems(){
 	row = 0;
 	document.getElementById("productList").innerHTML = "";
 	appendProducts();
+
 }
 
 function findItemToAdd(name){
@@ -493,12 +512,26 @@ function setInfoAdmin(user) {
 	document.forms[1]["user"].value = user.username;
 	document.forms[1]["id"].value = user.id;
 
+	document.forms[1]["password"].value = user.password;
+	document.forms[1]["confpassword"].value = user.password;
+
 	document.forms[1]["email"].value = user.email;
 	document.forms[1]["phone_number"].value = user.phone_number;
 
 	document.getElementsByClassName("fieldsetAddress")[1].style.display = "none";
 
 	startProductSearchAdmin();
+
+	document.getElementById("nameProduct").value = "";
+	document.getElementById("idProduct").value = "";
+	document.getElementById("priceProduct").value = "";
+	document.getElementById("quantityProduct").value = "";
+	document.getElementById("descriptionProduct").value = "";
+
+	document.getElementById("nameService").value = "";
+	document.getElementById("idService").value = "";
+	document.getElementById("priceService").value = "";
+	document.getElementById("descriptionService").value = "";
 }
 
 function saleDetails(sale) {
@@ -558,6 +591,9 @@ function setInfoClient(user) {
 	document.forms[1]["name"].value = user.name;
 	document.forms[1]["user"].value = user.username;
 	document.forms[1]["id"].value = user.id;
+
+	document.forms[1]["password"].value = user.password;
+	document.forms[1]["confpassword"].value = user.password;
 
 	document.forms[1]["email"].value = user.email;
 	document.forms[1]["phone number"].value = user.phone_number;
@@ -843,9 +879,12 @@ function appendProductsAdmin(){
 			document.getElementById("productListRowAdm" + (i.toString())).innerHTML += `
 				<div class='col s4'> <!-- Put an element here! -->
 					<img src="`+itemListAdmin[i*3+k].photo+`" alt="Imagem do Produto" height=100px width=auto style="padding: 10px 1px 1px 50px;"></img>
-					<br>
-					<input type="radio" name="product" onclick='changeFormsProductsAdm(`+JSON.stringify(itemListAdmin[i*3+k])+`)'>`+itemListAdmin[i*3+k].name+`</input>
-					<br><label class="productPrize">R$ <label id="priceProductAdmin">`+ itemListAdmin[i*3+k].price.toFixed(2).toString() +`</label></label>
+						<p>
+						<input id="`+itemListAdmin[i*3+k].name+`" type="radio" name="product" onclick='changeFormsProductsAdm(`+JSON.stringify(itemListAdmin[i*3+k])+`)'></input>
+						<label for="`+itemListAdmin[i*3+k].name+`"> `+ itemListAdmin[i*3+k].name+`</label><br>
+						<label class="productPrize">R$ <label id="priceProductAdmin">`+ itemListAdmin[i*3+k].price.toFixed(2).toString() +`</label></label>
+						</p>
+					
 				</div>`;
 		}
 	}
@@ -950,7 +989,16 @@ function updateMyInfoClick() {
 	});
 }
 
-
+function showItemsByFilter() {
+	let ifp = document.getElementById("itemFilterProduct").checked;
+	let ifs = document.getElementById("itemFilterService").checked;
+	if (ifp && ifs)
+		startProductAndServiceSearch();
+	else if (ifp)
+		startProductSearch();
+	else if (ifs)
+		startServiceSearch();
+}
 
 
 

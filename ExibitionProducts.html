@@ -48,31 +48,34 @@
 		</nav>
 
 		<aside style="padding: 0px 0px 0px 50px"> <!-- left-sidebar -->
-			<h3 >Filtros</h3>
+			<h4 >Filtros</h4>
 			<div class = "itemFilter">
-				<h4>Tipo</h4>
-				<form action="">
-					<input type="checkbox" name="servicos" checked="checked">Serviços<br>
-					<input type="checkbox" name="produtos" checked="checked">Produtos 
+				<form action="#">
+					<input type="checkbox" id="itemFilterProduct" onchange="showItemsByFilter();" checked/>
+      				<label for="itemFilterProduct">Exibir Produtos</label>
+
+      				<input type="checkbox" id="itemFilterService" onchange="showItemsByFilter();" checked/>
+      				<label for="itemFilterService">Exibir Serviços</label>
 				</form>
 			</div>
 		</aside>
 
 		<main> <!-- main content -->
 		<br><br>
-			<div class="listProductHeader">
-				<label><span id="productCount">0</span> Produto(s) </label>
-				<select id="sortProducts" class="selectProduct" onclick="sortItems();">
-				  <option value="relevancia">Relevancia</option>
-				  <option value="menorPreco">Menor Preço</option>
-				  <option value="maiorPreco">Maior Preço</option>
-				  <option value="maisVendidos">Mais Vendidos</option>
+			<div class="input-field col s12" style="display:block !important;clear:both;">
+				<label style="float:left;"><span id="productCount">0</span> Produto(s) Encontrado(s) </label>
+				<span style="float:right;">
+				<select id="sortProducts" class="selectProduct col s12" onclick="sortItems();">
+				  <option value="" disabled selected>Ordenar Por</option>
+				      <option value="menorPreco">Menor Preço</option>
+				      <option value="maiorPreco">Maior Preço</option>
 				</select>
+				</span>
 			</div>
 			<div id = "productList" class='mask'>
 			</div>
 			<div class="listProductHeader" style="text-align: center;">
-				<button id="addMoreProducts" class="buttonPageProduct" type="button" onclick="appendProducts()">Adiciona mais</button>
+				<button id="addMoreProducts" class="buttonPageProduct" type="button" onclick="appendProducts();">Adiciona mais</button>
 			</div>
 		</main>
 

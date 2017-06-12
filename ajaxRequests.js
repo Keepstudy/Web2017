@@ -74,7 +74,7 @@ function ajaxRequestDoc(docname)
 	xhttp.send();
 }
 
-function ajaxRequestDoc(docname, callback)
+function ajaxRequestDocWithCallback(docname, callback)
 {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() 
