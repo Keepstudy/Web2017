@@ -1,9 +1,4 @@
 - userProfile (tem q aparecer as abas de acordo com o nivel de usuario).
 - Limpar a base64 da localStorage.
-- Data default do calendário.
-- tirar o "esqueceu a senha?"
-- validar campos
 - colocar onchange para todos inputs de img
 - deixar os itens pre-definidos TOP
-- gerar o id do pet
-- alterar o index: prods, servs recentemente inseridos...
