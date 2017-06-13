@@ -604,3 +604,10 @@ header{
     min-height: 28vh;
     flex-direction: column;
 }
+
+.containerPets{
+    width:100%;
+    background-color:#ffffff;
+    overflow:hidden;
+    float:left;
+}

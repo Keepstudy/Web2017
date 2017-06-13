@@ -15,7 +15,7 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 		 
-		<script src="validate.js"></script>
+
 	</head>
 	
 	<body>
@@ -63,26 +63,19 @@
 			<fieldset>
 				<legend>Inserir serviço</legend>
 			
-				<form action="#" method="post">
+				<form action="#" method="#" onsubmit="event.preventDefault();return false;">
 					<div class="tudo">
 						<div class="avatar">
 							<img src="images/iconeservico.png" alt="Avatar" style="width:128px;height:128px;">
 						</div>	
 						<div class="conteudo">
 							<div class="row">
-								<form class="col s12">
 									<div class="row">									
 										<div class="input-field col s12">
 											<input  name="pname" type="text" class="validate">
 											<label for="nome" class="active">Nome</label>
 										</div>	
 									</div>
-									<div class="row">
-										<div class="input-field col s6">
-											<input name="idservice" type="number" class="validate">
-											<label for="id" class="active">ID</label>	
-										</div>
-									</div>	
 									<div class="file-field input-field">
 										<div class="btn">
 											<span>Foto</span>
@@ -106,12 +99,11 @@
 									</div>	
 									<div class="row">
 										<div class="input-field col s12">
-											<button class="btn waves-effect waves-light" type="submit" name="action" onclick="checkServiceField()">Cadastrar
+											<button class="btn waves-effect waves-light" type="submit" name="action" onclick="checkServiceField();">Cadastrar
 												<i class="material-icons right">send</i>
 											</button>
 										</div>
 									</div>										
-								</form>
 							</div>
 						</div>					
 					</div>

@@ -7,26 +7,39 @@ function checkFieldAdmin()
 	let email    = document.forms[1]["email"].value;
 	let pass     = document.forms[1]["senha"].value;
 	let confpass = document.forms[1]["confsenha"].value;
-	
-	if(name.length == 0)
+	let error    = false;
+
+	if(name.length == 0){
 		Materialize.toast("Insira um nome, campo obrigatório",8000);
+		error = true;		
+	}
 	
-	else if(usernameAlreadyExists(username))
+	else if(usernameAlreadyExists(username)){
 		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
+		error = true;	
+	}
 	
-	else if(cpfAlreadyExists(cpf))
+	if(cpfAlreadyExists(cpf)){
 		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
+		error = true;
+	}
 	
-	else if(phone.length == 0)
+	if(phone.length == 0){
 		Materialize.toast("Insira um telefone, campo obrigatório",8000);
+		error = true;	
+	}
 	
-	else if(email.length == 0)
+	else if(email.length == 0){
 		Materialize.toast("Insira um email, campo obrigatório",8000);
+		error = true;
+	}
 	
-	else if (pass.localeCompare(confpass) != 0)
+	else if (pass.localeCompare(confpass) != 0){
 		Materialize.toast("Senhas diferentes, digite novamente.",8000);
+		error = true;	
+	}
 	
-	else
+	if(error == false)
 	{
 		insertUser(1);
 		ajaxRequestDoc('createdAdmin.html');
@@ -87,44 +100,69 @@ function checkFieldClient()
 	let district = document.forms[0]["district"].value;
 	let city     = document.forms[0]["city"].value;
 	let State    = document.forms[0]["state"].value;
+	let error    = false;
 	
-	if(name.length == 0)
+	if(name.length == 0){
 		Materialize.toast("Insira um nome, campo obrigatório",8000);
+		error = true;
+	}
 	
-	else if(usernameAlreadyExists(username))
+	else if(usernameAlreadyExists(username)){
 		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
+		error = true;
+	}
 	
-	if(cpfAlreadyExists(cpf))
+	if(cpfAlreadyExists(cpf)){
 		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
+		error = true;
+	}
 	
-	if (pass.localeCompare(confpass) != 0)
+	if (pass.localeCompare(confpass) != 0){
 		Materialize.toast("Senhas diferentes, digite novamente.",8000);
+		error = true;
+	}
 	
-	if(email.length == 0)
+	if(email.length == 0){
 		Materialize.toast("Insira um email, campo obrigatório",8000);
+		error = true;
+	}
 	
-	if(phone.length == 0)
+	if(phone.length == 0){
 		Materialize.toast("Insira um telefone, campo obrigatório",8000);
+		error = true;
+	}
 	
-	if(CEP.length == 0)
+	if(CEP.length == 0){
 		Materialize.toast("Insira um CEP, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	if(adress.length == 0)
+	if(adress.length == 0){
 		Materialize.toast("Insira um endereço, campo obrigatório",8000);
+		error = true;
+	}
 	
-	if(number.length == 0)
+	if(number.length == 0){
 		Materialize.toast("Insira um número, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	if(district.length == 0)
+	if(district.length == 0){
 		Materialize.toast("Insira um bairro, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	if(city.length == 0)
+	if(city.length == 0){
 		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	if(state.length == 0)
+	if(state.length == 0){
 		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else
+	if(error === false)
 	{
 		insertUser(0);
 		ajaxRequestDoc('createdClient.html');
@@ -206,86 +244,92 @@ function checkFieldUpdateClient()
 
 function checkPetField()
 {
-	let username = document.forms[0]["User"].value;
 	let animal   = document.forms[0]["animal"].value;
 	let breed    = document.forms[0]["raça"].value;
 	let age      = document.forms[0]["idade"].value;
+	let error = false;
 	
-	if(username.length == 0)
-		Materialize.toast("Insira um usuário, campo obrigatório.",8000);
-	
-	else if(animal.length == 0)
+	if(animal.length == 0){
 		Materialize.toast("Insira um nome para o animel, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(breed.length == 0)
+	if(breed.length == 0){
 		Materialize.toast("Insira uma raça para o animal, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(age.length == 0)
+	if(age.length == 0){
 		Materialize.toast("Insira a idade do animal, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else
+	if(error === false)
 	{
 		insertPet();
-		ajaxRequestDoc('createdPet.html');
 	}
 }
 
 function checkProductField()
 {
-	let name        = document.forms[1]["produto"].value;
-	let id          = document.forms[1]["idproduct"].value;	
-	let price       = document.forms[1]["preço"].value;
-	let amount      = document.forms[1]["quantidade"].value;
-	let description = document.forms[1]["desc"].value;
+	let name        = document.forms[0]["produto"].value;	
+	let price       = document.forms[0]["preço"].value;
+	let amount      = document.forms[0]["quantidade"].value;
+	let description = document.forms[0]["desc"].value;
+	let error       = false;
 	
-	if(name.length == 0)
+	if(name.length == 0){
 		Materialize.toast("Insira um nome para o produto, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(productAlreadyExists(id))
-		Materialize.toast("Insira outro id para o produto, ja existe um produto cadastrado com esse id.",8000);
-	
-	else if(price.length == 0)
+	if(price.length == 0){
 		Materialize.toast("Insira um preço para o produto, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(amount.length == 0)
+	if(amount.length == 0){
 		Materialize.toast("Insira a quantidade para o produto, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(description.length == 0)
+	if(description.length == 0){
 		Materialize.toast("Insira uma descrição para o produto, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else
+	if(error === false)
 	{
 		insertProduct();
-		ajaxRequestDoc('createdProduct.html');
 	}
 }
 
 
 function checkServiceField()
 {
-	let name        = document.forms[1]["pname"].value;
-	let id          = document.forms[1]["idservice"].value;	
-	let price       = document.forms[1]["preço"].value;	
-	let description = document.forms[1]["desc"].value;
+	let name        = document.forms[0]["pname"].value;
+	let price       = document.forms[0]["preço"].value;	
+	let description = document.forms[0]["desc"].value;
+	let error       = false;
 	
-	
-	if(name.length == 0)
+	if(name.length == 0){
 		Materialize.toast("Insira um nome para o serviço, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(serviceAlreadyExists(id))
-		Materialize.toast("Insira outro id para o serviço, ja existe um serviço cadastrado com esse id.",8000);
-	
-	else if(price.length == 0)
+	if(price.length == 0){
 		Materialize.toast("Insira um preço para o serviço, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	else if(description.length == 0)
+	if(description.length == 0){
 		Materialize.toast("Insira uma descrição para o serviço, campo obrigatório.",8000);
+		error = true;
+	}
 	
-	
-	else
+	if(error === false)
 	{
 		insertService();
-		ajaxRequestDoc('createdService.html');
 	}
 }
 
