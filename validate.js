@@ -99,7 +99,7 @@ function checkFieldClient()
 	let number   = document.forms[0]["number"].value;
 	let district = document.forms[0]["district"].value;
 	let city     = document.forms[0]["city"].value;
-	let State    = document.forms[0]["state"].value;
+	let state    = document.forms[0]["state"].value;
 	let error    = false;
 	
 	if(name.length == 0){
@@ -185,7 +185,7 @@ function checkFieldUpdateClient()
 	let number   = document.forms[1]["number"].value;
 	let district = document.forms[1]["district"].value;
 	let city     = document.forms[1]["city"].value;
-	let State    = document.forms[1]["state"].value;
+	let state    = document.forms[1]["state"].value;
 	
 	if(name.length == 0) {
 		ret = false;

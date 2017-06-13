@@ -966,7 +966,7 @@ function updateMyInfoClick() {
 				if (!userList[i].isAdmin && !checkFieldUpdateClient()) return ;
 				deleteFromDB("tableUser", parseInt(localStorage.getItem("id")));
 				updateUser(userList[i].isAdmin);
-				alert("Suas alterações foram salvas com sucesso!");
+				Materialize.toast("Suas informações foram atualizadas com sucesso!",4000);
 				readAll("tableUser", uList => {
 					for(let j in uList) {
 						if (uList[j].id == localStorage.getItem("id")) {
