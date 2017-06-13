@@ -335,7 +335,7 @@ function finalizeSale(){
 	insertSale(localStorage.id,JSON.stringify(productsInCart),total,document.getElementById("numberOfPortions").value);
 	ajaxRequestDoc('index.html');
 	initializeIdxLists();
-	Materialize.toast("Agendamento realizado com sucesso!",10000);
+	Materialize.toast("Pagamento realizado com sucesso!",10000);
 }
 
 /*-----------------------------------------------------userProfile----------------------------------*/
