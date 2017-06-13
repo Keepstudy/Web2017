@@ -591,6 +591,7 @@ function setInfoClient(user) {
 	document.forms[1]["city"].value = user.city;
 	document.forms[1]["state"].value = user.state;
 
+
 	/* aba manageAnimal */
 
 	searchPetsByUserId(localStorage.id, petsList => {

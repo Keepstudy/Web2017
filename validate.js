@@ -39,10 +39,7 @@ function checkFieldAdmin()
 		error = true;	
 	}
 	
-	if(error == false)
-	{
-		insertUser(1);
-	}
+	return ret;
 }
 
 function checkFieldUpdateAdmin()
@@ -81,9 +78,7 @@ function checkFieldUpdateAdmin()
 		ret = false;
 		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	}
-	if(ret == true){
-		updateMyInfoClick();
-	}
+	return ret;
 }
 
 function checkFieldClient()
@@ -239,9 +234,7 @@ function checkFieldUpdateClient()
 		ret = false;
 		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	}
-	if(ret === true){
-		updateUser(0);
-	}
+	return ret;
 }
 
 function checkPetField()

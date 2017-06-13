@@ -207,7 +207,7 @@
 							<div class="file-field input-field">
 								<div class="btn">
 									<span>Foto</span>
-									<input id="uploadfoto" type="file" onchange="readImgURL(this)";>
+									<input id="uploadfoto" type="file" onchange="readImgURL(this)">
 								</div>
 							</div>
 						</div>			
@@ -273,8 +273,8 @@
 						</div>
 				</fieldset>
 				<div class="row">
-					<div class="input-field col s12">
-						<button class="btn waves-effect waves-light" onclick="">Salvar alterações
+					<div id="updateInfoDiv" class="input-field col s12">
+						<button class="btn waves-effect waves-light" type="submit" onclick="updateMyInfoClick();">Salvar alterações
 							<i class="material-icons right">send</i>
 						</button>
 					</div>
