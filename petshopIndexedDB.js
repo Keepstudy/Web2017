@@ -217,6 +217,12 @@ function readAllWithKey(tableName, callback) {
 	
 	req.transaction.oncomplete = e => callback(list);
 }
+function insertIntoDatabaseWithCallback(tablename, obj, callback) {
+	let req = db.transaction(tableName, "readwrite")
+	.objectStore(tableName).add(obj);
+	req.onsuccess = e => { console.log("A new entry has been added to your database successfully."); callback(); };
+	req.onerror = e =>   { console.log("An error occurred while trying to add a new entry to the database."); };
+}
 // ================================================================================================================== //
 // ============================================= Implementação PRODUTO ============================================== //
 // ================================================================================================================== //
@@ -463,7 +469,7 @@ function insertUser(isAdmin) {
 	if (localStorage.getItem("img64Base") !== undefined)
 		img = localStorage.getItem("img64Base");
 	if (!isAdmin) {
-		insertIntoDB("tableUser", {
+		insertIntoDatabaseWithCallback("tableUser", {
 			id: Number(document.forms[0]["id"].value),
 			name: document.forms[0]["name"].value,
 			username: document.forms[0]["user"].value,
@@ -478,10 +484,10 @@ function insertUser(isAdmin) {
 			city: document.forms[0]["city"].value,
 			state: document.forms[0]["state"].value,
 			isAdmin: isAdmin
-		});
+		}, () => { ajaxRequestDoc('createdClient.html'); });
 	}
 	else {
-		insertIntoDB("tableUser", {
+		insertIntoDatabaseWithCallback("tableUser", {
 			id: Number(document.forms[0]["id"].value),
 			name: document.forms[0]["nome"].value,
 			username: document.forms[0]["username"].value,
@@ -490,7 +496,7 @@ function insertUser(isAdmin) {
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
 			isAdmin: isAdmin
-		});
+		}, () => { ajaxRequestDoc('createdAdmin.html'); });
 	}
 }
 function deleteUser() {
