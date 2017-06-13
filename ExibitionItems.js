@@ -566,7 +566,7 @@ function setInfoClient(user) {
 	document.forms[0]["id"].value = user.id;
 
 	document.forms[0]["email"].value = user.email;
-	document.forms[0]["phone number"].value = user.phone_number;
+	document.forms[0]["phone_number"].value = user.phone_number;
 
 	document.getElementsByClassName("fieldsetAddress")[0].style.display = "block";
 
@@ -581,11 +581,6 @@ function setInfoClient(user) {
 
 	document.getElementsByClassName("pUserLevel")[1].innerHTML = "Cliente";
 
-	if (user.photo != null && user.photo != "")
-		document.getElementById("previewfoto").src = user.photo;
-	else
-		document.getElementById("previewfoto").src = "";
-
 	document.forms[1]["name"].value = user.name;
 	document.forms[1]["user"].value = user.username;
 	document.forms[1]["id"].value = user.id;
@@ -594,7 +589,7 @@ function setInfoClient(user) {
 	document.forms[1]["confpassword"].value = user.password;
 
 	document.forms[1]["email"].value = user.email;
-	document.forms[1]["phone number"].value = user.phone_number;
+	document.forms[1]["phone_number"].value = user.phone_number;
 
 	document.getElementsByClassName("fieldsetAddress")[1].style.display = "block";
 
@@ -614,19 +609,21 @@ function setInfoClient(user) {
 		else {
 			for(let i in petsList){
 				document.getElementById("listAnimals").innerHTML += `
-						<div class="divAnimalInfo">
-							<div class="divAnimalPhoto">
-								<img src="`+petsList[i].photo+`" class="fullImage" alt="Imagem do Animal"/>
+						<div>
+						<div class="containerPets">
+							<div class = "row">
+								<div class="col s3" style="transform:translateY(10px);">
+									<img src="`+petsList[i].photo+`" class="fullImage" alt="Imagem do Animal"/>
+								</div>
+								<table class="col s8">
+									<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
+									<tr><td>ID</td><td><input type="text" id="animalID" value="`+petsList[i].idPet+`" readonly></td></tr>
+									<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="`+petsList[i].age+`" readonly></td></tr>
+									<tr><td>Raça</td><td><input type="text" id="animalBreed" value="`+petsList[i].breed+`" readonly></td></tr>
+								</table>
 							</div>
-							<table class="table2Items">
-								<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
-								<tr><td>ID</td><td><input type="text" id="animalID" value="`+petsList[i].idPet+`" readonly></td></tr>
-								<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="`+petsList[i].age+`" readonly></td></tr>
-								<tr><td>Raça</td><td><input type="text" id="animalBreed" value="`+petsList[i].breed+`" readonly></td></tr>
-							</table>
-						</div>
-					</input>
-					<br>`;
+							
+						</div><hr></div>`;
 			}
 		}
 	});
@@ -969,7 +966,7 @@ function updateMyInfoClick() {
 				if (!userList[i].isAdmin && !checkFieldUpdateClient()) return ;
 				deleteFromDB("tableUser", parseInt(localStorage.getItem("id")));
 				updateUser(userList[i].isAdmin);
-				alert("Suas alterações foram salvas com sucesso!");
+				Materialize.toast("Suas informações foram atualizadas com sucesso!",4000);
 				readAll("tableUser", uList => {
 					for(let j in uList) {
 						if (uList[j].id == localStorage.getItem("id")) {
@@ -997,6 +994,7 @@ function showItemsByFilter() {
 	else if (ifs)
 		startServiceSearch();
 }
+
 
 /* ------------------------     novas func     -------------------------- */
 
