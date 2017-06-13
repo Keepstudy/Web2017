@@ -243,7 +243,7 @@ function insertProduct() {
 	if (localStorage.getItem("img64Base") !== undefined)
 		img = localStorage.getItem("img64Base");
 	insertIntoDB("tableProduct", {
-		id: Number(document.forms[0]["idproduct"].value),
+		id: getNextProductId(),
 		name: document.forms[0]["produto"].value,
 		price: parseFloat(document.forms[0]["preço"].value),
 		quantity: Number(document.forms[0]["quantidade"].value),
@@ -413,6 +413,24 @@ function updateStock(itemList) {
 	};
 }
 
+function getNextPetId() {
+	readAll("tablePet", list => {
+		return list.length + 1;
+	});
+}
+
+function getNextProductId() {
+	readAll("tableProduct", list => {
+		return list.length + 1;
+	});
+}
+
+function getNextServiceId() {
+	readAll("tableService", list => {
+		return list.length + 1;
+	});
+}
+
 // ================================================================================================================== //
 // ============================================= Implementação SERVIÇO ============================================== //
 // ================================================================================================================== //
@@ -421,7 +439,7 @@ function insertService() {
 	if (localStorage.getItem("img64Base") !== undefined)
 		img = localStorage.getItem("img64Base");
 	insertIntoDB("tableService", {
-		id: Number(document.forms[0]["idservice"].value),
+		id: getNextServiceId(),
 		name: document.forms[0]["pname"].value,
 		price: parseFloat(document.forms[0]["preço"].value),
 		description: document.forms[0]["desc"].value,
@@ -454,7 +472,7 @@ function insertPet() {
 	if (localStorage.getItem("img64Base") !== undefined)
 		img = localStorage.getItem("img64Base");
 	insertIntoDB("tablePet", {
-		idPet: Number(document.forms[0]["id"].value),
+		idPet: Number(getNextPetId()),
 		idUser: document.forms[0]["User"].value,
 		name: document.forms[0]["animal"].value,
 		age: parseInt(document.forms[0]["idade"].value),
@@ -467,6 +485,7 @@ function deletePet() {
 }
 function updatePet() {
 }
+
 // ================================================================================================================== //
 // ============================================= Implementação USUÁRIO  ============================================= //
 // ================================================================================================================== //

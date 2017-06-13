@@ -1001,7 +1001,3 @@ function showItemsByFilter() {
 	else if (ifs)
 		startServiceSearch();
 }
-
-
-
-
