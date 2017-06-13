@@ -1,4 +1,3 @@
 - userProfile (tem q aparecer as abas de acordo com o nivel de usuario).
 - Limpar a base64 da localStorage.
 - colocar onchange para todos inputs de img
-- deixar os itens pre-definidos TOP
