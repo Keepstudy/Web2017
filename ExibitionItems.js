@@ -491,8 +491,7 @@ function setInfo() {
 }
 
 function setInfoAdmin(user) {
-	document.getElementById("btnManageAnimal").style.display = "none";
-	document.getElementById("btnHistoric").style.display = "none";
+	document.getElementById("btnManageAnimal").style.display = "none"
 
 	document.getElementById("btnManageProduct").style.display = "block";
 	document.getElementById("btnManageService").style.display = "block";
@@ -563,7 +562,6 @@ function appDetails(sale) {
 function setInfoClient(user) {
 
 	document.getElementById("btnManageAnimal").style.display = "block";
-	document.getElementById("btnHistoric").style.display = "block";
 
 	document.getElementById("btnManageProduct").style.display = "none";
 	document.getElementById("btnManageService").style.display = "none";
