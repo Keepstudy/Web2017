@@ -311,9 +311,35 @@ function paymentScreen(){
 		return;
 	}
 
-	ajaxRequestDoc("payment.html");
-	// Inserir uma nova compra. Falta os negócios dos usuários.
-}	
+	let productsInCart = [];
+
+	for(let key in localStorage) {
+		if(key == 'user' || key == 'id' || key == 'appointment' || key == 'img64Base'){
+			continue;
+		}
+		value = JSON.parse(localStorage.getItem(key));
+		productsInCart.push(value);
+	}
+
+	readAll("tableProduct", list => {
+		let error = false;
+
+		for(let i in list) {
+			for(let j in productsInCart) {
+				if (list[i].name == productsInCart[j].name) {
+					let qtty = parseInt(productsInCart[j].quantity);
+					if (!(1 <= qtty && qtty <= list[i].quantity)){
+						Materialize.toast("Quantidade inválida escolhida para o produto '" + list[i].name + "'!", 4000);
+						error = true;
+					}
+				}
+			}
+		}
+
+		if (!error)
+			ajaxRequestDoc("payment.html");
+	});
+}
 
 /*--------------------------------------------Finalizar Compra de Produtos ---------------------------------------------------------------------------*/
 
