@@ -189,7 +189,7 @@ function addItemToCart(){
 		let value = JSON.parse(localStorage.getItem(itemKey));
 		localStorage.setItem(itemKey,JSON.stringify({photo:itemImage.toString(),name:itemName,price:itemPrice,quantity:(parseInt(value.quantity)+1).toString()}));
 	}
-	alert("Add esta porquera: " + itemKey);
+	Materialize.toast("Produto Adicionado ao carrinho.", 4000);
 }
 
 
@@ -290,13 +290,12 @@ function checkLogin(callback) {
 
 	isValidUser(user,pass, (validatedUser,idUser) => {
 		if(validatedUser){
-			//alert("Bem vindo, " + " " + user + " " + "seu login foi efetuado com sucesso.");
+			Materialize.toast("Bem Vindo " + user + ".",4000);
 			localStorage.user = user;
 			localStorage.id = idUser;
-			console.log(localStorage.id);
 		}
 		else{
-			alert("Login inválido, tente novamente.");
+			Materialize.toast("Usuário ou senha inválido.",4000);
 			localStorage.user = null;
 			localStorage.id = null;
 		}
@@ -336,13 +335,9 @@ function finalizeSale(){
 	}
 
 	updateStock(JSON.stringify(productsInCart));
-
-	console.log(JSON.stringify(productsInCart));
-	console.log(total);
-	console.log(document.getElementById("numberOfPortions").value);
 	insertSale(localStorage.id,JSON.stringify(productsInCart),total,document.getElementById("numberOfPortions").value);
-
-	console.log(document.getElementById("dayBirthPayment").value);
+	ajaxRequestDoc('index.html');
+	Materialize.toast("Agendamento realizado com sucesso!",10000);
 }
 
 /*-----------------------------------------------------userProfile----------------------------------*/
@@ -386,7 +381,7 @@ function slotFreeClick() {
 				ajaxRequestDoc('paymentService.html');
 			}
 			else{
-				alert("Logue-se!");
+				Materialize.toast("Usuário não logado. Logue primeiro.",4000);
 			}
 		};
 	}
@@ -398,6 +393,8 @@ function finalizeAppointment(){
 	value.totalPortions = document.getElementById("numberOfPortions").value;
 	console.log("obj: " + value);
 	insertAppointment(value.idUser,value.idPet,value.idService,value.total,value.totalPortions,value.dateApointment);
+	ajaxRequestDoc('index.html');
+	Materialize.toast("Agendamento realizado com sucesso!",10000);
 	//console.log(document.getElementById("dayBirthPayment").value);
 }
 
