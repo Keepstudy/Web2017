@@ -1,0 +1,606 @@
+
+body {
+	font-family:Verdana;
+}
+/* -------------------------------  */
+#C1 {
+	background-color: #0090FF;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-family:Verdana;
+    margin: 40px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+}
+#R1 {
+	background-color: #4682B4;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-family:Verdana;
+	border-radius: 100%;
+    margin: 100px -120px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+}
+.tableGanhos {
+    border-collapse: collapse;
+    width: 100%;
+}
+.tableGanhos tr td, .tableGanhos tr th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+.tableGanhos tr:nth-child(even) {
+    background-color: #dddddd;
+}
+h1 {
+	color: #191970;
+	font-size: 25px;
+	text-align:center;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 1px;
+}
+.conteudo {
+	float:left;
+}
+.avatar {
+	float:left;
+	width:128px;
+	height:128px;
+}
+.tudo {
+	display:table;
+}
+.cadastro {
+	text-align:center;
+	color:#191970;
+}
+/* -------------------------------  */
+.hyperlink {
+	font-family:Verdana;
+	text-decoration:none;
+	color:black;
+}
+.hyperlink:hover {
+	color: #0090FF;
+}
+/* -------------------------------  */
+.fullImage {      /* fazer a imagem tomar o tamanho da div */
+	width:100%;
+	height:100%;
+}
+/* -------------------------------  */
+.centerElements { /* centralizar os elementos dentro de um bloco */
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+/* -------------------------------  */
+#loginButton {
+	background-color: #0090FF;
+	border: none;
+	color: white;
+	padding: 8px 8px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	cursor: pointer;
+	font-family:Verdana;
+}
+.button {
+	background-color: #0090FF;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-family:Verdana;
+}
+/* -------------------------------  */
+nav {
+	border-radius:40px;
+	clear:both;
+	background-color:#0090FF !important;
+	width:100%;
+	height:40px;
+	font-size:20px;
+}
+nav a {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:15%;
+	height:40px;
+	color:white;
+	font-family:Verdana;
+	text-decoration:none;
+	background-color:#0090FF;
+}
+nav a:hover{
+	border-radius:0px 15px 0px 15px;
+	color:#0090FF;
+	background-color:white; 
+}
+/* -------------------------------  */
+#divLogo {
+	width:25%;
+	float:left;
+	height:160px;
+	text-align:center;
+	background-color:white;
+}
+/* -------------------------------  */
+#divSearch {
+	width:50%;
+	float:left;
+	height:160px;
+	background-color:white;
+}
+#txtSearch {
+	height:3px;
+	width:400px;
+	padding:20px;
+}
+/* -------------------------------  */
+#divUser {
+	width:25%;
+	float:right;
+	height:160px;
+	background-color:white;
+}
+/* -------------------------------  */
+#divCart {
+	float:right;
+	padding:5px;
+}
+#divCart a img {
+	width:50px;
+	height:50px;
+}
+/* -------------------------------  */
+#divLogin {
+	clear:both;
+	padding:5px;
+	text-align:right;
+}
+#divLogin a, #divLogin div {
+	padding:5px;
+}
+#divLogin div input {
+	width:100px;
+	height:25px;
+}
+/* -------------------------------  */
+main {
+	width:50%;
+	float:left;
+	height:auto;
+	background-color:white;
+	transform:translateY(20px);
+}
+/* -------------------------------  */
+aside {
+    width:25%;
+    float:left;
+    height:400px;
+    background-color:white;
+    transform:translateY(60px);
+}
+/* -------------------------------  */
+footer {
+    clear:both;
+    background-color:white;
+    width:100%;
+    height:40px;
+    font-family:Verdana;
+    font-size:10px;
+}
+#divLogoFooter {
+    text-align:left;
+    float:left;
+    width:100px;
+    height:40px;
+}
+#divInfo {
+    text-align:center;
+    width:calc(100% - 100px);
+}
+#divInfo a {
+    padding:20px;
+    text-decoration:none;
+}
+/* ----------------------------- */
+#divImage {
+	width:300px;
+	height:300px;
+	float:left;
+}
+#divProductOptions {
+	margin: 0px 0px 0px 10%;
+	width:300px;
+	height:300px;
+	float:left;
+	text-align:center;
+}
+#divProductDescription {
+	clear:both;
+	width:600px;
+	height:300px;
+}
+#lblProductPrice {
+	font-size:25px;
+	color:#0090FF;
+}
+#lblInStock {
+	color:#005500;
+}
+/* -------------------------------  */
+#divServicePrice {
+	margin: 0px 0px 0px 10%;
+	width:300px;
+	height:300px;
+	float:left;
+	text-align:center;
+}
+#lblServicePrice {
+	font-size:25px;
+	color:#0090FF;
+}
+#selectWeek, #selectDayOfTheWeek {
+	font-size:15px;
+	font-family:Verdana;
+ }
+ .slotCalendar {
+	display:block;
+	width:100%;
+	height:75px;
+	color:black;
+	text-decoration:none;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	background-color:lightblue;	
+	border-collapse:collapse;
+ }
+ .slotFree {
+	background-color:lightblue;
+ }
+ .slotFree:hover, .slotFree label:hover {
+	background-color:#0090FF;
+	cursor: pointer;
+ }
+  .slotOccupied {
+	background-color:lightgrey;
+ }
+  .slotOccupied:hover, .slotOccupied label:hover {
+	cursor:not-allowed;
+ }
+ .serviceImage {
+	width:60px;
+	height:60px;
+	float:right;
+	padding:7px 10px 7px 0px;
+ }
+ #divServiceDescription, #divProductDescription {
+	clear:both;
+	height:auto;
+ }
+ #pDescription {
+	font-family:Verdana;
+	font-size:15px;
+	white-space:pre-wrap;
+ }
+/* -------------------------------  */
+/* Style the tab */
+div.tab {
+    float:right;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 180px;
+    height: auto;
+	box-sizing:border-box;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: auto;
+	box-sizing:border-box;
+}
+/* -------------------------------  */
+.pUserLevel {
+	font-size:20px;
+	color:#0090FF;
+}
+.table2Items {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.table2Items td {
+	width:50%;
+}
+.table2Items td input {
+	font-family:Verdana;
+	font-size:15px;
+}
+/* -------------------------------  */
+ .divAnimalInfo {
+	width:100%;
+	height:150px;
+	border:1px solid black;
+	border-collapse: collapse;
+	background-color:white;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+ }
+ .divUserPhoto {
+	width:128px;
+	height:128px;
+ }
+ .divAnimalPhoto {
+	width:128px;
+	height:128px;
+	float:left;
+	padding-right:50px;
+ }
+ /* -------------------------------  */
+.tableHistoric {
+    border-collapse: collapse;
+}
+ .tableHistoric td, .tableHistoric th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 5px;
+}
+ .tableHistoric tr:nth-child(even) {
+    background-color: #dddddd;
+}
+ /* -------------------------------  */
+ #txtSearchUpdateProduct, #txtSearchUpdateService {
+	height:3px;
+	width:400px;
+	padding:20px;
+}
+.listSearchUpdateProductHeader{
+    padding: 2px 2px 2px 2px;
+    display: inline-block;
+	clear:both;
+    background-color:#eee;
+	width:100%; 
+	height:auto;
+	overflow:hidden;
+}
+ .maskSearchUpdateProduct{
+    border:10px solid #ffffff;
+    width:auto; 
+    height:auto;
+    overflow:hidden;
+}
+.containerSearchUpdateProduct{
+    width:auto;
+    background-color:#ffffff;
+    margin-top:-10px;
+    overflow:hidden;
+    float:left;
+}
+/* -------------------------------  */
+.productTitle{
+	text-align: left;
+	font-size: 150%;
+	color: black;
+}
+.paymentLabel{
+    display: inline-block;
+    float: right;
+    clear: left;
+    width: 250px;
+    text-align: right;
+	padding: 5px 5px;
+	font-size: 125%;
+	color: black;
+}
+.paymentFields{
+	display: inline-block;
+	float: left;
+	padding: 5px 5px;
+}
+.alignParagraph{
+	text-align: left;
+}
+.paymentConfirm{
+	float: right;
+	background-color: #0090FF;
+	border: none;
+	color: white;
+	padding: 8px 8px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	cursor: pointer;
+	font-family:Verdana;
+}
+.paymentTable{
+    width: 100%;
+    background-color: #eee;
+}
+.productPrize{
+	display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 100%;
+}
+.listProductHeader{
+    padding: 2px 2px 2px 2px;
+    display: inline-block;
+    float: right;
+    background-color:#eee;width:100%; height:auto;overflow:hidden;
+}
+.selectProduct{
+    display: inline-block;
+    float: right;
+    padding: 2px 2px 4px 4px;
+}
+.productLink {
+    font-family:Verdana;
+    text-align:center;
+    text-decoration:none;
+    color:black;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+.itemFilter{
+    float:left;margin-right:10px;width:250px;height:auto;background-color:#ffffff;margin-top:10px;
+    border-right:solid #eee 2px;
+    border-bottom:solid #eee 2px;
+}
+ .mask{
+    border:10px solid #ffffff;
+    width:100%; 
+    height:auto;
+    overflow:hidden;
+}
+.container{
+    width:100%;
+    background-color:#ffffff;
+    margin-top:-10px;
+    overflow:hidden;
+    float:left;
+}
+.item{
+    float:left;
+    margin-right:10px;
+    width:250px;
+    height:220px;
+    background-color:#ffffff;
+    margin-top:10px;
+    border-right:solid #eee 2px;
+    border-bottom:solid #eee 2px;
+}
+.homeTitles{
+	padding: 5px 5px 5px 5px;
+	font-family:Verdana;
+	font-size:120%;
+}
+.buttonPageProduct{
+    background-color: #0090FF;
+    border: none;
+    color: white;
+    padding: 2px 2px 4px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family:Verdana;
+    float: right;
+}
+/* -------------------------------  */
+.shoppingCartTable{
+	width:100%;
+}
+
+.shoppingCartTable tr:nth-child(even){
+	background-color: #eee;
+}
+
+.shoppingCartTable tr:nth-child(odd){
+	background-color: #fff;
+}
+
+.shoppingCartTable tr th{
+	text-align: left;
+}
+
+.shoppingCartTable tr td{
+	border: 2px;
+    border-radius: 10px;
+	padding: 1% 1% 1% 1%;
+}
+.shoppingCartButtonConfirm{
+	float: right;
+	background-color: #0090FF;
+	border: none;
+	color: white;
+	padding: 8px 8px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	cursor: pointer;
+	font-family:Verdana;
+}
+
+.shoppingCartButtonRemove{
+	display: inline-block;
+	float: center;
+	background-color: #FF0000;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: 13px;
+	cursor: pointer;
+	font-family:Verdana;
+	border-radius: 50%;
+}
+/* -------------------------------  */
+
+header{
+    display: flex;
+    min-height: 28vh;
+    flex-direction: column;
+}

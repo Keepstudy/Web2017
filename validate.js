@@ -9,28 +9,22 @@ function checkFieldAdmin()
 	let confpass = document.forms[1]["confsenha"].value;
 	
 	if(name.length == 0)
-		Materialize.toast("Insira um nome, campo obrigatório", 4000);
+		Materialize.toast("Insira um nome, campo obrigatório",8000);
 	
 	else if(usernameAlreadyExists(username))
-		Materialize.toast("Nome de usuário já existe, tente outro.", 8000);
+		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
 	
 	else if(cpfAlreadyExists(cpf))
-		Materialize.toast("CPF já cadastrado, insira outro CPF.", 8000);
+		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
 	
 	else if(phone.length == 0)
-		Materialize.toast("Insira um telefone, campo obrigatório", 8000);
+		Materialize.toast("Insira um telefone, campo obrigatório",8000);
 	
 	else if(email.length == 0)
-		Materialize.toast("Insira um email, campo obrigatório", 8000);
+		Materialize.toast("Insira um email, campo obrigatório",8000);
 	
-	else if (pass.length == 0)
-		Materialize.toast("Insira uma senha, campo obrigatório", 8000);
-	
-	else if (confpass.length == 0)
-		Materialize.toast("Insira a confirmação de senha, campo obrigatório", 8000);
-		
 	else if (pass.localeCompare(confpass) != 0)
-		Materialize.toast("Senhas diferentes, digite novamente.", 8000);
+		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	
 	else
 	{
@@ -53,101 +47,87 @@ function checkFieldUpdateAdmin()
 	
 	if(name.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um nome, campo obrigatório", 8000);
+		Materialize.toast("Insira um nome, campo obrigatório",8000);
 	}
 	else if(usernameAlreadyExists(username)){
 		ret = false;
-		Materialize.toast("Nome de usuário já existe, tente outro.", 8000);
+		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
 	}
 	else if(cpfAlreadyExists(cpf)){
 		ret = false;
-		Materialize.toast("CPF já cadastrado, insira outro CPF.", 8000);
+		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
 	}
 	else if(phone.length == 0){
 		ret = false;
-		Materialize.toast("Insira um telefone, campo obrigatório", 8000);
+		Materialize.toast("Insira um telefone, campo obrigatório",8000);
 	}
 	else if(email.length == 0){
 		ret = false;
-		Materialize.toast("Insira um email, campo obrigatório", 8000);
-	}
-	else if (pass.length == 0){
-		ret = false;
-		Materialize.toast("Insira uma senha, campo obrigatório", 8000);
-	}
-	else if (confpass.length == 0){
-		ret = false;
-		Materialize.toast("Insira a confirmação de senha, campo obrigatório", 8000);
+		Materialize.toast("Insira um email, campo obrigatório",8000);
 	}
 	else if (pass.localeCompare(confpass) != 0){
 		ret = false;
-		Materialize.toast("Senhas diferentes, digite novamente.", 8000);
+		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	}
 	return ret;
 }
 
 function checkFieldClient()
 {
-	let name     = document.forms[1]["name"].value;
-	let username = document.forms[1]["user"].value;
-	let cpf      = document.forms[1]["id"].value;	
-	let pass     = document.forms[1]["senha"].value;
-	let confpass = document.forms[1]["confsenha"].value;
-	let phone    = document.forms[2]["phone_number"].value;
-	let email    = document.forms[2]["email"].value;
-	let CEP      = document.forms[3]["cep"].value;
-	let adress   = document.forms[3]["address"].value;
-	let number   = document.forms[3]["number"].value;
-	let district = document.forms[3]["district"].value;
-	let city     = document.forms[3]["city"].value;
-	let State    = document.forms[3]["state"].value;
+	let name     = document.forms[0]["name"].value;
+	let username = document.forms[0]["user"].value;
+	let cpf      = document.forms[0]["id"].value;	
+	let pass     = document.forms[0]["senha"].value;
+	let confpass = document.forms[0]["confsenha"].value;
+	let phone    = document.forms[0]["phone_number"].value;
+	let email    = document.forms[0]["email"].value;
+	let CEP      = document.forms[0]["cep"].value;
+	let adress   = document.forms[0]["address"].value;
+	let number   = document.forms[0]["number"].value;
+	let district = document.forms[0]["district"].value;
+	let city     = document.forms[0]["city"].value;
+	let State    = document.forms[0]["state"].value;
 	
 	if(name.length == 0)
-		Materialize.toast("Insira um nome, campo obrigatório", 8000);
+		Materialize.toast("Insira um nome, campo obrigatório",8000);
 	
 	else if(usernameAlreadyExists(username))
-		Materialize.toast("Nome de usuário já existe, tente outro.", 8000);
+		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
 	
-	else if(cpfAlreadyExists(cpf))
-		Materialize.toast("CPF já cadastrado, insira outro CPF.", 8000);
+	if(cpfAlreadyExists(cpf))
+		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
 	
-	else if (pass.length == 0)
-		Materialize.toast("Insira uma senha, campo obrigatório", 8000);
+	if (pass.localeCompare(confpass) != 0)
+		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	
-	else if (confpass.length == 0)
-		Materialize.toast("Insira a confirmação de senha, campo obrigatório", 8000);
+	if(email.length == 0)
+		Materialize.toast("Insira um email, campo obrigatório",8000);
 	
-	else if (pass.localeCompare(confpass) != 0)
-		Materialize.toast("Senhas diferentes, digite novamente.", 8000);
+	if(phone.length == 0)
+		Materialize.toast("Insira um telefone, campo obrigatório",8000);
 	
-	else if(email.length == 0)
-		Materialize.toast("Insira um email, campo obrigatório", 8000);
+	if(CEP.length == 0)
+		Materialize.toast("Insira um CEP, campo obrigatório.",8000);
 	
-	else if(phone.length == 0)
-		Materialize.toast("Insira um telefone, campo obrigatório", 8000);
-
-	else if(CEP.length == 0)
-		Materialize.toast("Insira um CEP, campo obrigatório.", 8000);
+	if(adress.length == 0)
+		Materialize.toast("Insira um endereço, campo obrigatório",8000);
 	
-	else if(adress.length == 0)
-		Materialize.toast("Insira um endereço, campo obrigatório", 8000);
+	if(number.length == 0)
+		Materialize.toast("Insira um número, campo obrigatório.",8000);
 	
-	else if(number.length == 0)
-		Materialize.toast("Insira um número, campo obrigatório.", 8000);
+	if(district.length == 0)
+		Materialize.toast("Insira um bairro, campo obrigatório.",8000);
 	
-	else if(district.length == 0)
-		Materialize.toast("Insira um bairro, campo obrigatório.", 8000);
+	if(city.length == 0)
+		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	
-	else if(city.length == 0)
-		Materialize.toast("Insira uma cidade, campo obrigatório.", 8000);
-	
-	else if(state.length == 0)
-		Materialize.toast("Insira uma cidade, campo obrigatório.", 8000);
+	if(state.length == 0)
+		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	
 	else
 	{
 		insertUser(0);
-		ajaxRequestDoc("createdClient.html");
+		ajaxRequestDoc('createdClient.html');
 	}
 }
 
@@ -171,59 +151,55 @@ function checkFieldUpdateClient()
 	
 	if(name.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um nome, campo obrigatório", 8000);
+		Materialize.toast("Insira um nome, campo obrigatório",8000);
 	}
 	else if(usernameAlreadyExists(username)) {
 		ret = false;
-		Materialize.toast("Nome de usuário já existe, tente outro.", 8000);
+		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
 	}
 	else if(cpfAlreadyExists(cpf)) {
 		ret = false;
-		Materialize.toast("CPF já cadastrado, insira outro CPF.", 8000);
-	}
-	else if (pass.length == 0){
-		ret = false;
-		Materialize.toast("Insira uma senha, campo obrigatório", 8000);
-	}
-	else if (confpass.length == 0){
-		ret = false;
-		Materialize.toast("Insira a confirmação de senha, campo obrigatório", 8000);
+		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
 	}
 	else if (pass.localeCompare(confpass) != 0) {
 		ret = false;
-		Materialize.toast("Senhas diferentes, digite novamente.", 8000);
+		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	}
 	else if(email.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um email, campo obrigatório", 8000);
+		Materialize.toast("Insira um email, campo obrigatório",8000);
 	}
 	else if(phone.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um telefone, campo obrigatório", 8000);
+		Materialize.toast("Insira um telefone, campo obrigatório",8000);
+	}
+	else if(email.length == 0) {
+		ret = false;
+		Materialize.toast("Insira um email, campo obrigatório",8000); 
 	}
 	else if(CEP.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um CEP, campo obrigatório.", 8000);
+		Materialize.toast("Insira um CEP, campo obrigatório.",8000);
 	}
 	else if(adress.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um endereço, campo obrigatório", 8000);
+		Materialize.toast("Insira um endereço, campo obrigatório",8000);
 	}
 	else if(number.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um número, campo obrigatório.", 8000);
+		Materialize.toast("Insira um número, campo obrigatório.",8000);
 	}
 	else if(district.length == 0) {
 		ret = false;
-		Materialize.toast("Insira um bairro, campo obrigatório.", 8000);
+		Materialize.toast("Insira um bairro, campo obrigatório.",8000);
 	}
 	else if(city.length == 0) {
 		ret = false;
-		Materialize.toast("Insira uma cidade, campo obrigatório.", 8000);
+		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	}
 	else if(state.length == 0) {
 		ret = false;
-		Materialize.toast("Insira uma cidade, campo obrigatório.", 8000);
+		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	}
 	return ret;
 }
@@ -236,16 +212,16 @@ function checkPetField()
 	let age      = document.forms[0]["idade"].value;
 	
 	if(username.length == 0)
-		Materialize.toast("Insira um usuário, campo obrigatório.", 8000);
+		Materialize.toast("Insira um usuário, campo obrigatório.",8000);
 	
 	else if(animal.length == 0)
-		Materialize.toast("Insira um nome para o animel, campo obrigatório.", 8000);
+		Materialize.toast("Insira um nome para o animel, campo obrigatório.",8000);
 	
 	else if(breed.length == 0)
-		Materialize.toast("Insira uma raça para o animal, campo obrigatório.", 8000);
+		Materialize.toast("Insira uma raça para o animal, campo obrigatório.",8000);
 	
 	else if(age.length == 0)
-		Materialize.toast("Insira a idade do animal, campo obrigatório.", 8000);
+		Materialize.toast("Insira a idade do animal, campo obrigatório.",8000);
 	
 	else
 	{
@@ -263,19 +239,19 @@ function checkProductField()
 	let description = document.forms[1]["desc"].value;
 	
 	if(name.length == 0)
-		Materialize.toast("Insira um nome para o produto, campo obrigatório.", 8000);
+		Materialize.toast("Insira um nome para o produto, campo obrigatório.",8000);
 	
 	else if(productAlreadyExists(id))
-		Materialize.toast("Insira outro id para o produto, ja existe um produto cadastrado com esse id.", 8000);
+		Materialize.toast("Insira outro id para o produto, ja existe um produto cadastrado com esse id.",8000);
 	
 	else if(price.length == 0)
-		Materialize.toast("Insira um preço para o produto, campo obrigatório.", 8000);
+		Materialize.toast("Insira um preço para o produto, campo obrigatório.",8000);
 	
 	else if(amount.length == 0)
-		Materialize.toast("Insira a quantidade para o produto, campo obrigatório.", 8000);
+		Materialize.toast("Insira a quantidade para o produto, campo obrigatório.",8000);
 	
 	else if(description.length == 0)
-		Materialize.toast("Insira uma descrição para o produto, campo obrigatório.", 8000);
+		Materialize.toast("Insira uma descrição para o produto, campo obrigatório.",8000);
 	
 	else
 	{
@@ -294,16 +270,16 @@ function checkServiceField()
 	
 	
 	if(name.length == 0)
-		Materialize.toast("Insira um nome para o serviço, campo obrigatório.", 8000);
+		Materialize.toast("Insira um nome para o serviço, campo obrigatório.",8000);
 	
 	else if(serviceAlreadyExists(id))
-		Materialize.toast("Insira outro id para o serviço, ja existe um serviço cadastrado com esse id.", 8000);
+		Materialize.toast("Insira outro id para o serviço, ja existe um serviço cadastrado com esse id.",8000);
 	
 	else if(price.length == 0)
-		Materialize.toast("Insira um preço para o serviço, campo obrigatório.", 8000);
+		Materialize.toast("Insira um preço para o serviço, campo obrigatório.",8000);
 	
 	else if(description.length == 0)
-		Materialize.toast("Insira uma descrição para o serviço, campo obrigatório.", 8000);
+		Materialize.toast("Insira uma descrição para o serviço, campo obrigatório.",8000);
 	
 	
 	else
