@@ -41,7 +41,6 @@ function startProductAndServiceSearch(){
 
 	searchProductAndServiceByName(document.getElementById("txtSearch").value, productAndServiceList => {
 		itemList = productAndServiceList;
-		console.log(itemList);
 		appendProducts();
 		sortItems();
 	});
@@ -60,7 +59,6 @@ function appendProducts(){
 		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
 		for(let k = 0; k < Math.min(3,itemList.length-(i*3));k++,row++){
 			/*Adiciona itens um a um em cada linha*/
-			console.log(i*3+k);
 			
 			document.getElementById("productListRow" + (i.toString())).innerHTML += `
 				<div class='col s4'> <!-- Put an element here! -->
@@ -182,7 +180,7 @@ function addItemToCart(){
 	let itemImage = document.getElementById("productImage").src;
 	let itemName = document.getElementById("nameProduct").innerHTML;
 	let itemPrice = document.getElementById("lblProductPrice").innerHTML;
-	console.log(localStorage.getItem(itemKey));
+
 	if(localStorage.getItem(itemKey) === null)
 		localStorage.setItem(itemKey,JSON.stringify({photo:itemImage.toString(),name:itemName,price:itemPrice,quantity:"1"}));
 	else{ 
@@ -261,8 +259,7 @@ function initializeCart(){
 
 function removeItemCartShopping(clicked_id){
 	localStorage.removeItem(clicked_id.substring(0,clicked_id.length-6));
-	console.log(clicked_id.substring(0,clicked_id.length-6));
-	console.log(localStorage.length);
+
 	document.getElementById("cartShopping").innerHTML = "";
 	initializeCart();
 }
@@ -337,6 +334,7 @@ function finalizeSale(){
 	updateStock(JSON.stringify(productsInCart));
 	insertSale(localStorage.id,JSON.stringify(productsInCart),total,document.getElementById("numberOfPortions").value);
 	ajaxRequestDoc('index.html');
+	initializeIdxLists();
 	Materialize.toast("Agendamento realizado com sucesso!",10000);
 }
 
@@ -391,11 +389,10 @@ function slotFreeClick() {
 function finalizeAppointment(){
 	let value = JSON.parse(localStorage.getItem("appointment"));
 	value.totalPortions = document.getElementById("numberOfPortions").value;
-	console.log("obj: " + value);
 	insertAppointment(value.idUser,value.idPet,value.idService,value.total,value.totalPortions,value.dateApointment);
 	ajaxRequestDoc('index.html');
+	initializeIdxLists();
 	Materialize.toast("Agendamento realizado com sucesso!",10000);
-	//console.log(document.getElementById("dayBirthPayment").value);
 }
 
 function showSlots() {
@@ -531,13 +528,10 @@ function setInfoAdmin(user) {
 
 function saleDetails(sale) {
 	sale = JSON.parse(sale);
-	console.log(sale);
-	//document.getElementById("details").innerHTML = sale.items;
 }
 
 function appDetails(sale) {
 	sale = JSON.parse(sale);
-	//document.getElementById("details").innerHTML;
 }
 
 function setInfoClient(user) {
@@ -700,7 +694,6 @@ function setIndexHeader(){
 				}
 				isAdmin = user.isAdmin;
 				if (isAdmin === true){
-					console.log(isAdmin);
 					document.getElementById("divCart").style.visibility = "hidden";
 				}
 			});
@@ -712,10 +705,9 @@ function setIndexHeader(){
 					<a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();"><img src="images/admin.png" width="50" height="50"/></a>
 	      		</div>
 			`;
-			
-			console.log(isAdmin);
 
 			ajaxRequestDoc('index.html');
+			initializeIdxLists();
 		}
 	});
 }
@@ -1008,7 +1000,6 @@ function initializeIdxLists() {
 
 
 function idxFindItemToAdd(name){
-	console.log(name);
 	let itemList = idxServiceList;
 	for(let i in itemList){
 		if(itemList[i].name == name){
@@ -1072,7 +1063,6 @@ function idxAppendProducts(){
 		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
 		for(let k = 0; k < Math.min(3,itemList.length-(i*3));k++,row++){
 			/*Adiciona itens um a um em cada linha*/
-			console.log(i*3+k);
 			
 			document.getElementById("idxProductListRow" + (i.toString())).innerHTML += `
 				<div class='col s4'> <!-- Put an element here! -->
@@ -1108,7 +1098,6 @@ function idxAppendServices(){
 		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
 		for(let k = 0; k < Math.min(3,itemList.length-(i*3));k++,row++){
 			/*Adiciona itens um a um em cada linha*/
-			console.log(i*3+k);
 			
 			document.getElementById("idxServiceListRow" + (i.toString())).innerHTML += `
 				<div class='col s4'> <!-- Put an element here! -->
@@ -1127,4 +1116,22 @@ function idxAppendServices(){
 		document.getElementById("idxAddMoreServices").disabled = true; 
 		document.getElementById("idxAddMoreServices").style.background="DarkGrey";
 	}
+}
+
+
+/*--------------------------------------------- logout(); function -------------------------------------------------- */
+
+function logout(){
+	Materialize.toast("Até logo, " + localStorage.user, 4000);
+	localStorage.id = localStorage.user = null;
+	document.getElementById("divLogin").innerHTML = `
+		<div>
+			<input type="text" name="txtUsername" placeholder="Usuário">
+			<input type="password" name="txtPassword" placeholder="Senha">
+			<button id="loginButton" type="button">Login</button>
+		</div>
+		<a class="hyperlink" href="createClient.html" >Cadastro</a>
+	`;
+	ajaxRequestDoc('index.html');
+	initializeIdxLists();
 }
