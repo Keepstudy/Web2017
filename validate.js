@@ -1,12 +1,12 @@
 function checkFieldAdmin()
 {
-	let name     = document.forms[1]["nome"].value;
-	let username = document.forms[1]["username"].value;
-	let cpf      = document.forms[1]["id"].value;
-	let phone    = document.forms[1]["phone number"].value;
-	let email    = document.forms[1]["email"].value;
-	let pass     = document.forms[1]["senha"].value;
-	let confpass = document.forms[1]["confsenha"].value;
+	let name     = document.forms[0]["nome"].value;
+	let username = document.forms[0]["username"].value;
+	let cpf      = document.forms[0]["id"].value;
+	let phone    = document.forms[0]["phone_number"].value;
+	let email    = document.forms[0]["email"].value;
+	let pass     = document.forms[0]["senha"].value;
+	let confpass = document.forms[0]["confsenha"].value;
 	let error    = false;
 
 	if(name.length == 0){
@@ -34,7 +34,7 @@ function checkFieldAdmin()
 		error = true;
 	}
 	
-	else if (pass.localeCompare(confpass) != 0){
+	if (pass.localeCompare(confpass) != 0){
 		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 		error = true;	
 	}
@@ -42,7 +42,6 @@ function checkFieldAdmin()
 	if(error == false)
 	{
 		insertUser(1);
-		ajaxRequestDoc('createdAdmin.html');
 	}
 }
 
@@ -66,23 +65,25 @@ function checkFieldUpdateAdmin()
 		ret = false;
 		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
 	}
-	else if(cpfAlreadyExists(cpf)){
+	if(cpfAlreadyExists(cpf)){
 		ret = false;
 		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
 	}
-	else if(phone.length == 0){
+	if(phone.length == 0){
 		ret = false;
 		Materialize.toast("Insira um telefone, campo obrigatório",8000);
 	}
-	else if(email.length == 0){
+	if(email.length == 0){
 		ret = false;
 		Materialize.toast("Insira um email, campo obrigatório",8000);
 	}
-	else if (pass.localeCompare(confpass) != 0){
+	if (pass.localeCompare(confpass) != 0){
 		ret = false;
 		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	}
-	return ret;
+	if(ret == true){
+		updateMyInfoClick();
+	}
 }
 
 function checkFieldClient()
@@ -165,7 +166,6 @@ function checkFieldClient()
 	if(error === false)
 	{
 		insertUser(0);
-		ajaxRequestDoc('createdClient.html');
 	}
 }
 
@@ -195,51 +195,53 @@ function checkFieldUpdateClient()
 		ret = false;
 		Materialize.toast("Nome de usuário já existe, tente outro.",8000);
 	}
-	else if(cpfAlreadyExists(cpf)) {
+	if(cpfAlreadyExists(cpf)) {
 		ret = false;
 		Materialize.toast("CPF já cadastrado, insira outro CPF.",8000);
 	}
-	else if (pass.localeCompare(confpass) != 0) {
+	if (pass.localeCompare(confpass) != 0) {
 		ret = false;
 		Materialize.toast("Senhas diferentes, digite novamente.",8000);
 	}
-	else if(email.length == 0) {
+	if(email.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um email, campo obrigatório",8000);
 	}
-	else if(phone.length == 0) {
+	if(phone.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um telefone, campo obrigatório",8000);
 	}
-	else if(email.length == 0) {
+	if(email.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um email, campo obrigatório",8000); 
 	}
-	else if(CEP.length == 0) {
+	if(CEP.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um CEP, campo obrigatório.",8000);
 	}
-	else if(adress.length == 0) {
+	if(adress.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um endereço, campo obrigatório",8000);
 	}
-	else if(number.length == 0) {
+	if(number.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um número, campo obrigatório.",8000);
 	}
-	else if(district.length == 0) {
+	if(district.length == 0) {
 		ret = false;
 		Materialize.toast("Insira um bairro, campo obrigatório.",8000);
 	}
-	else if(city.length == 0) {
+	if(city.length == 0) {
 		ret = false;
 		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	}
-	else if(state.length == 0) {
+	if(state.length == 0) {
 		ret = false;
 		Materialize.toast("Insira uma cidade, campo obrigatório.",8000);
 	}
-	return ret;
+	if(ret === true){
+		updateUser(0);
+	}
 }
 
 function checkPetField()

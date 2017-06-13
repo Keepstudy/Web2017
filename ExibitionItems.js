@@ -678,38 +678,42 @@ function setInfoClient(user) {
 
 /*---------------------index html login ------------ */
 function setIndexHeader(){
-	
-	checkLogin(function(){
-		if(localStorage.id !== null && localStorage.id !== undefined){
-			// exibitionItems.js linha 435 ver se o login atual eh adm
-			let isAdmin = 0;
+	if(document.getElementById("txtUsername").value == "" || document.getElementById("txtPassword").value == ""){
+		Materialize.toast("Login e Usuário inválido.",2000);
+	}
+	else{
+		checkLogin(function(){
+			if(localStorage.id !== null && localStorage.id !== undefined){
+				// exibitionItems.js linha 435 ver se o login atual eh adm
+				let isAdmin = 0;
 
-			readAll("tableUser", list => {
-				let user = {};
-				for (let i in list) {
-					if (list[i].id == localStorage.getItem("id")) {
-						user = list[i];
-						break;
+				readAll("tableUser", list => {
+					let user = {};
+					for (let i in list) {
+						if (list[i].id == localStorage.getItem("id")) {
+							user = list[i];
+							break;
+						}
 					}
-				}
-				isAdmin = user.isAdmin;
-				if (isAdmin === true){
-					document.getElementById("divCart").style.visibility = "hidden";
-				}
-			});
+					isAdmin = user.isAdmin;
+					if (isAdmin === true){
+						document.getElementById("divCart").style.visibility = "hidden";
+					}
+				});
 
-			document.getElementById("divLogin").innerHTML = `
-				<div id="homeLogin">
-					Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();">`+localStorage.user+`.</a> 
-					| <a class="waves-effect waves-light" href="#" onclick="logout();">Logout</a></p> 
-					<a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();"><img src="images/admin.png" width="50" height="50"/></a>
-	      		</div>
-			`;
+				document.getElementById("divLogin").innerHTML = `
+					<div id="homeLogin">
+						Bem vindo <a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();">`+localStorage.user+`.</a> 
+						| <a class="waves-effect waves-light" href="#" onclick="logout();">Logout</a></p> 
+						<a href="#" onclick="ajaxRequestDoc('userProfile.html');openTab(event, 'myInfo');setInfo();"><img src="images/admin.png" width="50" height="50"/></a>
+		      		</div>
+				`;
 
-			ajaxRequestDoc('index.html');
-			initializeIdxLists();
-		}
-	});
+				ajaxRequestDoc('index.html');
+				initializeIdxLists();
+			}
+		});
+	}
 }
 
 
