@@ -1129,12 +1129,12 @@ function logout(){
 	Materialize.toast("Até logo, " + localStorage.user, 4000);
 	localStorage.id = localStorage.user = null;
 	document.getElementById("divLogin").innerHTML = `
-		<div>
-			<input type="text" name="txtUsername" placeholder="Usuário">
-			<input type="password" name="txtPassword" placeholder="Senha">
-			<button id="loginButton" type="button">Login</button>
+		<div id="homeLogin">
+			<input type="text" id="txtUsername" placeholder="Usuário">
+			<input type="password" id="txtPassword" placeholder="Senha">
+			<button id="loginButton" type="button" onclick="setIndexHeader();">Login</button>
 		</div>
-		<a class="hyperlink" href="createClient.html" >Cadastro</a>
+		<a class="hyperlink" href="#" onclick='ajaxRequestDoc("createClient.html");'>Cadastro</a>
 	`;
 	ajaxRequestDoc('index.html');
 	initializeIdxLists();

@@ -217,7 +217,7 @@ function readAllWithKey(tableName, callback) {
 	
 	req.transaction.oncomplete = e => callback(list);
 }
-function insertIntoDatabaseWithCallback(tablename, obj, callback) {
+function insertIntoDatabaseWithCallback(tableName, obj, callback) {
 	let req = db.transaction(tableName, "readwrite")
 	.objectStore(tableName).add(obj);
 	req.onsuccess = e => { console.log("A new entry has been added to your database successfully."); callback(); };
@@ -473,7 +473,7 @@ function insertUser(isAdmin) {
 			id: Number(document.forms[0]["id"].value),
 			name: document.forms[0]["name"].value,
 			username: document.forms[0]["user"].value,
-			password: document.forms[0]["password"].value,
+			password: document.forms[0]["senha"].value,
 			photo: img,
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
@@ -484,7 +484,7 @@ function insertUser(isAdmin) {
 			city: document.forms[0]["city"].value,
 			state: document.forms[0]["state"].value,
 			isAdmin: isAdmin
-		}, () => { ajaxRequestDoc('createdClient.html'); });
+		}, () => { Materialize.toast("Conta Criada com Sucesso",4000);ajaxRequestDoc('createdClient.html'); });
 	}
 	else {
 		insertIntoDatabaseWithCallback("tableUser", {
@@ -496,7 +496,7 @@ function insertUser(isAdmin) {
 			email: document.forms[0]["email"].value,
 			phone_number: document.forms[0]["phone_number"].value, 
 			isAdmin: isAdmin
-		}, () => { ajaxRequestDoc('createdAdmin.html'); });
+		}, () => { Materialize.toast("Conta Criada com Sucesso",4000);ajaxRequestDoc('createdAdmin.html'); });
 	}
 }
 function deleteUser() {
@@ -541,7 +541,7 @@ function isValidUser(usr, pw, callback) {
 	let req = db.transaction("tableUser", "readonly")
 	.objectStore("tableUser").index("username").get(usr);
 	
-	req.onsuccess = e => {  console.log(req); callback(req.result.password == pw, req.result.id); }
+	req.onsuccess = e => {  callback(req.result.password == pw, req.result.id); }
 	req.onerror   = e => {	callback(false, -1); }
 }
 function usernameAlreadyExists(usr) {
@@ -628,4 +628,3 @@ function recentlyAdded(callback) {
 		});
 	});
 }
-
