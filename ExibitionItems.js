@@ -566,7 +566,7 @@ function setInfoClient(user) {
 	document.forms[0]["id"].value = user.id;
 
 	document.forms[0]["email"].value = user.email;
-	document.forms[0]["phone_number"].value = user.phone_number;
+	document.forms[0]["phone number"].value = user.phone_number;
 
 	document.getElementsByClassName("fieldsetAddress")[0].style.display = "block";
 
@@ -581,6 +581,11 @@ function setInfoClient(user) {
 
 	document.getElementsByClassName("pUserLevel")[1].innerHTML = "Cliente";
 
+	if (user.photo != null && user.photo != "")
+		document.getElementById("previewfoto").src = user.photo;
+	else
+		document.getElementById("previewfoto").src = "";
+
 	document.forms[1]["name"].value = user.name;
 	document.forms[1]["user"].value = user.username;
 	document.forms[1]["id"].value = user.id;
@@ -589,7 +594,7 @@ function setInfoClient(user) {
 	document.forms[1]["confpassword"].value = user.password;
 
 	document.forms[1]["email"].value = user.email;
-	document.forms[1]["phone_number"].value = user.phone_number;
+	document.forms[1]["phone number"].value = user.phone_number;
 
 	document.getElementsByClassName("fieldsetAddress")[1].style.display = "block";
 
@@ -609,21 +614,19 @@ function setInfoClient(user) {
 		else {
 			for(let i in petsList){
 				document.getElementById("listAnimals").innerHTML += `
-						<div>
-						<div class="containerPets">
-							<div class = "row">
-								<div class="col s3" style="transform:translateY(10px);">
-									<img src="`+petsList[i].photo+`" class="fullImage" alt="Imagem do Animal"/>
-								</div>
-								<table class="col s8">
-									<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
-									<tr><td>ID</td><td><input type="text" id="animalID" value="`+petsList[i].idPet+`" readonly></td></tr>
-									<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="`+petsList[i].age+`" readonly></td></tr>
-									<tr><td>Raça</td><td><input type="text" id="animalBreed" value="`+petsList[i].breed+`" readonly></td></tr>
-								</table>
+						<div class="divAnimalInfo">
+							<div class="divAnimalPhoto">
+								<img src="`+petsList[i].photo+`" class="fullImage" alt="Imagem do Animal"/>
 							</div>
-							
-						</div><hr></div>`;
+							<table class="table2Items">
+								<tr><td>Nome</td><td><input type="text" id="animalName" value="`+ petsList[i].name +`" readonly></td></tr>
+								<tr><td>ID</td><td><input type="text" id="animalID" value="`+petsList[i].idPet+`" readonly></td></tr>
+								<tr><td>Idade (em anos)</td><td><input type="text" id="animalAge" value="`+petsList[i].age+`" readonly></td></tr>
+								<tr><td>Raça</td><td><input type="text" id="animalBreed" value="`+petsList[i].breed+`" readonly></td></tr>
+							</table>
+						</div>
+					</input>
+					<br>`;
 			}
 		}
 	});
@@ -966,7 +969,7 @@ function updateMyInfoClick() {
 				if (!userList[i].isAdmin && !checkFieldUpdateClient()) return ;
 				deleteFromDB("tableUser", parseInt(localStorage.getItem("id")));
 				updateUser(userList[i].isAdmin);
-				Materialize.toast("Suas informações foram atualizadas com sucesso!",4000);
+				alert("Suas alterações foram salvas com sucesso!");
 				readAll("tableUser", uList => {
 					for(let j in uList) {
 						if (uList[j].id == localStorage.getItem("id")) {
@@ -993,4 +996,140 @@ function showItemsByFilter() {
 		startProductSearch();
 	else if (ifs)
 		startServiceSearch();
+}
+
+/* ------------------------     novas func     -------------------------- */
+
+var idxProductList, idxServiceList;
+
+function initializeIdxLists() {
+	recentlyAdded((pList, sList) => {
+		idxProductList = pList;
+		idxServiceList = sList;
+		idxAppendProducts();
+		idxAppendServices();
+	});
+}
+
+
+function idxFindItemToAdd(name){
+	console.log(name);
+	let itemList = idxServiceList;
+	for(let i in itemList){
+		if(itemList[i].name == name){
+			
+				ajaxRequestDoc("showService.html");
+				
+				document.getElementById("nameService").innerHTML = name;
+				document.getElementById("serviceImage").src = itemList[i].photo;	
+				document.getElementById("lblServicePrice").innerHTML = itemList[i].price.toFixed(2).toString();
+				document.getElementById("pDescription").innerHTML = itemList[i].description;
+				$("#dayAppointment").on('load', () => {
+					defaultDate : new Date()
+				});
+				//$(document).on('ready', function() {
+				//	document.getElementById("dayAppointment").value = new Date();
+				//});
+				/*Inicia os pets*/
+				slotFreeClick();
+
+				localStorage.setItem("appointment","{}");
+				if(localStorage.id !== null && localStorage.id !== undefined){
+					searchPetsByUserId(localStorage.id, petsList => {
+						appendPets(petsList);
+					});
+					showSlots();
+				}
+				else{
+					/*Usuario nao logado*/
+					document.getElementById("listAnimals").innerHTML = "<h4>Você não tem Pets.</h4>";
+				}
+				
+				return ;			
+		}
+	}
+	itemList = idxProductList;
+	for(let i in itemList){
+		if(itemList[i].name == name){
+			ajaxRequestDoc("showProduct.html");
+			document.getElementById("nameProduct").innerHTML = name;		
+			document.getElementById("productImage").src = itemList[i].photo;
+			document.getElementById("lblProductPrice").innerHTML = itemList[i].price.toFixed(2).toString();
+			document.getElementById("lblInStock").innerHTML = itemList[i].quantity;
+			document.getElementById("pDescription").innerHTML = itemList[i].description;
+
+			return ;
+		}
+	}
+}
+
+function idxAppendProducts(){
+	let itemList = idxProductList;
+	let row = 0;
+	let total = Math.ceil(itemList.length/3);
+	/*Percorre as linhas*/
+	for(let i = Math.ceil(row/3), j = Math.ceil(row/3); i < Math.min(total,j+3); i++){
+		/*Adiciona no HTML um novo container*/
+		document.getElementById("idxProductList").innerHTML+= `
+			<div id="idxProductListRow` + (i.toString()) + `" class='row'>
+			</div>`;
+
+		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
+		for(let k = 0; k < Math.min(3,itemList.length-(i*3));k++,row++){
+			/*Adiciona itens um a um em cada linha*/
+			console.log(i*3+k);
+			
+			document.getElementById("idxProductListRow" + (i.toString())).innerHTML += `
+				<div class='col s4'> <!-- Put an element here! -->
+				<div style="width:100%;height:120px;overflow:hidden;">
+						<img src=`+itemList[i*3+k].photo+` alt="Imagem do Produto" style="width:100%;height:100%;"></img>
+				</div>
+				<div style="height:30px; width:auto;">
+					<a class="productLink" href="#" onclick='idxFindItemToAdd("`+itemList[i*3+k].name+`");'>`+itemList[i*3+k].name+`</a>
+				</div>
+				<label class="productPrize"><br>R$ `+itemList[i*3+k].price.toFixed(2).toString()+`</label>
+				</div>`;
+		}
+	}
+	
+	if(row >= itemList.length){
+		document.getElementById("idxAddMoreProducts").disabled = true; 
+		document.getElementById("idxAddMoreProducts").style.background="DarkGrey";
+	}
+}
+
+
+function idxAppendServices(){
+	let itemList = idxServiceList;
+	let row = 0;
+	let total = Math.ceil(itemList.length/3);
+	/*Percorre as linhas*/
+	for(let i = Math.ceil(row/3), j = Math.ceil(row/3); i < Math.min(total,j+3); i++){
+		/*Adiciona no HTML um novo container*/
+		document.getElementById("idxServiceList").innerHTML+= `
+			<div id="idxServiceListRow` + (i.toString()) + `" class='row'>
+			</div>`;
+
+		/*Vai colocando de 3 em 3 em cada linha até que acabem os itens*/
+		for(let k = 0; k < Math.min(3,itemList.length-(i*3));k++,row++){
+			/*Adiciona itens um a um em cada linha*/
+			console.log(i*3+k);
+			
+			document.getElementById("idxServiceListRow" + (i.toString())).innerHTML += `
+				<div class='col s4'> <!-- Put an element here! -->
+				<div style="width:100%;height:120px;overflow:hidden;">
+						<img src=`+itemList[i*3+k].photo+` alt="Imagem do Serviço" style="width:100%;height:100%;"></img>
+				</div>
+				<div style="height:30px; width:auto;">
+					<a class="productLink" href="#" onclick='idxFindItemToAdd("`+itemList[i*3+k].name+`");'>`+itemList[i*3+k].name+`</a>
+				</div>
+				<label class="productPrize"><br>R$ `+itemList[i*3+k].price.toFixed(2).toString()+`</label>
+				</div>`;
+		}
+	}
+	
+	if(row >= itemList.length){
+		document.getElementById("idxAddMoreServices").disabled = true; 
+		document.getElementById("idxAddMoreServices").style.background="DarkGrey";
+	}
 }

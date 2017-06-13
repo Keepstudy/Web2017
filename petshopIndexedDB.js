@@ -14,31 +14,39 @@ Cães com mais de 7 anos de idade podem apresentar maior dificuldade na mastiga�
 	{id: 2, name: "Ração para cães 12kg", price: 12.00, quantity: 222, description: "ração fera", photo: ""},
 	{id: 3, name: "Ração para cães 13kg", price: 13.00, quantity: 333, description: "ração fera", photo: ""}
 ];
+
 // serviços para serem inseridos ao iniciar
 const serviceList = [
 	{id: 1, name: "Vacinação", price: 11.00, description: "vacinação fera", photo: ""},
 	{id: 2, name: "Banho e Tosa", price: 12.00, description: "banho e tosa fera", photo: ""}
 ];
+
 // animais para serem inseridos ao iniciar
 const petList = [
 	{idPet: 8931, idUser: 7, name: "Jack", age: 3, breed: "Jack russell terrier", photo: ""},
 	{idPet: 8932, idUser: 7, name: "Lessie", age: 2, breed: "Rough collie", photo: ""}
 ];
+
 // usuários para serem inseridos ao iniciar
 const userList = [
 	{id: 7, name: "PetShop ooooo client", username: "client", password: "client", photo: "", email: "client@petshop.com", phone_number: "(11)91313-1313", cep: "13566-590", address: "Av. Trab. São-Carlense", number: "400", district: "Parque Arnold Schimidt", city: "São Carlos", state: "SP", isAdmin: false},
 	{id: 13, name: "PetShop ooooo admin", username: "admin", password: "admin", photo: "", email: "admin@petshop.com", phone_number: "(11)91313-1313", isAdmin: true}
 ];
+
 // vendas para serem inseridos ao iniciar
 const saleList = [
 	{ idUser: 7, items: `[{"photo":"1","name":"racao pra periquito 10kg","price":"100.00","quantity":"1"},{"photo":"1","name":"racao pra periquito 20kg","price":"200.00","quantity":"1"}]`, total: 600.00, totalPortions: 6, datePaid: new Date(2014, 9, 13, 11, 13) }
 ];
+
 // agendamentos para serem inseridos ao iniciar
 const appointmentList = [
 	{ idUser: 7, idPet: 8931, idService: 1, total: 11.00, totalPortions: 1, dateAppointment: new Date(2017, 6, 10, 8), datePaid: new Date(2017, 6, 1, 8, 15) }
 ];
+
 let db;
+
 function initializeDB() {
+
 	// checando se o browser suporta IndexedDB
 	if("indexedDB" in window) {
 		console.log("IndexedDB is supported.");
@@ -104,6 +112,7 @@ function initializeDB() {
 				console.log("Database upgraded.");
 			}
 		}
+
 		openRequest.onsuccess = e => {
 			console.log("Database opened successfully.");
 			db = e.target.result;
@@ -112,6 +121,7 @@ function initializeDB() {
 			
 			// inicializando a tabela
 			let tableProduct = db.transaction("tableProduct", "readwrite").objectStore("tableProduct");	
+
 			let countProducts = tableProduct.count();
 			countProducts.onsuccess = function () {
 				if (countProducts.result == 0) {
@@ -167,6 +177,7 @@ function initializeDB() {
 				}
 			}
 		}
+
 		openRequest.onerror = e => {
 			console.log("An error occurred while trying to initialize the database.");
 		}
@@ -175,26 +186,32 @@ function initializeDB() {
 		window.alert("This application requires IndexedDB but it isn't supported by your browser. It won't work correctly.");
 	}
 }
+
 // ================================================================================================================== //
 // ================================= Implementação genérica - manipular DATABASE ==================================== //
 // ================================================================================================================== //
 function insertIntoDB(tableName, obj) {
+
 	let req = db.transaction(tableName, "readwrite")
 	.objectStore(tableName).add(obj);
+
 	req.onsuccess = e => { console.log("A new entry has been added to your database successfully."); };
 	req.onerror = e =>   { console.log("An error occurred while trying to add a new entry to the database."); };
 }
 function deleteFromDB(tableName, id) {
 	let req = db.transaction(tableName, "readwrite")
 	.objectStore(tableName).delete(id);
+
 	req.onsuccess = e => { console.log("An entry has been deleted from your database."); };
 	req.onerror = e => { console.log("An error occurred while trying to delete an entry from the database."); }
 }
 function readAll(tableName, callback) {
 	let list = [];
 	let req = db.transaction(tableName).objectStore(tableName).openCursor();
+
 	req.onsuccess = e => {
 		let cursor = e.target.result;
+
 		if (cursor) {
 			list.push(cursor.value);
 			cursor.continue();
@@ -206,8 +223,10 @@ function readAll(tableName, callback) {
 function readAllWithKey(tableName, callback) {
 	let list = [];
 	let req = db.transaction(tableName).objectStore(tableName).openCursor();
+
 	req.onsuccess = e => {
 		let cursor = e.target.result;
+
 		if (cursor) {
 			list.push({ key: cursor.key, value : cursor.value });
 			cursor.continue();
@@ -220,19 +239,16 @@ function readAllWithKey(tableName, callback) {
 // ============================================= Implementação PRODUTO ============================================== //
 // ================================================================================================================== //
 function insertProduct() {
-	getNextProductId(idProduct => {
-		let img = "";
-		if (localStorage.getItem("img64Base") !== undefined)
-			img = localStorage.getItem("img64Base");
-		insertIntoDB("tableProduct", {
-			id: idProduct,
-			name: document.forms[0]["produto"].value,
-			price: parseFloat(document.forms[0]["preço"].value),
-			quantity: Number(document.forms[0]["quantidade"].value),
-			description: document.forms[0]["desc"].value,
-			photo: img
-		});
-		ajaxRequestDoc('createdProduct.html');
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
+	insertIntoDB("tableProduct", {
+		id: getNextProductId(),
+		name: document.forms[0]["produto"].value,
+		price: parseFloat(document.forms[0]["preço"].value),
+		quantity: Number(document.forms[0]["quantidade"].value),
+		description: document.forms[0]["desc"].value,
+		photo: img
 	});
 }
 function deleteProduct() {
@@ -263,6 +279,7 @@ function listProduct() {
 		document.getElementById("productList").innerHTML = text;
 	});
 }*/
+
 function searchAppointmentsByDate(date, callback) {
 	date = new Date(date);
 	readAll("tableAppointment", list => {
@@ -279,7 +296,9 @@ function searchAppointmentsByDate(date, callback) {
 		callback(appList);
 	});
 }
+
 function searchPetsByPetId(id, callback) {
+
 	readAll("tablePet", list => {
 		let petsList = [];
 			
@@ -291,7 +310,9 @@ function searchPetsByPetId(id, callback) {
 		callback(petsList);
 	});
 }
+
 function searchServiceById(id, callback) {
+
 	readAll("tableService", list => {
 		let serviceList = [];
 			
@@ -303,7 +324,9 @@ function searchServiceById(id, callback) {
 		callback(serviceList);
 	});
 }
+
 function searchPetsByUserId(id, callback) {
+
 	readAll("tablePet", list => {
 		let petsList = [];
 			
@@ -315,7 +338,9 @@ function searchPetsByUserId(id, callback) {
 		callback(petsList);
 	});
 }
+
 function searchProductByName(pattern, callback) {
+
 	readAll("tableProduct", list => {
 		let productList = [];
 			
@@ -327,7 +352,9 @@ function searchProductByName(pattern, callback) {
 		callback(productList);
 	});
 }
+
 function searchServiceByName(pattern, callback) {
+
 	readAll("tableService", list => {
 		let serviceList = [];
 			
@@ -339,7 +366,9 @@ function searchServiceByName(pattern, callback) {
 		callback(serviceList);
 	});
 }
+
 function searchProductAndServiceByName(pattern, callback) {
+
 	readAll("tableService", serviceList => {
 		let productAndServiceList = [];
 			
@@ -348,6 +377,7 @@ function searchProductAndServiceByName(pattern, callback) {
 				productAndServiceList.push(serviceList[i]);
 			}
 		}
+
 		readAll("tableProduct", list => {
 				
 			for(let i in list) {
@@ -360,6 +390,7 @@ function searchProductAndServiceByName(pattern, callback) {
 		});
 	});
 }
+
 function updateStock(itemList) {
 	itemList = JSON.parse(itemList);
 	let tableProduct = db.transaction(['tableProduct'], 'readwrite').objectStore('tableProduct');
@@ -381,42 +412,46 @@ function updateStock(itemList) {
 		}
 	};
 }
-function getNextPetId(callback) {
+
+function getNextPetId() {
 	readAll("tablePet", list => {
-		callback(list.length + 1);
+		return list.length + 1;
 	});
 }
-function getNextProductId(callback) {
+
+function getNextProductId() {
 	readAll("tableProduct", list => {
-		callback(list.length + 1);
+		return list.length + 1;
 	});
 }
-function getNextServiceId(callback) {
+
+function getNextServiceId() {
 	readAll("tableService", list => {
-		callback(list.length + 1);
+		return list.length + 1;
 	});
 }
+
+
 // ================================================================================================================== //
 // ============================================= Implementação SERVIÇO ============================================== //
 // ================================================================================================================== //
 function insertService() {
-	getNextServiceId(idService => {
-		let img = "";
-		if (localStorage.getItem("img64Base") !== undefined)
-			img = localStorage.getItem("img64Base");
-		insertIntoDB("tableService", {
-			id: idService,
-			name: document.forms[0]["pname"].value,
-			price: parseFloat(document.forms[0]["preço"].value),
-			description: document.forms[0]["desc"].value,
-			photo: img
-		});
-		ajaxRequestDoc('createdService.html');
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
+	insertIntoDB("tableService", {
+		id: getNextServiceId(),
+		name: document.forms[0]["pname"].value,
+		price: parseFloat(document.forms[0]["preço"].value),
+		description: document.forms[0]["desc"].value,
+		photo: img
 	});
 }
+
 function deleteService() {
 	deleteFromDB("tableService", Number(document.forms[0]["idservice"].value));
 }
+
 function updateService() {
 	let img = "";
 	if (localStorage.getItem("img64Base") !== undefined)
@@ -434,19 +469,16 @@ function updateService() {
 // =============================================  Implementação ANIMAL  ============================================= //
 // ================================================================================================================== //
 function insertPet() {
-	getNextPetId(id => {
-		let img = "";
-		if (localStorage.getItem("img64Base") !== undefined)
-			img = localStorage.getItem("img64Base");
-		insertIntoDB("tablePet", {
-			idPet: id,
-			idUser: localStorage.getItem("id"),
-			name: document.forms[0]["animal"].value,
-			age: parseInt(document.forms[0]["idade"].value),
-			breed: document.forms[0]["raça"].value,
-			photo: img
-		});
-		ajaxRequestDoc('createdPet.html');
+	let img = "";
+	if (localStorage.getItem("img64Base") !== undefined)
+		img = localStorage.getItem("img64Base");
+	insertIntoDB("tablePet", {
+		idPet: Number(getNextPetId()),
+		idUser: document.forms[0]["User"].value,
+		name: document.forms[0]["animal"].value,
+		age: parseInt(document.forms[0]["idade"].value),
+		breed: document.forms[0]["raça"].value,
+		photo: img
 	});
 }
 function deletePet() {
@@ -454,6 +486,7 @@ function deletePet() {
 }
 function updatePet() {
 }
+
 // ================================================================================================================== //
 // ============================================= Implementação USUÁRIO  ============================================= //
 // ================================================================================================================== //
@@ -605,4 +638,27 @@ function deleteAppointment() {
 }
 function updateAppointment() {
 }
+
 initializeDB();
+
+
+
+
+/* -------------------  novas func  ---------------- */
+
+function recentlyAdded(callback) {
+	readAll("tableProduct", productList => {
+		readAll("tableService", serviceList => {
+			productList.reverse();
+			serviceList.reverse();
+			productList.slice(0, 5);
+			serviceList.slice(0, 5);
+			callback(productList, serviceList);
+		});
+	});
+}
+
+
+
+
+

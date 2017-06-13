@@ -21,7 +21,7 @@
 	<body>
 		<header height="auto;">
 			<div id="divLogo">   <!-- div para o logo -->
-				<a href="#" onclick="ajaxRequestDoc('index.html');"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+				<a href="#" onclick="ajaxRequestDocWithCallback('index.html', function () {initializeIdxLists();});"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
 			</div>
 			<div class="centerElements" id="divSearch">  <!-- div para barra de busca -->
 				<input id="txtSearch" type="text" name="txtSearch" placeholder="O que está procurando?">
@@ -37,12 +37,12 @@
 						<input type="password" id="txtPassword" placeholder="Senha">
 						<button id="loginButton" type="button" onclick="setIndexHeader();">Login</button>
 					</div>
-					<a class="hyperlink" href="#" onclick='ajaxRequestDoc("createClient.html");'>Cadastro</a>
+					<a class="hyperlink" href="#" onclick='ajaxRequestDoc("createClient.html");'>Cadastro</a> |
+					<a class="hyperlink" href="#" >Esqueceu a senha?</a>
 				</div>
 			</div>
 		</header>
 
-		
 		<nav class="centerElements"> <!-- div para listagem de animais -->
 			<a href="#">Cães</a>
 			<a href="#">Gatos</a>
@@ -55,9 +55,28 @@
 		<aside style="width:7%; opacity: 0;"> <!-- left-sidebar -->
 		</aside>
 
-		<main style="width:86%;float:center; transform:translateY(20px);"> <!-- main content -->
+		<main style="width:86%;float:center;"> <!-- main content -->
 			<div style="text-align: center;">
 				<img style="padding: 2% 20% 2% 5%;width:90%;height:400px;" src="images/begImage.jpg" alt="PetShop ooooo"/> 
+			</div>
+			<div class="col s12" style="display:block !important;clear:both;">
+				<label style="float:left;">Produtos Adicionados Recentemente</label>
+				<br><br>
+			</div>
+			<div id = "idxProductList" class='mask'>
+			</div>
+			<div class="listProductHeader" style="text-align: center;">
+				<button id="idxAddMoreProducts" class="buttonPageProduct" type="button" onclick="idxAppendProducts();">Adiciona mais</button>
+			</div>
+			<br><br><br>
+			<div class="col s12" style="display:block !important;clear:both;">
+				<label style="float:left;">Serviços Adicionados Recentemente</label>
+				<br><br>
+			</div>
+			<div id = "idxServiceList" class='mask'>
+			</div>
+			<div class="listProductHeader" style="text-align: center;">
+				<button id="idxAddMoreServices" class="buttonPageProduct" type="button" onclick="idxAppendServices();">Adiciona mais</button>
 			</div>
 		</main>
 
@@ -66,13 +85,18 @@
 
 		<footer>
 			<div id="divLogoFooter">
-				<a href="#" onclick="ajaxRequestDoc('index.html');"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
+				<a href="#" onclick="ajaxRequestDocWithCallback('index.html', function () {initializeIdxLists();});"><img class="fullImage" src="images/logo.jpg" alt="PetShop ooooo"/></a>
 			</div>
 			<div id="divInfo">
 				<br>
-				<a class="hyperlink" href="#" onclick="ajaxRequestDoc('index.html');">Página Inicial</a> |
+				<a class="hyperlink" href="#" onclick="ajaxRequestDocWithCallback('index.html', function () {initializeIdxLists();});">Página Inicial</a> |
 				<a class="hyperlink" href="#" onclick="ajaxRequestDoc('about.html');">Quem Somos</a>
 			</div>
 		</footer>
 	</body>
+	<script>
+	$(document).ready(function () {
+		initializeIdxLists();
+	});
+	</script>
 </html>
